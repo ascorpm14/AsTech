@@ -2076,6 +2076,24 @@ footer {
       </div>
     </div>
   </div>
+  <!-- Scenario tabs — directly below the phone mockup for immediate visual connection -->
+  <div class="scenarios" style="padding:24px 0 0;justify-content:center;max-width:400px;margin:0 auto;">
+    <button class="scenario-tab active" data-scenario="0">
+      <span class="tab-icon">📄</span>
+      <span class="scenario-indicator indicator-green"></span>
+      Rechnungserfassung
+    </button>
+    <button class="scenario-tab" data-scenario="1">
+      <span class="tab-icon">🏦</span>
+      <span class="scenario-indicator indicator-blue"></span>
+      Bankabstimmung
+    </button>
+    <button class="scenario-tab" data-scenario="2">
+      <span class="tab-icon">📋</span>
+      <span class="scenario-indicator indicator-amber"></span>
+      Steuervorbereitung
+    </button>
+  </div>
 </div>
 </section>
 
@@ -2117,24 +2135,8 @@ footer {
   </div>
 </div>
 
-<!-- ═══ SCENARIO TABS ═══ -->
-<div class="scenarios" id="szenarien">
-  <button class="scenario-tab active" data-scenario="0">
-    <span class="tab-icon">📄</span>
-    <span class="scenario-indicator indicator-green"></span>
-    Rechnungserfassung
-  </button>
-  <button class="scenario-tab" data-scenario="1">
-    <span class="tab-icon">🏦</span>
-    <span class="scenario-indicator indicator-blue"></span>
-    Bankabstimmung
-  </button>
-  <button class="scenario-tab" data-scenario="2">
-    <span class="tab-icon">📋</span>
-    <span class="scenario-indicator indicator-amber"></span>
-    Steuervorbereitung
-  </button>
-</div>
+<!-- ═══ #szenarien anchor for scroll spy (points to hero-right mockup area) ═══ -->
+<span id="szenarien" style="display:block;height:0;overflow:hidden;" aria-hidden="true"></span>
 
 <!-- ═══ FEATURES ═══ -->
 <section class="features" id="features">
@@ -3244,10 +3246,10 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Click to scroll to first scenario section
+// Click to scroll down to the first content section below hero
 if (scrollIndicator) {
   scrollIndicator.addEventListener('click', () => {
-    const target = document.getElementById('szenarien');
+    const target = document.getElementById('features');
     if (target) {
       const navHeight = document.querySelector('nav').offsetHeight || 70;
       const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
