@@ -509,6 +509,48 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
 .msg-check { font-size: 14px; }
 .msg-emoji { font-size: 18px; }
 .msg-bold { font-weight: 600; }
+
+/* Live monitoring system message — makes mockup feel alive */
+.whatsapp-system-msg {
+  align-self: center;
+  font-size: 11.5px;
+  color: #68736f;
+  background: rgba(0,0,0,0.03);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin: 6px auto 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: systemMsgIn 0.5s ease forwards;
+  opacity: 0;
+  transform: translateY(6px);
+  max-width: 90%;
+  white-space: nowrap;
+}
+.whatsapp-system-msg .live-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+  animation: livePulse 2s ease-in-out infinite;
+}
+.whatsapp-system-msg.connecting {
+  color: #2563eb;
+  background: rgba(37,99,235,0.06);
+}
+.whatsapp-system-msg.connecting .live-dot {
+  background: #2563eb;
+  animation: none;
+  opacity: 0.5;
+}
+@keyframes systemMsgIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
 .msg-label {
   display: inline-block;
   font-size: 11px;
@@ -2551,6 +2593,11 @@ const scenarios = [
 
 let currentScenario = 0;
 let msgTimeouts = [];
+let monitoringTimeout = null;
+let isTransitioning = false;
+
+const MONITOR_DELAY = 3000;  // ms after last message before "watching" state
+const TRANSITION_DELAY = 1200; // ms for the fade/connect transition
 
 function getTime() {
   const d = new Date();
@@ -2566,11 +2613,46 @@ function getMsgStatus(msgType) {
   return '<span class="msg-check" style="color:#8696a0;font-size:14px;">✓✓</span>';
 }
 
-function renderScenario(index) {
-  const body = document.getElementById('waBody');
-  body.innerHTML = '';
+function addSystemMessage(body, text, className) {
+  const div = document.createElement('div');
+  div.className = 'whatsapp-system-msg' + (className ? ' ' + className : '');
+  div.innerHTML = '<span class="live-dot"></span> ' + text;
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+  return div;
+}
+
+function scheduleMonitoringState(body) {
+  // Show "live monitoring" message after scenario finishes
+  monitoringTimeout = setTimeout(() => {
+    if (isTransitioning) return;
+    // Remove any existing system messages first
+    body.querySelectorAll('.whatsapp-system-msg').forEach(el => el.remove());
+    addSystemMessage(body, 'SteuerGPT überwacht Ihre Konten...');
+  }, MONITOR_DELAY);
+}
+
+function clearAllTimeouts() {
   msgTimeouts.forEach(t => clearTimeout(t));
   msgTimeouts = [];
+  if (monitoringTimeout) {
+    clearTimeout(monitoringTimeout);
+    monitoringTimeout = null;
+  }
+}
+
+function renderScenario(index) {
+  const body = document.getElementById('waBody');
+  // Remove all system messages but keep the body intact
+  body.querySelectorAll('.whatsapp-system-msg').forEach(el => el.remove());
+
+  // Clear any pending timeouts from previous scenario
+  msgTimeouts.forEach(t => clearTimeout(t));
+  msgTimeouts = [];
+  if (monitoringTimeout) {
+    clearTimeout(monitoringTimeout);
+    monitoringTimeout = null;
+  }
 
   const msgs = scenarios[index].messages;
   let cumulativeDelay = 500;
@@ -2597,9 +2679,47 @@ function renderScenario(index) {
         body.appendChild(div);
       }
       body.scrollTop = body.scrollHeight;
+
+      // If this is the last message, schedule the "monitoring" state
+      if (i === msgs.length - 1) {
+        scheduleMonitoringState(body);
+      }
     }, cumulativeDelay);
     msgTimeouts.push(t);
   });
+}
+
+function switchScenario(idx) {
+  if (isTransitioning || idx === currentScenario) return;
+  isTransitioning = true;
+
+  const body = document.getElementById('waBody');
+
+  // Clear all pending timers so no messages interfere with transition
+  clearAllTimeouts();
+
+  // Remove typing indicator if present
+  const typing = document.getElementById('typing-indicator');
+  if (typing) typing.remove();
+
+  // Fade existing system msg to "connecting" state
+  const sysMsgs = body.querySelectorAll('.whatsapp-system-msg');
+  sysMsgs.forEach(el => {
+    el.classList.add('connecting');
+    el.innerHTML = '<span class="live-dot"></span> Verbindung wird hergestellt...';
+  });
+
+  // If no system msg existed, add one
+  if (sysMsgs.length === 0) {
+    addSystemMessage(body, 'Verbindung wird hergestellt...', 'connecting');
+  }
+
+  // After transition delay, render new scenario
+  setTimeout(() => {
+    currentScenario = idx;
+    renderScenario(idx);
+    isTransitioning = false;
+  }, TRANSITION_DELAY);
 }
 
 // Tab switching
@@ -2608,8 +2728,7 @@ document.querySelectorAll('.scenario-tab').forEach(tab => {
     document.querySelectorAll('.scenario-tab').forEach(t => t.classList.remove('active'));
     this.classList.add('active');
     const idx = parseInt(this.dataset.scenario);
-    currentScenario = idx;
-    renderScenario(idx);
+    switchScenario(idx);
   });
 });
 
