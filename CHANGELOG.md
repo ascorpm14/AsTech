@@ -1,5 +1,13 @@
 # SteuerGPT — Changelog des améliorations
 
+## Run #19 — 25/06/2026
+- **Correction :** Statuts de messages WhatsApp réalistes — les messages entrants (`msg-in`) affichent désormais UNIQUEMENT l'heure (sans indicateur de statut), et les messages sortants (`msg-out`) affichent le double check gris `✓✓` (`#8696a0` = couleur officielle WhatsApp pour "délivré"). L'ancienne fonction `getCheck()` générait aléatoirement des icônes horloge 🕐, des checks simples, doubles, triples et quadruples pour TOUS les messages (entrants ET sortants) — ce qui n'existe pas dans le vrai WhatsApp : les messages entrants n'ont JAMAIS de statut, et les statuts sortants ont une sémantique précise (✓ = envoyé, ✓✓ = délivré, ✓✓ bleu = lu). Pour un cabinet comptable allemand qui utilise WhatsApp quotidiennement avec ses mandants, cette incohérence détruisait immédiatement la crédibilité et le réalisme du mockup. La nouvelle implémentation utilise `getMsgStatus(msgType)` qui retourne une chaîne vide pour les messages entrants (juste l'heure) et le double-check gris pour les sortants.
+- **Inspiration :** WhatsApp Business UI officielle — les détails infimes (couleur des checks, absence de statut sur les messages reçus) sont ce qui distingue un mockup crédible d'un faux évident. Un professionnel reconnaît instantanément ces signaux.
+- **Section modifiée :** JS — suppression de `getCheck()`, création de `getMsgStatus(msgType)`, modification de l'appel dans `renderScenario` (ligne innerHTML des messages)
+- **Statut :** ✅ Succès
+
+---
+
 ## Run #18 — 25/06/2026
 - **Correction :** Notch du téléphone qui chevauchait l'écran WhatsApp — `.phone-screen` avait `margin: 6px` (écran commençait à 6px du haut du cadre) tandis que `.phone-notch` mesurait 28px de haut (`top: 0`). Résultat : 22px de chevauchement où le notch masquait le header WhatsApp. Corrigé en passant à `margin: 28px 6px 6px 6px` — le notch s'assoit désormais entièrement dans le bezel supérieur, l'écran commence pile en dessous. Le rendu du téléphone est maintenant réaliste : cadre -> notch -> écran, sans chevauchement.
 - **Inspiration :** Apple.com, Samsung.com — les mockups produits premium alignent toujours parfaitement les découpes d'écran avec le contenu ; un décalage de quelques pixels crée un rendu "cheap" qui détruit la crédibilité auprès d'un cabinet comptable allemand.

@@ -2375,9 +2375,13 @@ function getTime() {
   return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
 }
 
-function getCheck() {
-  const checks = ['🕐','✓','✓✓','✓✓✓','✓✓✓✓'];
-  return checks[Math.floor(Math.random() * checks.length)];
+function getMsgStatus(msgType) {
+  // Real WhatsApp semantics:
+  // - Incoming messages: NO status indicator, just the time
+  // - Outgoing messages: double gray check ✓✓ (delivered) or blue ✓✓ (read)
+  if (msgType === 'in') return '';
+  // Use gray double-check for outgoing (delivered status)
+  return '<span class="msg-check" style="color:#8696a0;font-size:14px;">✓✓</span>';
 }
 
 function renderScenario(index) {
@@ -2404,7 +2408,7 @@ function renderScenario(index) {
 
         const div = document.createElement('div');
         div.className = 'whatsapp-msg ' + (msg.type === 'in' ? 'msg-in' : 'msg-out');
-        div.innerHTML = msg.text + '<div class="msg-time">' + getTime() + ' <span class="msg-check">' + getCheck() + '</span></div>';
+        div.innerHTML = msg.text + '<div class="msg-time">' + getTime() + ' ' + getMsgStatus(msg.type) + '</div>';
         div.style.animationDelay = '0s';
         body.appendChild(div);
       }
