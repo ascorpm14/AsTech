@@ -392,19 +392,27 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
 .phone-mockup {
   width: 100%; max-width: 400px;
   margin: 0 auto;
-  animation: float 6s ease-in-out infinite;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+.phone-mockup:hover {
+  transform: translateY(-4px);
 }
 .phone-frame {
-  background: white;
-  border-radius: 36px;
+  background: #1a1a2e;
+  border-radius: 40px;
   overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.2);
-  border: 3px solid #1a1a2e20;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 30px 80px rgba(0,0,0,0.25);
   position: relative;
+}
+/* Realistic screen inset via pseudo-bezel */
+.phone-screen {
+  margin: 6px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: white;
 }
 .phone-notch {
   position: absolute;
@@ -425,7 +433,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
   border-radius: 2px;
 }
 .phone-header {
-  padding: 36px 16px 12px;
+  padding: 14px 16px 12px;
   background: #075e54;
   color: white;
   display: flex;
@@ -1886,21 +1894,23 @@ footer {
   <div class="phone-mockup">
     <div class="phone-frame">
       <div class="phone-notch"></div>
-      <div class="phone-header">
-        <span class="phone-back">‹</span>
-        <div class="phone-avatar">S</div>
-        <div>
-          <div class="phone-name">SteuerGPT</div>
-          <div class="phone-status">Online</div>
+      <div class="phone-screen">
+        <div class="phone-header">
+          <span class="phone-back">‹</span>
+          <div class="phone-avatar">S</div>
+          <div>
+            <div class="phone-name">SteuerGPT</div>
+            <div class="phone-status">Online</div>
+          </div>
+          <span class="phone-more">⋮</span>
         </div>
-        <span class="phone-more">⋮</span>
-      </div>
-      <div class="whatsapp-body" id="waBody"></div>
-      <div class="whatsapp-input">
-        <span class="emoji-btn">😊</span>
-        <input type="text" placeholder="Nachricht eingeben..." readonly>
-        <span class="mic-btn">🎤</span>
-        <button class="send-btn">➤</button>
+        <div class="whatsapp-body" id="waBody"></div>
+        <div class="whatsapp-input">
+          <span class="emoji-btn">😊</span>
+          <input type="text" placeholder="Nachricht eingeben..." readonly>
+          <span class="mic-btn">🎤</span>
+          <button class="send-btn">➤</button>
+        </div>
       </div>
     </div>
   </div>
