@@ -434,7 +434,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
 }
 .phone-header {
   padding: 14px 16px 12px;
-  background: #075e54;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
   color: white;
   display: flex;
   align-items: center; gap: 12px;
@@ -605,7 +605,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
   outline: none;
   font-family: inherit;
 }
-.whatsapp-input input:focus { box-shadow: 0 0 0 2px #075e5430; }
+.whatsapp-input input:focus { box-shadow: 0 0 0 2px rgba(37,99,235,0.30); }
 .whatsapp-input .emoji-btn, .whatsapp-input .mic-btn {
   width: 36px; height: 36px;
   border: none; background: transparent;
@@ -616,7 +616,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
 }
 .send-btn {
   width: 40px; height: 40px;
-  background: #075e54;
+  background: var(--primary);
   border: none; border-radius: 50%;
   color: white;
   cursor: pointer;
@@ -624,7 +624,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
   transition: var(--transition);
   flex-shrink: 0;
 }
-.send-btn:hover { background: #054d44; transform: scale(1.05); }
+.send-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
 
 /* ═══════════════════════════════════════
    SCENARIO TABS
