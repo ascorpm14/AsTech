@@ -1,5 +1,13 @@
 # SteuerGPT — Changelog des améliorations
 
+## Run #5 — 25/06/2026
+- **Amélioration :** Compteurs animés (Count-Up) sur les statistiques Hero + effet "Shimmer" subtil — les chiffres "15+", "98%", "24/7" s'animent de 0 → valeur cible au chargement de la page avec un easing cubic, et un balayage lumineux (shimmer) parcourt périodiquement les statistiques pour un rendu premium "AI-native"
+- **Inspiration :** Claude.ai / Vercel / Linear — compteurs animés avec micro-interactions (effet de balayage lumineux) sur les KPIs des landing pages AI SAAS haut de gamme
+- **Section modifiée :** Hero stats — remplacement des `<h3>` statiques par des `<span class="stat-count">` avec data-target/suffix ; ajout CSS `.stat-wrapper::after` pour le shimmer (animation `statShimmer` 6s) ; ajout JS `animateCounters()` avec `requestAnimationFrame` et `easeOutCubic`
+- **Statut :** ✅ Succès
+
+---
+
 ## Run #0 — 25/06/2026
 - **Site créé** par le fondateur (HTML+CSS+JS, 969 lignes)
 - **WhatsApp mockup** avec 3 scénarios animés (Rechnungserfassung, Bankabstimmung, Steuervorbereitung)

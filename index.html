@@ -207,6 +207,38 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative;
+  display: inline-block;
+}
+.stat-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.stat-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -8px -16px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(37,99,235,0.08) 25%,
+    rgba(124,58,237,0.08) 50%,
+    rgba(37,99,235,0.08) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: statShimmer 6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes statShimmer {
+  0%   { background-position: 200% 0; }
+  25%  { background-position: 0% 0; }
+  100% { background-position: 0% 0; }
+}
+.stat-num {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
 }
 .hero-stat p { font-size: 13px; color: var(--text-secondary); margin: 0; }
 
@@ -1060,9 +1092,9 @@ footer {
     <a href="#szenarien" class="btn-secondary">🎬 Szenarien ansehen</a>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><h3>15+</h3><p>Std. gespart / Woche</p></div>
-    <div class="hero-stat"><h3>98%</h3><p>Erkennungsrate</p></div>
-    <div class="hero-stat"><h3>24/7</h3><p>Verfügbar</p></div>
+    <div class="hero-stat"><h3 class="stat-wrapper"><span class="stat-num stat-count" data-target="15" data-suffix="+">0</span></h3><p>Std. gespart / Woche</p></div>
+    <div class="hero-stat"><h3 class="stat-wrapper"><span class="stat-num stat-count" data-target="98" data-suffix="%">0</span></h3><p>Erkennungsrate</p></div>
+    <div class="hero-stat"><h3 class="stat-wrapper"><span class="stat-num stat-count" data-target="24" data-suffix="/7">0</span></h3><p>Verfügbar</p></div>
   </div>
 </div>
 <div class="hero-right">
@@ -1586,6 +1618,61 @@ carouselEl.addEventListener('mouseenter', () => {
 carouselEl.addEventListener('mouseleave', () => {
   testimonialAutoRotate = setInterval(nextTestimonial, 5000);
 });
+
+// ═══════════════════════════════════
+// ANIMATED STAT COUNTERS
+// ═══════════════════════════════════
+function animateCounters() {
+  const counters = document.querySelectorAll('.stat-count');
+  if (!counters.length) return;
+
+  const duration = 2000; // 2 seconds
+  const startTime = performance.now();
+
+  counters.forEach(counter => {
+    const target = parseFloat(counter.dataset.target);
+    const suffix = counter.dataset.suffix || '';
+    counter.dataset.current = '0';
+    counter.textContent = '0' + suffix;
+  });
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easedProgress = easeOutCubic(progress);
+
+    let allDone = true;
+    counters.forEach(counter => {
+      const target = parseFloat(counter.dataset.target);
+      const suffix = counter.dataset.suffix || '';
+      const current = Math.round(easedProgress * target);
+      const display = Math.min(current, target);
+
+      if (display !== counter.dataset.current) {
+        counter.dataset.current = display;
+        if (display === target && suffix) {
+          counter.textContent = display + suffix;
+        } else {
+          counter.textContent = display + suffix;
+        }
+      }
+      if (display < target) allDone = false;
+    });
+
+    if (!allDone) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+// Start count-up on page load with a small delay for hero entrance
+setTimeout(animateCounters, 800);
 
 // ═══════════════════════════════════
 // FAQ ACCORDION
