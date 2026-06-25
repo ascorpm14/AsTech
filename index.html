@@ -632,9 +632,8 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
 .hero-right .scenarios {
   padding: 24px 0 0;
   display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 8px;
   max-width: 400px;
   margin: 0 auto;
 }
@@ -652,6 +651,8 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
   transition: var(--transition);
   font-family: inherit;
   color: var(--text-secondary);
+  width: 100%;
+  text-align: left;
 }
 .scenario-tab:hover { border-color: var(--primary); color: var(--text); }
 .scenario-tab.active {
@@ -1724,8 +1725,8 @@ footer {
   .mobile-menu { display: flex; }
   .section-title { font-size: 30px; }
   .whatsapp-body { height: 400px; }
-  .hero-right .scenarios { gap: 8px; }
-  .scenario-tab { font-size: 12px; padding: 10px 16px; }
+  .hero-right .scenarios { gap: 6px; }
+  .scenario-tab { font-size: 13px; padding: 12px 20px; }
   .testimonial-card { padding: 28px 20px; }
   .testimonial-carousel { min-height: 380px; }
   .testimonial-quote { font-size: 15px; }
@@ -1743,7 +1744,7 @@ footer {
 @media (max-width: 480px) {
   .testimonial-carousel { min-height: 420px; }
   .testimonial-card { padding: 24px 18px; }
-  .hero-right .scenarios { max-width: 100%; padding-left: 4px; padding-right: 4px; }
+  .hero-right .scenarios { max-width: 100%; padding-left: 8px; padding-right: 8px; }
 }
 
 /* ═══════════════════════════════════════
