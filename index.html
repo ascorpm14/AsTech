@@ -1404,6 +1404,38 @@ footer {
 }
 
 /* ═══════════════════════════════════════
+   MAGNETIC BUTTONS — Cursor-Follow Micro-Interaction
+   ═══════════════════════════════════════ */
+.btn-magnetic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.3s ease;
+  will-change: transform;
+}
+.btn-magnetic .btn-content {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+/* Each btn-primary/btn-secondary wraps inner span for isolated transform */
+.btn-primary, .btn-secondary {
+  position: relative;
+}
+.btn-content {
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ═══════════════════════════════════════
    ANIMATIONS - SCROLL REVEAL
    ═══════════════════════════════════════ */
 .reveal {
@@ -1505,8 +1537,8 @@ footer {
   <h1>Der KI-Assistent für Ihre <span class="highlight">Steuerkanzlei</span></h1>
   <p>15 Stunden pro Woche sparen. Automatische Rechnungserfassung, Bankabstimmung und Steuervorbereitung — direkt per WhatsApp. Keine neue Software nötig.</p>
   <div class="hero-btns">
-    <a href="#cta" class="btn-primary">🚀 Kostenlos testen</a>
-    <a href="#szenarien" class="btn-secondary">🎬 Szenarien ansehen</a>
+    <a href="#cta" class="btn-primary"><span class="btn-content">🚀 Kostenlos testen</span></a>
+    <a href="#szenarien" class="btn-secondary"><span class="btn-content">🎬 Szenarien ansehen</span></a>
   </div>
   <div class="hero-stats">
     <div class="hero-stat"><h3 class="stat-wrapper"><span class="stat-num stat-count" data-target="15" data-suffix="+">0</span></h3><p>Std. gespart / Woche</p></div>
@@ -1776,7 +1808,7 @@ footer {
       <li>7 Tage kostenlos</li>
       <li>Jederzeit kündbar</li>
     </ul>
-    <a href="#cta" class="btn-secondary" style="display:inline-flex;">Starten</a>
+    <a href="#cta" class="btn-secondary" style="display:inline-flex;"><span class="btn-content">Starten</span></a>
   </div>
   <div class="price-card featured reveal reveal-delay-1">
     <div class="price-badge">Empfohlen</div>
@@ -1790,7 +1822,7 @@ footer {
       <li>Individuelle Einrichtung</li>
       <li>7 Tage kostenlos testen</li>
     </ul>
-    <a href="#cta" class="btn-primary" style="display:inline-flex;">Flatrate buchen</a>
+    <a href="#cta" class="btn-primary" style="display:inline-flex;"><span class="btn-content">Flatrate buchen</span></a>
   </div>
 </div>
 </section>
@@ -1862,7 +1894,7 @@ footer {
 <section class="cta-section" id="cta">
   <h2 class="reveal">Bereit für die Zukunft Ihrer Kanzlei?</h2>
   <p class="reveal reveal-delay-1">Testen Sie SteuerGPT 7 Tage kostenlos — unverbindlich und ohne Risiko.</p>
-  <a href="mailto:ascorpm14@gmail.com?subject=SteuerGPT%20Demo" class="btn-primary reveal reveal-delay-2" style="font-size:18px;padding:18px 40px;">Jetzt kostenlos testen →</a>
+  <a href="mailto:ascorpm14@gmail.com?subject=SteuerGPT%20Demo" class="btn-primary reveal reveal-delay-2" style="font-size:18px;padding:18px 40px;"><span class="btn-content">Jetzt kostenlos testen →</span></a>
 </section>
 
 <footer>
@@ -2428,6 +2460,83 @@ backToTopBtn.addEventListener('click', () => {
 
 // Initial state
 updateBackToTop();
+
+// ═══════════════════════════════════
+// MAGNETIC BUTTONS — Cursor-Follow Effect
+// ═══════════════════════════════════
+function initMagneticButtons() {
+  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
+  if (!buttons.length || window.matchMedia('(pointer: coarse)').matches) return;
+
+  buttons.forEach(btn => {
+    const content = btn.querySelector('.btn-content');
+    if (!content) return;
+
+    let magnetRafId = null;
+    let magnetMouseX = 0, magnetMouseY = 0;
+    let magnetCurrentX = 0, magnetCurrentY = 0;
+    let magnetActive = false;
+    const maxDist = 8; // max pixel shift
+
+    function updateMagnet() {
+      magnetCurrentX += (magnetMouseX - magnetCurrentX) * 0.15;
+      magnetCurrentY += (magnetMouseY - magnetCurrentY) * 0.15;
+
+      // Subtle effect — max 8px shift
+      const dx = Math.max(-maxDist, Math.min(maxDist, magnetCurrentX));
+      const dy = Math.max(-maxDist, Math.min(maxDist, magnetCurrentY));
+
+      content.style.transform = `translate(${dx}px, ${dy}px)`;
+      magnetRafId = requestAnimationFrame(updateMagnet);
+    }
+
+    btn.addEventListener('mouseenter', function() {
+      magnetActive = true;
+      const rect = this.getBoundingClientRect();
+      // Start from center
+      magnetMouseX = 0;
+      magnetMouseY = 0;
+      magnetCurrentX = 0;
+      magnetCurrentY = 0;
+      if (!magnetRafId) {
+        magnetRafId = requestAnimationFrame(updateMagnet);
+      }
+    });
+
+    btn.addEventListener('mousemove', function(e) {
+      if (!magnetActive) return;
+      const rect = this.getBoundingClientRect();
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      // Normalize to -1 to 1 from center
+      magnetMouseX = (x - centerX) / (rect.width / 2) * maxDist;
+      magnetMouseY = (y - centerY) / (rect.height / 2) * maxDist;
+    });
+
+    btn.addEventListener('mouseleave', function() {
+      magnetActive = false;
+      magnetMouseX = 0;
+      magnetMouseY = 0;
+      if (magnetRafId) {
+        cancelAnimationFrame(magnetRafId);
+        magnetRafId = null;
+      }
+      content.style.transform = 'translate(0, 0)';
+    });
+  });
+}
+
+// Initialize magnetic buttons after DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMagneticButtons);
+} else {
+  initMagneticButtons();
+}
+// Also re-init if content changes dynamically (for reveal animations etc)
+// Use a small delay to ensure all elements are rendered
+setTimeout(initMagneticButtons, 500);
 </script>
 
 </body>

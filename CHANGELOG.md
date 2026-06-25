@@ -1,5 +1,11 @@
 # SteuerGPT — Changelog des améliorations
 
+## Run #13 — 25/06/2026
+- **Amélioration :** Magnetic Buttons — micro-interaction premium de suivi du curseur sur tous les boutons CTA (btn-primary, btn-secondary) du site. Au hover, le contenu du bouton se déplace subtilement (max 8px) dans la direction du curseur avec un lissage Lerp fluide (0.15) optimisé `requestAnimationFrame`, créant un effet "d'attraction magnétique". Au mouseleave, le bouton retourne à sa position d'origine avec une transition spring (cubic-bezier). Désactivé automatiquement sur mobile/tactile (détection `pointer: coarse`). Le contenu de chaque bouton est encapsulé dans un `<span class="btn-content">` avec `pointer-events: none` pour une isolation parfaite des transformations. Compatible avec tous les hover effects existants (translateY, box-shadow) sans conflit.
+- **Inspiration :** Linear.app, Vercel, Stripe — les leaders AI SAAS utilisent tous des boutons magnétiques qui suivent subtilement le curseur, créant une sensation de réactivité et de raffinement matériel qui distingue les interfaces premium
+- **Section modifiée :** Nouveau CSS `.btn-content` (pointer-events, transition spring) + nouveau bloc JS `initMagneticButtons()` avec RAF Lerp, gestion mouseenter/mousemove/mouseleave, désactivation tactile + mise à jour HTML de tous les `.btn-primary` et `.btn-secondary` avec `<span class="btn-content">` wrapper
+- **Statut :** ✅ Succès
+
 ## Run #12 — 25/06/2026
 - **Amélioration :** Floating "Back to Top" Button avec micro-interactions — bouton flottant arrondi (50px, dégradé bleu→violet) qui apparaît en fondu avec scale spring (`translateY + scale`) après 500px de scroll, situé en bas à droite. Au hover : lévitation (-4px) + scale(1.08) + flèche ↑ qui monte de 2px + halo lumineux flouté (glow `filter: blur(12px)`) qui apparaît derrière le bouton. Au click : `scrollTo({ top: 0, behavior: 'smooth' })`. Scroll handler optimisé avec `requestAnimationFrame` (RAF throttling) pour zéro jank. Complètement responsive (44px sur mobile, marges réduites). Accessible avec `aria-label`.
 - **Inspiration :** Linear.app, Stripe, Vercel — les leaders AI SAAS utilisent tous un bouton "Back to Top" flottant subtil avec micro-transitions pour la navigation de confort sur les longues landing pages
