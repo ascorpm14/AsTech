@@ -99,8 +99,31 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
   gap: 60px;
   align-items: center;
   min-height: 90vh;
+  position: relative;
+  overflow: hidden;
 }
-.hero-left { position: relative; }
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -80% -80%;
+  background:
+    radial-gradient(ellipse 60% 45% at 20% 50%, rgba(37,99,235,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 80% 30%, rgba(124,58,237,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 50% 80%, rgba(5,150,105,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 25% at 70% 70%, rgba(37,99,235,0.04) 0%, transparent 50%);
+  animation: heroAtmosphere 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes heroAtmosphere {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  20%  { transform: translate(60px, -40px) rotate(3deg) scale(1.1); }
+  40%  { transform: translate(-30px, 50px) rotate(-2deg) scale(1.05); }
+  60%  { transform: translate(40px, 20px) rotate(4deg) scale(1.08); }
+  80%  { transform: translate(-50px, -30px) rotate(-3deg) scale(1.03); }
+}
+.hero-left { position: relative; z-index: 1; }
+.hero-right { position: relative; z-index: 1; }
 .badge {
   display: inline-flex;
   align-items: center; gap: 8px;
