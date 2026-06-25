@@ -1398,6 +1398,140 @@ footer {
 }
 
 /* ═══════════════════════════════════════
+   SOCIAL PROOF TOAST NOTIFICATIONS
+   ═══════════════════════════════════════ */
+.social-toast-container {
+  position: fixed;
+  bottom: 100px;
+  left: 24px;
+  z-index: 997;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+  max-width: 380px;
+}
+.social-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid rgba(255,255,255,0.8);
+  transform: translateX(-120%) scale(0.9);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.social-toast::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--gradient);
+  width: 100%;
+  transform-origin: left;
+}
+.social-toast.visible {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+}
+.social-toast.dismissing {
+  transform: translateX(-120%) scale(0.9);
+  opacity: 0;
+}
+.social-toast-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+}
+.social-toast-icon.icon-success { background: linear-gradient(135deg, #d9fdd3, #bbf7d0); }
+.social-toast-icon.icon-join { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+.social-toast-icon.icon-alert { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+.social-toast-content {
+  flex: 1;
+  min-width: 0;
+}
+.social-toast-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 1px;
+}
+.social-toast-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.social-toast-close {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.04);
+  color: var(--text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+.social-toast:hover .social-toast-close {
+  opacity: 1;
+}
+.social-toast-close:hover {
+  background: rgba(0,0,0,0.10);
+  color: var(--text);
+}
+/* Progress bar animation */
+@keyframes toastProgress {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+.social-toast.visible::before {
+  animation: toastProgress 5s linear forwards;
+}
+@media (max-width: 768px) {
+  .social-toast-container {
+    bottom: 80px;
+    left: 12px;
+    right: 12px;
+    max-width: none;
+  }
+  .social-toast {
+    padding: 12px 16px;
+  }
+  .social-toast-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  .social-toast-title { font-size: 12px; }
+  .social-toast-text { font-size: 11px; }
+}
+
+/* ═══════════════════════════════════════
    BACK TO TOP FLOATING BUTTON
    ═══════════════════════════════════════ */
 .back-to-top {
@@ -2005,6 +2139,9 @@ footer {
 <footer>
   <p>SteuerGPT — Ein Produkt von As Corp · Kontakt: ascorpm14@gmail.com</p>
 </footer>
+
+<!-- Social proof toast notifications -->
+<div class="social-toast-container" id="toastContainer" aria-live="polite" aria-label="Live-Aktivitäten"></div>
 
 <!-- Back to top button -->
 <button class="back-to-top" id="backToTop" aria-label="Nach oben scrollen"></button>
@@ -2684,6 +2821,166 @@ if (document.readyState === 'loading') {
 // Also re-init if content changes dynamically (for reveal animations etc)
 // Use a small delay to ensure all elements are rendered
 setTimeout(initMagneticButtons, 500);
+
+// ═══════════════════════════════════
+// SOCIAL PROOF TOAST NOTIFICATIONS
+// ═══════════════════════════════════
+function initSocialProofToasts() {
+  const container = document.getElementById('toastContainer');
+  if (!container) return;
+
+  // Realistic social proof messages for a German tax AI SAAS
+  const notifications = [
+    { icon: '🏛️', iconType: 'icon-join', title: 'Neue Kanzlei beigetreten', text: 'Steuerkanzlei Dr. Weber & Partner, Köln' },
+    { icon: '✅', iconType: 'icon-success', title: 'Aufgabe abgeschlossen', text: 'Rechnungserfassung für Kanzlei Müller, München' },
+    { icon: '📊', iconType: 'icon-success', title: 'Bankabstimmung fertig', text: 'Kontoabgleich durchgeführt — Scholz GmbH, Hamburg' },
+    { icon: '🚀', iconType: 'icon-join', title: 'SteuerGPT aktiviert', text: 'Steuerberatung Baumann & Kollegen, Berlin' },
+    { icon: '💬', iconType: 'icon-join', title: 'Live geschaltet', text: 'Kanzlei Wagner & Partner, Stuttgart' },
+    { icon: '📋', iconType: 'icon-success', title: 'USt-VA vorbereitet', text: 'Umsatzsteuervoranmeldung — Schneider KG, Frankfurt' },
+    { icon: '🏛️', iconType: 'icon-join', title: 'Neue Kanzlei beigetreten', text: 'Huber & Söhne Steuerberatung, Nürnberg' },
+    { icon: '💰', iconType: 'icon-success', title: 'Ersparnis gemeldet', text: 'Kanzlei Klein spart 18 Std./Woche mit SteuerGPT' },
+    { icon: '🔍', iconType: 'icon-alert', title: 'Dublette gefunden', text: 'Bankabstimmung entdeckt doppelte Buchung (2.400€)' },
+    { icon: '📱', iconType: 'icon-join', title: 'WhatsApp verbunden', text: 'Steuerkanzlei Fischer, Team von 5 Mitarbeitern' },
+    { icon: '✅', iconType: 'icon-success', title: 'Monatsabschluss', text: 'Juni abgeschlossen für Baumgartner & Müller, Berlin' },
+    { icon: '🏛️', iconType: 'icon-join', title: 'Empfohlen weitergegeben', text: 'Kanzlei Richter empfiehlt SteuerGPT — 3 Neuanmeldungen' },
+  ];
+
+  let usedIndices = [];
+  let toastTimer = null;
+  let isPaused = false;
+
+  function getRandomNotification() {
+    // Try to avoid repeating the same notification
+    if (usedIndices.length >= notifications.length) {
+      usedIndices = [];
+    }
+    let idx;
+    do {
+      idx = Math.floor(Math.random() * notifications.length);
+    } while (usedIndices.includes(idx));
+    usedIndices.push(idx);
+    return notifications[idx];
+  }
+
+  function getRandomInterval() {
+    // Random interval between 8-18 seconds
+    return 8000 + Math.random() * 10000;
+  }
+
+  function createToast(notification) {
+    const toast = document.createElement('div');
+    toast.className = 'social-toast';
+    toast.innerHTML = `
+      <div class="social-toast-icon ${notification.iconType}">${notification.icon}</div>
+      <div class="social-toast-content">
+        <div class="social-toast-title">${notification.title}</div>
+        <div class="social-toast-text">${notification.text}</div>
+      </div>
+      <button class="social-toast-close" aria-label="Schließen">✕</button>
+    `;
+
+    // Close button
+    const closeBtn = toast.querySelector('.social-toast-close');
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dismissToast(toast);
+    });
+
+    // Click on toast shows it's interactive
+    toast.addEventListener('click', function() {
+      // Subtle feedback — pulse effect
+      this.style.transition = 'none';
+      this.style.transform = 'scale(0.97)';
+      setTimeout(() => {
+        this.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        this.style.transform = '';
+      }, 100);
+    });
+
+    // Pause timer on hover
+    toast.addEventListener('mouseenter', () => {
+      isPaused = true;
+    });
+    toast.addEventListener('mouseleave', () => {
+      isPaused = false;
+    });
+
+    // Add to container
+    container.appendChild(toast);
+
+    // Trigger entrance animation
+    requestAnimationFrame(() => {
+      toast.classList.add('visible');
+    });
+
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => {
+      if (toast.parentNode) {
+        dismissToast(toast);
+      }
+    }, 5000);
+
+    return toast;
+  }
+
+  function dismissToast(toast) {
+    toast.classList.remove('visible');
+    toast.classList.add('dismissing');
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.remove();
+      }
+    }, 500);
+  }
+
+  function scheduleNext() {
+    if (toastTimer) {
+      clearTimeout(toastTimer);
+    }
+    toastTimer = setTimeout(() => {
+      // Don't show if page is not visible (browser tab hidden) or paused
+      if (!isPaused && !document.hidden) {
+        const notification = getRandomNotification();
+        createToast(notification);
+      }
+      scheduleNext();
+    }, getRandomInterval());
+  }
+
+  // Show first toast with a delay (after hero entrance animations)
+  setTimeout(() => {
+    const firstNotification = getRandomNotification();
+    createToast(firstNotification);
+    scheduleNext();
+  }, 3000);
+
+  // Pause when tab is hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      isPaused = true;
+    } else {
+      isPaused = false;
+    }
+  });
+
+  // Max 3 toasts visible at once
+  const maxObserver = new MutationObserver(() => {
+    const toasts = container.querySelectorAll('.social-toast:not(.dismissing)');
+    // Keep only the most recent 3 visible toasts
+    while (toasts.length > 3) {
+      const oldest = toasts[0];
+      if (oldest) dismissToast(oldest);
+    }
+  });
+  maxObserver.observe(container, { childList: true, subtree: true });
+}
+
+// Initialize social proof toasts after DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSocialProofToasts);
+} else {
+  initSocialProofToasts();
+}
 </script>
 
 </body>
