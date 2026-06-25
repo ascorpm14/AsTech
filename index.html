@@ -2055,6 +2055,9 @@ footer {
   </div>
 </div>
 <div class="hero-right">
+  <!-- #szenarien anchor lives HERE, inside hero-right — so clicking "Szenarien" in
+       the nav scrolls to the phone mockup + scenario tabs, not below the hero -->
+  <span id="szenarien" style="display:block;height:0;overflow:hidden;" aria-hidden="true"></span>
   <div class="phone-mockup">
     <div class="phone-frame">
       <div class="phone-notch"></div>
@@ -2136,9 +2139,6 @@ footer {
     </svg>
   </div>
 </div>
-
-<!-- ═══ #szenarien anchor for scroll spy (points to hero-right mockup area) ═══ -->
-<span id="szenarien" style="display:block;height:0;overflow:hidden;" aria-hidden="true"></span>
 
 <!-- ═══ FEATURES ═══ -->
 <section class="features" id="features">
