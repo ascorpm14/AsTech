@@ -926,9 +926,53 @@ section { padding: 100px 24px; }
 }
 .price-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
 .price-card.featured {
-  border-color: var(--primary);
+  border-color: transparent;
   background: white;
   box-shadow: 0 8px 32px rgba(37,99,235,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated conic gradient border on featured pricing card */
+.price-card.featured::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: conic-gradient(
+    #2563eb 0%,
+    #7c3aed 25%,
+    #059669 50%,
+    #3b82f6 75%,
+    #2563eb 100%
+  );
+  animation: spinGradientBorder 8s linear infinite;
+  z-index: 0;
+}
+
+.price-card.featured::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: calc(var(--radius-lg) - 1px);
+  background: white;
+  z-index: 1;
+}
+
+.price-card.featured > :not(.price-badge) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Ensure price badge also stays above gradient border */
+.price-card.featured .price-badge {
+  z-index: 3;
+}
+
+@keyframes spinGradientBorder {
+  to { transform: rotate(360deg); }
 }
 .price-badge {
   position: absolute;

@@ -1,5 +1,11 @@
 # SteuerGPT — Changelog des améliorations
 
+## Run #8 — 25/06/2026
+- **Amélioration :** Animated Conic Gradient Border sur la carte "Empfohlen" (Pricing Flatrate) — un dégradé conique animé (bleu→violet→vert→bleu) tourne en continu (8s cycle) sur la bordure de la carte mise en avant, créant un effet premium "vivant" avec un halo subtil. La bordure s'illumine d'une lueur subtile grâce au contraste entre le fond blanc et les couleurs du gradient. Technique utilisée : pseudo-élément `::before` 300%×300% avec `conic-gradient`, animation `spinGradientBorder` (`transform: rotate(360deg)`), `::after` avec `inset: 2px` pour masquer l'intérieur, `overflow: hidden` sur le parent. Z-index stack : `::before` (0) → `::after` (1) → contenu (2).
+- **Inspiration :** Stripe, Linear, Vercel — les leaders AI SAAS utilisent tous des bordures animées sur les cartes "Enterprise" ou "Featured" de leurs pages pricing pour mettre en avant le plan recommandé avec un effet subtil mais premium
+- **Section modifiée :** Pricing — `.price-card.featured` CSS (border-color transparent, overflow hidden) + 2 nouveaux pseudo-éléments `::before`/`::after` + keyframe `spinGradientBorder`
+- **Statut :** ✅ Succès
+
 ## Run #7 — 25/06/2026
 - **Amélioration :** Scroll Progress Indicator — barre de progression fine (3px) en haut de la page qui se remplit du dégradé bleu→violet→vert au fil du scroll, avec ombre lumineuse subtile. Utilise `requestAnimationFrame` pour des performances optimales (pas de jank). ARIA `role="progressbar"` pour l'accessibilité.
 - **Inspiration :** Linear, Stripe, Vercel — les leaders AI SAAS et produits premium utilisent tous une barre de progression subtile en haut de page pour indiquer la position de lecture et ajouter une touche de raffinement UX
