@@ -26,10 +26,11 @@ nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.9);backdrop-fi
 .card{padding:28px;border-radius:16px;background:#f8f9fc;border:1px solid #eaeef2}
 .card h3{margin-bottom:8px;font-size:17px}
 .card p{color:#64748b;font-size:14px}
+.icon-wrap{width:44px;height:44px;border-radius:10px;background:rgba(5,150,105,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#059669}
 .cta{padding:80px 24px;text-align:center;background:linear-gradient(135deg,#059669,#2563eb);color:#fff}
 .cta h2{font-size:36px;margin-bottom:20px}
 .cta .btn-primary{background:#fff;color:#059669}
-.badge{display:inline-block;background:rgba(5,150,105,0.1);color:#059669;padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:16px}
+.hero-visual{display:flex;gap:20px;justify-content:center;align-items:center;background:#f0fdf4;border-radius:24px;padding:40px;min-height:280px}.badge{display:inline-block;background:rgba(5,150,105,0.1);color:#059669;padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:16px}
 @media(max-width:768px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -41,18 +42,18 @@ nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.9);backdrop-fi
 <h1>Der KI-Assistent für Ihre <span>Logistik</span></h1>
 <p>Automatische Routenplanung, Sendungsverfolgung und Transportdokumente. Speziell entwickelt für Speditionen und Logistikunternehmen.</p>
 <a href="#cta" class="btn-primary">Jetzt 7 Tage kostenlos testen →</a></div>
-<div style="background:#e8f4f8;border-radius:24px;padding:24px;text-align:center;font-size:48px">🚚📦🚛</div>
+<div class="hero-visual"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.2"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2 0m11 0l-3 0m3 0h2.5a1.5 1.5 0 001.5-1.5V9.5a1 1 0 00-.4-.8l-3.6-2.7a1 1 0 00-.6-.2H13"/></svg><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.2"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></div>
 </section>
 
 <section class="features"><div class="features-inner">
 <h2>Was SteuerGPT für Ihre Logistik tut</h2>
 <div class="grid">
-<div class="card"><div style="font-size:32px;margin-bottom:12px">🗺️</div><h3>Routenoptimierung</h3><p>Intelligente Planung der täglichen Touren. Weniger Leerfahrten, weniger Kosten.</p></div>
-<div class="card"><div style="font-size:32px;margin-bottom:12px">📄</div><h3>Transportdokumente</h3><p>CMR-Frachtbriefe, Lieferscheine und Zolldokumente automatisch generiert.</p></div>
-<div class="card"><div style="font-size:32px;margin-bottom:12px">🔍</div><h3>Sendungsverfolgung</h3><p>Live-Tracking für Kunden. Automatische Benachrichtigungen bei Verzögerungen.</p></div>
-<div class="card"><div style="font-size:32px;margin-bottom:12px">💬</div><h3>WhatsApp-Kommunikation</h3><p>Fahrer und Kunden kommunizieren per Chat. Keine Telefonate mehr.</p></div>
-<div class="card"><div style="font-size:32px;margin-bottom:12px">📊</div><h3>Lagerverwaltung</h3><p>Bestandsführung und Inventur automatisch. Nachbestellung bei Mindestbestand.</p></div>
-<div class="card"><div style="font-size:32px;margin-bottom:12px">💰</div><h3>Transportabrechnung</h3><p>Automatische Rechnungsstellung. Keine manuelle Erfassung mehr.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>Routenoptimierung</h3><p>Intelligente Planung der täglichen Touren. Weniger Leerfahrten, weniger Kosten.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l14 0"/><path d="M8 7h8M8 11h6M8 15h4"/></svg></div><h3>Transportdokumente</h3><p>CMR-Frachtbriefe, Lieferscheine und Zolldokumente automatisch generiert.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></div><h3>Sendungsverfolgung</h3><p>Live-Tracking für Kunden. Automatische Benachrichtigungen bei Verzögerungen.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div><h3>WhatsApp-Kommunikation</h3><p>Fahrer und Kunden kommunizieren per Chat. Keine Telefonate mehr.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><h3>Lagerverwaltung</h3><p>Bestandsführung und Inventur automatisch. Nachbestellung bei Mindestbestand.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg></div><h3>Transportabrechnung</h3><p>Automatische Rechnungsstellung. Keine manuelle Erfassung mehr.</p></div>
 </div></div></section>
 
 <section class="cta" id="cta">

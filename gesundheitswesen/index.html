@@ -26,10 +26,11 @@ nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.9);backdrop-fi
 .card{padding:28px;border-radius:16px;background:#f8f9fc;border:1px solid #eaeef2}
 .card h3{margin-bottom:8px;font-size:17px}
 .card p{color:#64748b;font-size:14px}
+.icon-wrap{width:44px;height:44px;border-radius:10px;background:rgba(8,145,178,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#0891b2}
 .cta{padding:80px 24px;text-align:center;background:linear-gradient(135deg,#0891b2,#06b6d4);color:#fff}
 .cta h2{font-size:36px;margin-bottom:20px}
 .cta .btn-primary{background:#fff;color:#0891b2}
-.badge{display:inline-block;background:rgba(8,145,178,0.1);color:#0891b2;padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:16px}
+.hero-visual{display:flex;gap:20px;justify-content:center;align-items:center;background:#ecfeff;border-radius:24px;padding:40px;min-height:280px}.badge{display:inline-block;background:rgba(8,145,178,0.1);color:#0891b2;padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:16px}
 @media(max-width:768px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -41,18 +42,18 @@ nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.9);backdrop-fi
 <h1>Der KI-Assistent für Ihr <span>Gesundheitswesen</span></h1>
 <p>Automatische Terminverwaltung, Abrechnung und Patientenkommunikation. Speziell für Krankenhäuser, Praxen und MVZ.</p>
 <a href="#cta" class="btn-primary">Jetzt 7 Tage kostenlos testen →</a></div>
-<div style="background:#e8f4f8;border-radius:24px;padding:24px;text-align:center;font-size:48px">🏥📋💊</div>
+<div class="hero-visual"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.2"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l14 0"/><path d="M8 7h8M8 11h6M8 15h4"/></svg><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.2"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
 </section>
 
 <section class="features"><div class="features-inner">
 <h2>Was SteuerGPT für Ihr Gesundheitswesen tut</h2>
 <div class="grid">
-<div class="card"><div style="font-size:32px;margin-bottom:12px">📅</div><h3>Terminmanagement</h3><p>Intelligente Planung, automatische Erinnerungen und Wiederbesetzung von Ausfällen.</p></div>
-<div class="card"><div style="font-size:32px;margin-bottom:12px">💰</div><h3>Abrechnung</h3><p>EBM/GOÄ Kodierung und automatische Abrechnung mit Krankenkassen.</p></div>
-<div class="card"><div style="font-size:32px;margin-bottom:12px">📄</div><h3>Patientenakte</h3><p>Automatische Transkription und Strukturierung der Behandlungsdokumentation.</p></div>
-<div class="card"><div style="font-size:32px;margin-bottom:12px">💬</div><h3>Patienten-Kommunikation</h3><p>Automatische Erinnerungen, Rezeptanfragen und Befundmitteilung per Chat.</p></div>
-<div class="card"><div style="font-size:32px;margin-bottom:12px">📋</div><h3>Arztbriefe</h3><p>Professionelle Arztbriefe und Überweisungen automatisch generiert.</p></div>
-<div class="card"><div style="font-size:32px;margin-bottom:12px">🔒</div><h3>DSGVO-konform</h3><p>Patientendaten sicher auf deutschen Servern. Strengste Datenschutzstandards.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><h3>Terminmanagement</h3><p>Intelligente Planung, automatische Erinnerungen und Wiederbesetzung von Ausfällen.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div><h3>Abrechnung</h3><p>EBM/GOÄ Kodierung und automatische Abrechnung mit Krankenkassen.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><h3>Patientenakte</h3><p>Automatische Transkription und Strukturierung der Behandlungsdokumentation.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div><h3>Patienten-Kommunikation</h3><p>Automatische Erinnerungen, Rezeptanfragen und Befundmitteilung per Chat.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg></div><h3>Arztbriefe</h3><p>Professionelle Arztbriefe und Überweisungen automatisch generiert.</p></div>
+<div class="card"><div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div><h3>DSGVO-konform</h3><p>Patientendaten sicher auf deutschen Servern. Strengste Datenschutzstandards.</p></div>
 </div></div></section>
 
 <section class="cta" id="cta">
