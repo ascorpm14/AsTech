@@ -1,6 +1,14 @@
 # SteuerGPT — Changelog des améliorations
 
-## Run #19 — 25/06/2026
+## Run #20 — 25/06/2026
+- **Correction :** Height collapse du carrousel de témoignages pendant les transitions — quand l'ancienne carte perdait `active` (passant de `position:relative` à `position:absolute`) et que la nouvelle ne l'avait pas encore (intervalle de 50ms), le conteneur s'effondrait à `min-height: 340px`. Si une carte dépassait 340px (ce qui arrive sur mobile avec du texte qui wrappe), un saut visuel se produisait — un détail qui détruit la crédibilité auprès d'un cabinet comptable allemand exigeant. La nouvelle fonction `lockCarouselHeight()` mesure la hauteur naturelle de toutes les cartes (en les rendant temporairement `visibility: hidden` + `opacity: 0` + `position: relative` sans affecter le layout) et applique la valeur maximale comme `minHeight` inline. La hauteur est recalculée au resize (debounce 300ms) pour s'adapter aux changements d'orientation et de font-scaling. Zéro jank, zéro saut, transition parfaitement fluide.
+- **Inspiration :** Vercel, Linear, Apple.com — les sites premium ne tolèrent AUCUN saut visuel. Les transitions doivent être si fluides que l'utilisateur ne les remarque pas. Un carrousel qui "saute" pendant un changement de slide signale immédiatement un manque de polish.
+- **Section modifiée :** JS — ajout de `lockCarouselHeight()`, `testimonialCarouselEl`, resize handler debounced ; pas de modification CSS
+- **Statut :** ✅ Succès
+
+---
+
+
 - **Correction :** Statuts de messages WhatsApp réalistes — les messages entrants (`msg-in`) affichent désormais UNIQUEMENT l'heure (sans indicateur de statut), et les messages sortants (`msg-out`) affichent le double check gris `✓✓` (`#8696a0` = couleur officielle WhatsApp pour "délivré"). L'ancienne fonction `getCheck()` générait aléatoirement des icônes horloge 🕐, des checks simples, doubles, triples et quadruples pour TOUS les messages (entrants ET sortants) — ce qui n'existe pas dans le vrai WhatsApp : les messages entrants n'ont JAMAIS de statut, et les statuts sortants ont une sémantique précise (✓ = envoyé, ✓✓ = délivré, ✓✓ bleu = lu). Pour un cabinet comptable allemand qui utilise WhatsApp quotidiennement avec ses mandants, cette incohérence détruisait immédiatement la crédibilité et le réalisme du mockup. La nouvelle implémentation utilise `getMsgStatus(msgType)` qui retourne une chaîne vide pour les messages entrants (juste l'heure) et le double-check gris pour les sortants.
 - **Inspiration :** WhatsApp Business UI officielle — les détails infimes (couleur des checks, absence de statut sur les messages reçus) sont ce qui distingue un mockup crédible d'un faux évident. Un professionnel reconnaît instantanément ces signaux.
 - **Section modifiée :** JS — suppression de `getCheck()`, création de `getMsgStatus(msgType)`, modification de l'appel dans `renderScenario` (ligne innerHTML des messages)

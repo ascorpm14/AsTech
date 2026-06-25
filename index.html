@@ -2481,7 +2481,45 @@ let testimonialIndex = 0;
 const testimonialCards = document.querySelectorAll('.testimonial-card');
 const testimonialDots = document.querySelectorAll('.testimonial-dot');
 const testimonialCurrent = document.getElementById('testimonialCurrent');
+const testimonialCarouselEl = document.getElementById('testimonialCarousel');
 const TOTAL_TESTIMONIALS = testimonialCards.length;
+
+// Prevent height collapse during transitions — lock carousel height
+// to the tallest card so position:relative→absolute swap doesn't jank
+function lockCarouselHeight() {
+  let maxH = 0;
+  testimonialCards.forEach(card => {
+    // Temporarily make card visible to measure its natural height
+    const origPos = card.style.position;
+    const origVis = card.style.visibility;
+    const origOp = card.style.opacity;
+    card.style.position = 'relative';
+    card.style.visibility = 'hidden';
+    card.style.opacity = '0';
+    card.style.pointerEvents = 'none';
+    const h = card.offsetHeight;
+    maxH = Math.max(maxH, h);
+    card.style.position = origPos;
+    card.style.visibility = origVis;
+    card.style.opacity = origOp;
+    card.style.pointerEvents = '';
+  });
+  // Apply as min-height so content can still grow if needed
+  testimonialCarouselEl.style.minHeight = maxH + 'px';
+}
+
+// Lock on load (after fonts render, wait a tick for accurate measurement)
+if (document.readyState === 'complete') {
+  setTimeout(lockCarouselHeight, 200);
+} else {
+  window.addEventListener('load', () => setTimeout(lockCarouselHeight, 200));
+}
+// Re-lock on resize (orientation change, font scaling)
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(lockCarouselHeight, 300);
+});
 
 function showTestimonial(index, oldIndex) {
   if (oldIndex !== undefined && oldIndex !== null) {
