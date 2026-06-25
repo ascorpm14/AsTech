@@ -1,5 +1,11 @@
 # SteuerGPT — Changelog des améliorations
 
+## Run #7 — 25/06/2026
+- **Amélioration :** Scroll Progress Indicator — barre de progression fine (3px) en haut de la page qui se remplit du dégradé bleu→violet→vert au fil du scroll, avec ombre lumineuse subtile. Utilise `requestAnimationFrame` pour des performances optimales (pas de jank). ARIA `role="progressbar"` pour l'accessibilité.
+- **Inspiration :** Linear, Stripe, Vercel — les leaders AI SAAS et produits premium utilisent tous une barre de progression subtile en haut de page pour indiquer la position de lecture et ajouter une touche de raffinement UX
+- **Section modifiée :** Nouvel élément `.scroll-progress` (CSS) + `<div>` après `<body>` + JS `updateScrollProgress()` avec throttling RAF
+- **Statut :** ✅ Succès
+
 ## Run #6 — 25/06/2026
 - **Amélioration :** Menu hamburger mobile animé — correction du bug de navigation mobile (tous les liens étaient cachés sans accès) avec un menu overlay plein écran premium : icône hamburger → X animé (3 lignes avec rotation spring), overlay backdrop-filter blur(24px), liens dévoilés en staggered (délai progressif 0.05s→0.30s), verrouillage du scroll body, fermeture par clic sur lien, touche Escape, accessibilité ARIA
 - **Inspiration :** Vercel, Linear, Claude.ai — les leaders AI SAAS utilisent tous des menus hamburger overlay avec backdrop blur et animations staggered pour la navigation mobile premium

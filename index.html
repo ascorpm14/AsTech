@@ -1113,6 +1113,20 @@ footer {
 }
 
 /* ═══════════════════════════════════════
+   SCROLL PROGRESS BAR
+   ═══════════════════════════════════════ */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #7c3aed, #059669);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 12px rgba(37,99,235,0.4);
+}
+
+/* ═══════════════════════════════════════
    ANIMATIONS - SCROLL REVEAL
    ═══════════════════════════════════════ */
 .reveal {
@@ -1166,6 +1180,9 @@ footer {
 </style>
 </head>
 <body>
+
+<!-- Scroll progress indicator -->
+<div class="scroll-progress" id="scrollProgress" role="progressbar" aria-label="Seitenfortschritt"></div>
 
 <nav id="navbar">
 <div class="nav-inner">
@@ -1866,6 +1883,36 @@ document.addEventListener('keydown', (e) => {
     toggleMenu(false);
   }
 });
+
+// ═══════════════════════════════════
+// SCROLL PROGRESS INDICATOR
+// ═══════════════════════════════════
+const scrollProgress = document.getElementById('scrollProgress');
+
+function updateScrollProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  scrollProgress.style.width = scrollPercent + '%';
+  scrollProgress.setAttribute('aria-valuenow', Math.round(scrollPercent));
+}
+
+// Throttled scroll handler using requestAnimationFrame for performance
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      updateScrollProgress();
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// Update on page load (in case of hash navigation)
+window.addEventListener('load', updateScrollProgress);
+// Update on resize (dynamic content height changes)
+window.addEventListener('resize', updateScrollProgress);
 </script>
 
 </body>
