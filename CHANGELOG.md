@@ -1,5 +1,13 @@
 # SteuerGPT — Changelog des améliorations
 
+## Run #18 — 25/06/2026
+- **Correction :** Notch du téléphone qui chevauchait l'écran WhatsApp — `.phone-screen` avait `margin: 6px` (écran commençait à 6px du haut du cadre) tandis que `.phone-notch` mesurait 28px de haut (`top: 0`). Résultat : 22px de chevauchement où le notch masquait le header WhatsApp. Corrigé en passant à `margin: 28px 6px 6px 6px` — le notch s'assoit désormais entièrement dans le bezel supérieur, l'écran commence pile en dessous. Le rendu du téléphone est maintenant réaliste : cadre -> notch -> écran, sans chevauchement.
+- **Inspiration :** Apple.com, Samsung.com — les mockups produits premium alignent toujours parfaitement les découpes d'écran avec le contenu ; un décalage de quelques pixels crée un rendu "cheap" qui détruit la crédibilité auprès d'un cabinet comptable allemand.
+- **Section modifiée :** CSS `.phone-screen` — margin-top 6px → 28px
+- **Statut :** ✅ Succès
+
+---
+
 ## Run #17 — 25/06/2026
 - **Amélioration :** Mockup WhatsApp réaliste — cadre téléphone professionnel avec vrai bezel foncé (`background: #1a1a2e`, `border-radius: 40px`) et écran `phone-screen` incrusté (margin 6px, border-radius 32px) qui reproduit fidèlement l'apparence d'un smartphone moderne. L'ancien fond blanc avec bordure transparente créait un rendu artificiel (coins blancs visibles). Le notch reste intégré dans le bezel au-dessus de l'écran. Animation `float` (gimmicky, -12px) supprimée — remplacée par un subtil hover lift (-4px au survol uniquement) qui rend le téléphone solide et professionnel, pas un jouet qui flotte. Header WhatsApp ajusté (padding-top 14px au lieu de 36px) puisque le notch n'empiète plus sur l'écran.
 - **Inspiration :** Apple.com, Tesla.com, Porsche — les marques premium B2B présentent leurs produits comme des outils sérieux et fiables, pas comme des gadgets animés. Un cabinet comptable allemand doit voir un outil stable et professionnel, pas un élément de design qui bouge tout seul.
