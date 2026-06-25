@@ -1432,8 +1432,10 @@ footer {
   opacity: 0.25;
 }
 @media (max-width: 768px) {
-  .scroll-indicator { padding-bottom: 24px; margin-top: -12px; }
-  .scroll-indicator-text { font-size: 10px; }
+  /* On mobile, the scroll indicator is unnecessary dead space between hero
+     and features. Mobile users naturally scroll — no visual prompt needed.
+     Removing it tightens the page flow and eliminates vertical waste. */
+  .scroll-indicator { display: none; }
 }
 
 /* ═══════════════════════════════════════
@@ -1715,6 +1717,11 @@ footer {
   .hero-right .scenarios { max-width: 350px; }
 }
 @media (max-width: 768px) {
+  /* Tighten hero vertical rhythm on mobile: remove bottom padding that was
+     balanced by the scroll-indicator (now hidden on mobile). The scenario tabs
+     sit directly below the phone mockup, and the features section follows
+     without unnecessary dead space between them. */
+  .hero { padding: 120px 16px 40px; }
   .hero h1 { font-size: 36px; }
   .feature-grid { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
