@@ -1,5 +1,11 @@
 # SteuerGPT — Changelog des améliorations
 
+## Run #10 — 25/06/2026
+- **Amélioration :** Interactive Cursor Spotlight sur la Hero Section — un dégradé radial subtil (700px, bleu→violet→transparent) suit le curseur de la souris avec un lissage Lerp fluide (0.08) optimisé `requestAnimationFrame`, créant une interaction premium "vivante" qui réagit au mouvement de l'utilisateur. Apparaît en fondu au premier mouvement (`opacity` transition 0.6s), disparaît en douceur au `mouseleave`, désactivé sur mobile pour les performances. Complète le fond ambient mesh animé (Run #4) sans le remplacer — le mesh offre une atmosphère lente et organique (25s cycle) tandis que le spotlight ajoute une couche interactive en temps réel.
+- **Inspiration :** Linear.app — le leader des AI SAAS utilise un spotlight gradient qui suit le curseur dans sa hero section, créant une sensation de "magie" et de réactivité qui rend la page vivante et interactive
+- **Section modifiée :** Hero — nouveau `<div class="hero-spotlight">` en HTML ; nouveau bloc CSS `.hero-spotlight` (700px, radial-gradient, pointer-events none, will-change transform, responsive hide mobile) ; nouveau bloc JS `updateSpotlight()` avec Lerp + RAF + gestion mouseenter/mouseleave
+- **Statut :** ✅ Succès
+
 ## Run #9 — 25/06/2026
 - **Amélioration :** Section "Integrationen & Partner" (Integrations/Trust Logos) ajoutée — grille 3×2 de 6 cartes partenaires animées (DATEV, lexoffice, sevDesk, WhatsApp Business, DSGVO-zertifiziert, SAP Business One) avec icônes colorées dégradées, hover lift + scale + rotate(-3°), animation flottante subtile (partnerFloat 6s ease-in-out) alternant entre lignes paires/impaire, staggered scroll reveal, séparateurs supérieur/inférieur avec gradient. Navigation desktop et mobile mises à jour avec lien "Partner". Transition delays du menu mobile étendus à 8 éléments.
 - **Inspiration :** Linear.app, Vercel, Stripe — les leaders AI SAAS utilisent tous une section logo cloud / trust badges (souvent en marquee ou grille) pour montrer les intégrations et partenaires, créant une preuve sociale visuelle cruciale pour la conversion
