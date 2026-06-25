@@ -1099,6 +1099,7 @@ section { padding: 100px 24px; scroll-margin-top: 80px; }
   box-shadow: 0 8px 32px rgba(37,99,235,0.15);
   position: relative;
   overflow: hidden;
+  padding-top: 56px;
 }
 
 /* Animated conic gradient border on featured pricing card */
@@ -1144,8 +1145,8 @@ section { padding: 100px 24px; scroll-margin-top: 80px; }
 }
 .price-badge {
   position: absolute;
-  top: -12px; left: 50%;
-  transform: translateX(-50%);
+  top: 24px; left: 50%;
+  transform: translate(-50%, -50%);
   background: var(--gradient);
   color: white;
   padding: 4px 24px;
@@ -1154,6 +1155,8 @@ section { padding: 100px 24px; scroll-margin-top: 80px; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
+  white-space: nowrap;
+  z-index: 3;
 }
 .price-amount {
   font-size: 52px;
