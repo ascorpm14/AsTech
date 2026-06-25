@@ -2652,8 +2652,12 @@ function clearAllTimeouts() {
 
 function renderScenario(index) {
   const body = document.getElementById('waBody');
-  // Remove all system messages but keep the body intact
-  body.querySelectorAll('.whatsapp-system-msg').forEach(el => el.remove());
+  // ⚠️ CRITIQUE : vider TOUT le body (messages, indicateurs, system-msg)
+  // Sans cela, les messages de l'ancien scénario restent dans le DOM et se
+  // mélangent avec ceux du nouveau — rendant le mockup incohérent pour le
+  // Steuerberater qui change d'onglet. Chaque scénario doit être une
+  // conversation propre et indépendante.
+  body.innerHTML = '';
 
   // Clear any pending timeouts from previous scenario
   msgTimeouts.forEach(t => clearTimeout(t));
