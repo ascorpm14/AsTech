@@ -6,6 +6,14 @@
 - **Section modifiée :** Nouveau CSS `.btn-content` (pointer-events, transition spring) + nouveau bloc JS `initMagneticButtons()` avec RAF Lerp, gestion mouseenter/mousemove/mouseleave, désactivation tactile + mise à jour HTML de tous les `.btn-primary` et `.btn-secondary` avec `<span class="btn-content">` wrapper
 - **Statut :** ✅ Succès
 
+---
+
+## Run #14 — 25/06/2026
+- **Amélioration :** Animated Scroll-Down Indicator sous la Hero Section — chevron ↓ dégradé (bleu→violet) en 3 couches superposées avec animation bounce décalée (2.4s cycle, staggered delays 0s/0.15s/0.3s, opacité décroissante 1/0.5/0.25) invitant subtilement au scroll. Titre "Weiter" en capitales. Apparaît en fondu 1.2s après le chargement (attente que la hero finisse son entrée). Disparaît en `opacity: 0` dès scroll > 80px, réapparaît en remontant. Au clic : smooth scroll vers #szenarien avec offset nav. Scroll handler RAF. Chevrons SVG inline avec `<linearGradient>`, zéro dépendance. Responsive (padding réduit mobile).
+- **Inspiration :** Linear.app, Vercel, Stripe — les leaders AI SAAS utilisent un indicateur de scroll subtil en bas de leur hero section pour guider naturellement l'utilisateur vers le contenu suivant ("wayfinding" UX)
+- **Section modifiée :** Nouveau bloc CSS `.scroll-indicator` (~60 lignes : flex column, animation scrollBounce, transitions visible/hidden, responsive) ; nouveau HTML `<div class="scroll-indicator" id="scrollIndicator">` avec 3 chevrons SVG inline gradient après la section hero ; nouveau JS `updateScrollIndicator()` avec RAF throttle, delayed visible (1.2s), click-to-scroll vers #szenarien
+- **Statut :** ✅ Succès
+
 ## Run #12 — 25/06/2026
 - **Amélioration :** Floating "Back to Top" Button avec micro-interactions — bouton flottant arrondi (50px, dégradé bleu→violet) qui apparaît en fondu avec scale spring (`translateY + scale`) après 500px de scroll, situé en bas à droite. Au hover : lévitation (-4px) + scale(1.08) + flèche ↑ qui monte de 2px + halo lumineux flouté (glow `filter: blur(12px)`) qui apparaît derrière le bouton. Au click : `scrollTo({ top: 0, behavior: 'smooth' })`. Scroll handler optimisé avec `requestAnimationFrame` (RAF throttling) pour zéro jank. Complètement responsive (44px sur mobile, marges réduites). Accessible avec `aria-label`.
 - **Inspiration :** Linear.app, Stripe, Vercel — les leaders AI SAAS utilisent tous un bouton "Back to Top" flottant subtil avec micro-transitions pour la navigation de confort sur les longues landing pages
