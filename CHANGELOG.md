@@ -1,5 +1,11 @@
 # SteuerGPT — Changelog des améliorations
 
+## Run #9 — 25/06/2026
+- **Amélioration :** Section "Integrationen & Partner" (Integrations/Trust Logos) ajoutée — grille 3×2 de 6 cartes partenaires animées (DATEV, lexoffice, sevDesk, WhatsApp Business, DSGVO-zertifiziert, SAP Business One) avec icônes colorées dégradées, hover lift + scale + rotate(-3°), animation flottante subtile (partnerFloat 6s ease-in-out) alternant entre lignes paires/impaire, staggered scroll reveal, séparateurs supérieur/inférieur avec gradient. Navigation desktop et mobile mises à jour avec lien "Partner". Transition delays du menu mobile étendus à 8 éléments.
+- **Inspiration :** Linear.app, Vercel, Stripe — les leaders AI SAAS utilisent tous une section logo cloud / trust badges (souvent en marquee ou grille) pour montrer les intégrations et partenaires, créant une preuve sociale visuelle cruciale pour la conversion
+- **Section modifiée :** Nouvelle section `.integrations` entre Testimonials et Pricing ; nav ajoutée "Partner" ; mobile delays étendus à nth-child(8) ; responsive CSS pour mobile (1 colonne)
+- **Statut :** ✅ Succès
+
 ## Run #8 — 25/06/2026
 - **Amélioration :** Animated Conic Gradient Border sur la carte "Empfohlen" (Pricing Flatrate) — un dégradé conique animé (bleu→violet→vert→bleu) tourne en continu (8s cycle) sur la bordure de la carte mise en avant, créant un effet premium "vivant" avec un halo subtil. La bordure s'illumine d'une lueur subtile grâce au contraste entre le fond blanc et les couleurs du gradient. Technique utilisée : pseudo-élément `::before` 300%×300% avec `conic-gradient`, animation `spinGradientBorder` (`transform: rotate(360deg)`), `::after` avec `inset: 2px` pour masquer l'intérieur, `overflow: hidden` sur le parent. Z-index stack : `::before` (0) → `::after` (1) → contenu (2).
 - **Inspiration :** Stripe, Linear, Vercel — les leaders AI SAAS utilisent tous des bordures animées sur les cartes "Enterprise" ou "Featured" de leurs pages pricing pour mettre en avant le plan recommandé avec un effet subtil mais premium
