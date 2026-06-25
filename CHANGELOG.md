@@ -1,5 +1,13 @@
 # SteuerGPT — Changelog des améliorations
 
+## Run #21 — 25/06/2026
+- **Correction :** Ordre des checkmarks/time dans les messages WhatsApp sortants — dans le vrai WhatsApp, les double-check (`✓✓`) apparaissent à GAUCHE de l'heure (`✓✓ 14:30`), pas à droite (`14:30 ✓✓`). L'ancien code concaténait `getTime() + ' ' + getMsgStatus(msg.type)`, produisant l'ordre inverse. Pour un cabinet comptable allemand qui utilise WhatsApp quotidiennement, cette inversion subtile brisait l'immersion du mockup — le cerveau reconnaît instantanément un détail qui "cloche". La correction : `getMsgStatus(msg.type)` est évalué en premier, et l'heure n'est ajoutée qu'après. Pour les messages entrants (pas de statut), seul le time est rendu, sans espace parasite — via un ternaire `statusHtml ? statusHtml + ' ' : ''` qui garantit un rendu propre dans les deux cas.
+- **Inspiration :** WhatsApp Business UI officielle — les détails les plus infimes (position des checks par rapport à l'heure) sont ce qui sépare un mockup crédible d'un faux. Un professionnel qui utilise WhatsApp ne l'analyse pas consciemment, mais son cerveau détecte instantanément quand l'ordre est inversé. Les meilleurs sites SAAS peaufinent chaque pixel de leur démo produit.
+- **Section modifiée :** JS — `renderScenario()` ligne 2411 : extraction de `getMsgStatus()` dans une variable, template conditionnel avec ternaire, commentaire explicatif
+- **Statut :** ✅ Succès
+
+---
+
 ## Run #20 — 25/06/2026
 - **Correction :** Height collapse du carrousel de témoignages pendant les transitions — quand l'ancienne carte perdait `active` (passant de `position:relative` à `position:absolute`) et que la nouvelle ne l'avait pas encore (intervalle de 50ms), le conteneur s'effondrait à `min-height: 340px`. Si une carte dépassait 340px (ce qui arrive sur mobile avec du texte qui wrappe), un saut visuel se produisait — un détail qui détruit la crédibilité auprès d'un cabinet comptable allemand exigeant. La nouvelle fonction `lockCarouselHeight()` mesure la hauteur naturelle de toutes les cartes (en les rendant temporairement `visibility: hidden` + `opacity: 0` + `position: relative` sans affecter le layout) et applique la valeur maximale comme `minHeight` inline. La hauteur est recalculée au resize (debounce 300ms) pour s'adapter aux changements d'orientation et de font-scaling. Zéro jank, zéro saut, transition parfaitement fluide.
 - **Inspiration :** Vercel, Linear, Apple.com — les sites premium ne tolèrent AUCUN saut visuel. Les transitions doivent être si fluides que l'utilisateur ne les remarque pas. Un carrousel qui "saute" pendant un changement de slide signale immédiatement un manque de polish.

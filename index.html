@@ -2408,7 +2408,9 @@ function renderScenario(index) {
 
         const div = document.createElement('div');
         div.className = 'whatsapp-msg ' + (msg.type === 'in' ? 'msg-in' : 'msg-out');
-        div.innerHTML = msg.text + '<div class="msg-time">' + getTime() + ' ' + getMsgStatus(msg.type) + '</div>';
+        const statusHtml = getMsgStatus(msg.type);
+        // Real WhatsApp: checkmarks BEFORE time on outgoing messages
+        div.innerHTML = msg.text + '<div class="msg-time">' + (statusHtml ? statusHtml + ' ' : '') + getTime() + '</div>';
         div.style.animationDelay = '0s';
         body.appendChild(div);
       }
