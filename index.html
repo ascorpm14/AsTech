@@ -627,17 +627,16 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
 .send-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
 
 /* ═══════════════════════════════════════
-   SCENARIO TABS
+   SCENARIO TABS — inside hero-right, aligned with phone mockup
    ═══════════════════════════════════════ */
-.scenarios {
-  padding: 40px 24px 0;
+.hero-right .scenarios {
+  padding: 24px 0 0;
   display: flex;
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 1200px;
+  max-width: 400px;
   margin: 0 auto;
-  scroll-margin-top: 80px;
 }
 .scenario-tab {
   display: flex;
@@ -1712,6 +1711,7 @@ footer {
   .hero-btns { justify-content: center; }
   .hero-stats { justify-content: center; }
   .phone-mockup { max-width: 350px; }
+  .hero-right .scenarios { max-width: 350px; }
 }
 @media (max-width: 768px) {
   .hero h1 { font-size: 36px; }
@@ -1724,7 +1724,7 @@ footer {
   .mobile-menu { display: flex; }
   .section-title { font-size: 30px; }
   .whatsapp-body { height: 400px; }
-  .scenarios { gap: 8px; }
+  .hero-right .scenarios { gap: 8px; }
   .scenario-tab { font-size: 12px; padding: 10px 16px; }
   .testimonial-card { padding: 28px 20px; }
   .testimonial-carousel { min-height: 380px; }
@@ -1743,6 +1743,7 @@ footer {
 @media (max-width: 480px) {
   .testimonial-carousel { min-height: 420px; }
   .testimonial-card { padding: 24px 18px; }
+  .hero-right .scenarios { max-width: 100%; padding-left: 4px; padding-right: 4px; }
 }
 
 /* ═══════════════════════════════════════
@@ -2077,7 +2078,7 @@ footer {
     </div>
   </div>
   <!-- Scenario tabs — directly below the phone mockup for immediate visual connection -->
-  <div class="scenarios" style="padding:24px 0 0;justify-content:center;max-width:400px;margin:0 auto;">
+  <div class="scenarios">
     <button class="scenario-tab active" data-scenario="0">
       <span class="tab-icon">📄</span>
       <span class="scenario-indicator indicator-green"></span>
