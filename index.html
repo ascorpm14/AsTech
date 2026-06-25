@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SteuerGPT — KI-Assistent für Steuerkanzleien</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5;
+  --surface: #ffffff;
+  --text: #1a1a2e;
+  --text-secondary: #64748b;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #3b82f6;
+  --gradient: linear-gradient(135deg, #2563eb, #7c3aed);
+  --gradient-2: linear-gradient(135deg, #059669, #2563eb);
+  --gradient-3: linear-gradient(135deg, #d97706, #dc2626);
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+  --radius: 12px;
+  --radius-lg: 20px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════
+   NAV
+   ═══════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; width: 100%;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  z-index: 1000;
+  transition: var(--transition);
+}
+nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 14px 24px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.logo {
+  font-weight: 800; font-size: 24px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex; align-items: center; gap: 8px;
+}
+.logo::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 28px;
+  background: var(--gradient);
+  border-radius: 8px;
+  -webkit-text-fill-color: transparent;
+}
+.nav-links { display: flex; gap: 8px; align-items: center; }
+.nav-links a {
+  text-decoration: none; color: var(--text-secondary);
+  font-weight: 500; font-size: 14px;
+  padding: 8px 16px; border-radius: 100px;
+  transition: var(--transition);
+}
+.nav-links a:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+.cta-nav {
+  background: var(--gradient) !important;
+  color: white !important;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+}
+.cta-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.4) !important; }
+
+/* ═══════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════ */
+.hero {
+  padding: 140px 24px 80px;
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  min-height: 90vh;
+}
+.hero-left { position: relative; }
+.badge {
+  display: inline-flex;
+  align-items: center; gap: 8px;
+  background: rgba(37,99,235,0.1);
+  color: var(--primary);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 13px; font-weight: 600;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.6s ease;
+}
+.badge-dot {
+  width: 8px; height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.6s ease 0.1s both;
+}
+.hero h1 .highlight {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero h1 .highlight-2 { color: var(--primary); -webkit-text-fill-color: var(--primary); }
+.hero p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin-bottom: 36px;
+  line-height: 1.7;
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeInUp 0.6s ease 0.3s both; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gradient);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600; font-size: 16px;
+  transition: var(--transition);
+  box-shadow: 0 4px 20px rgba(37,99,235,0.3);
+  border: none; cursor: pointer;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(37,99,235,0.4); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: white;
+  color: var(--text);
+  padding: 16px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600; font-size: 16px;
+  border: 2px solid #e2e8f0;
+  transition: var(--transition);
+}
+.btn-secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-3px); }
+
+.hero-stats {
+  display: flex; gap: 40px; margin-top: 40px;
+  animation: fadeInUp 0.6s ease 0.4s both;
+}
+.hero-stat h3 {
+  font-size: 32px; font-weight: 800;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-stat p { font-size: 13px; color: var(--text-secondary); margin: 0; }
+
+/* ═══════════════════════════════════════
+   WHATSAPP PHONE MOCKUP
+   ═══════════════════════════════════════ */
+.phone-mockup {
+  width: 100%; max-width: 400px;
+  margin: 0 auto;
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.phone-frame {
+  background: white;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+  border: 3px solid #1a1a2e20;
+  position: relative;
+}
+.phone-notch {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 120px; height: 28px;
+  background: #1a1a2e;
+  border-radius: 0 0 16px 16px;
+  z-index: 10;
+}
+.phone-notch::after {
+  content: '';
+  position: absolute;
+  top: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 40px; height: 4px;
+  background: #1a1a2e40;
+  border-radius: 2px;
+}
+.phone-header {
+  padding: 36px 16px 12px;
+  background: #075e54;
+  color: white;
+  display: flex;
+  align-items: center; gap: 12px;
+}
+.phone-back { font-size: 20px; cursor: pointer; opacity: 0.8; }
+.phone-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px;
+  flex-shrink: 0;
+}
+.phone-name { font-weight: 600; font-size: 14px; }
+.phone-status { font-size: 11px; opacity: 0.7; }
+.phone-more { margin-left: auto; font-size: 20px; cursor: pointer; opacity: 0.8; }
+
+/* ═══════════════════════════════════════
+   WHATSAPP BODY - Dynamic Messages
+   ═══════════════════════════════════════ */
+.whatsapp-body {
+  background: #efeae2;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4cfc6' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  height: 480px;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  scroll-behavior: smooth;
+}
+.whatsapp-body::-webkit-scrollbar { width: 4px; }
+.whatsapp-body::-webkit-scrollbar-track { background: transparent; }
+.whatsapp-body::-webkit-scrollbar-thumb { background: #c0b8a8; border-radius: 4px; }
+
+.whatsapp-msg {
+  max-width: 85%;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  position: relative;
+  animation: msgIn 0.3s ease forwards;
+  opacity: 0;
+  transform: translateY(8px);
+}
+@keyframes msgIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+.msg-in {
+  background: white;
+  align-self: flex-start;
+  border-top-left-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+.msg-out {
+  background: #d9fdd3;
+  align-self: flex-end;
+  border-top-right-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+.msg-time {
+  font-size: 10.5px;
+  color: #999;
+  text-align: right;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+}
+.msg-check { font-size: 14px; }
+.msg-emoji { font-size: 18px; }
+.msg-bold { font-weight: 600; }
+.msg-label {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 2px 0;
+  font-weight: 600;
+}
+.label-green { background: #d9fdd3; color: #1a7a1a; }
+.label-blue { background: #dbeafe; color: #1d4ed8; }
+.label-red { background: #fee2e2; color: #dc2626; }
+.label-amber { background: #fef3c7; color: #d97706; }
+
+.whatsapp-typing {
+  align-self: flex-start;
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 16px;
+  border-top-left-radius: 2px;
+  animation: msgIn 0.3s ease forwards, typingPulse 1.5s ease-in-out infinite;
+}
+.typing-dot {
+  width: 8px; height: 8px;
+  background: #999;
+  border-radius: 50%;
+  animation: dotBounce 1.5s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dotBounce {
+  0%,60%,100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+@keyframes typingPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.7; } }
+
+.whatsapp-input {
+  display: flex;
+  padding: 10px 12px;
+  background: #f0f2f5;
+  gap: 8px;
+  align-items: center;
+}
+.whatsapp-input input {
+  flex: 1;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 24px;
+  font-size: 14px;
+  background: white;
+  outline: none;
+  font-family: inherit;
+}
+.whatsapp-input input:focus { box-shadow: 0 0 0 2px #075e5430; }
+.whatsapp-input .emoji-btn, .whatsapp-input .mic-btn {
+  width: 36px; height: 36px;
+  border: none; background: transparent;
+  cursor: pointer; font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+.send-btn {
+  width: 40px; height: 40px;
+  background: #075e54;
+  border: none; border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.send-btn:hover { background: #054d44; transform: scale(1.05); }
+
+/* ═══════════════════════════════════════
+   SCENARIO TABS
+   ═══════════════════════════════════════ */
+.scenarios {
+  padding: 40px 24px 0;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.scenario-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 100px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: var(--transition);
+  font-family: inherit;
+  color: var(--text-secondary);
+}
+.scenario-tab:hover { border-color: var(--primary); color: var(--text); }
+.scenario-tab.active {
+  background: var(--gradient);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+}
+.scenario-tab .tab-icon { font-size: 20px; }
+.scenario-indicator {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.indicator-green { background: #22c55e; }
+.indicator-blue { background: var(--primary); }
+.indicator-amber { background: #f59e0b; }
+
+/* ═══════════════════════════════════════
+   FEATURES GRID
+   ═══════════════════════════════════════ */
+section { padding: 100px 24px; }
+.section-tag {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+.section-title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.section-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto 60px;
+}
+.features { background: white; }
+.feature-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.feature-card {
+  padding: 32px 28px;
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+  border: 1px solid transparent;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+.feature-card:hover::before { transform: scaleX(1); }
+.feature-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.icon-rechnung { background: #dbeafe; }
+.icon-bank { background: #d9fdd3; }
+.icon-steuer { background: #fef3c7; }
+.icon-whatsapp { background: #e0f2fe; }
+.icon-mandant { background: #f3e8ff; }
+.icon-dsgvo { background: #fce7f3; }
+
+.feature-card h3 { font-size: 18px; margin-bottom: 8px; }
+.feature-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+
+/* ═══════════════════════════════════════
+   PRICING
+   ═══════════════════════════════════════ */
+.pricing { background: var(--bg); }
+.pricing-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.price-card {
+  padding: 40px 32px;
+  border-radius: var(--radius-lg);
+  background: white;
+  border: 2px solid #e2e8f0;
+  text-align: center;
+  transition: var(--transition);
+  position: relative;
+}
+.price-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+.price-card.featured {
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 8px 32px rgba(37,99,235,0.15);
+}
+.price-badge {
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--gradient);
+  color: white;
+  padding: 4px 24px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.price-amount {
+  font-size: 52px;
+  font-weight: 900;
+  margin: 16px 0 4px;
+  line-height: 1;
+}
+.price-amount span { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
+.price-period { color: var(--text-secondary); font-size: 14px; margin-bottom: 8px; }
+.price-sub { font-size: 13px; color: var(--text-secondary); margin-bottom: 24px; }
+.price-features { list-style: none; text-align: left; margin-bottom: 32px; }
+.price-features li {
+  padding: 10px 0;
+  font-size: 14px;
+  color: #475569;
+  display: flex; gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #f1f5f9;
+}
+.price-features li:last-child { border: none; }
+.price-features li::before {
+  content: "✓";
+  width: 20px; height: 20px;
+  background: var(--gradient);
+  color: white;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   CTA SECTION
+   ═══════════════════════════════════════ */
+.cta-section {
+  background: var(--gradient);
+  color: white;
+  text-align: center;
+  padding: 120px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 50%);
+  animation: ctaGlow 8s ease-in-out infinite;
+}
+@keyframes ctaGlow {
+  0%,100% { transform: translate(0, 0); }
+  50% { transform: translate(-5%, 5%); }
+}
+.cta-section * { position: relative; z-index: 1; }
+.cta-section h2 { font-size: 44px; font-weight: 800; margin-bottom: 16px; }
+.cta-section p { font-size: 18px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-section .btn-primary { background: white; color: var(--primary); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+.cta-section .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
+footer {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* ═══════════════════════════════════════
+   ANIMATIONS - SCROLL REVEAL
+   ═══════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+  .hero p { margin: 0 auto 36px; }
+  .hero-btns { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .phone-mockup { max-width: 350px; }
+}
+@media (max-width: 768px) {
+  .hero h1 { font-size: 36px; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+  .nav-links a:not(.cta-nav) { display: none; }
+  .section-title { font-size: 30px; }
+  .whatsapp-body { height: 400px; }
+  .scenarios { gap: 8px; }
+  .scenario-tab { font-size: 12px; padding: 10px 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="nav-inner">
+  <div class="logo">SteuerGPT</div>
+  <div class="nav-links">
+    <a href="#szenarien">Szenarien</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Preise</a>
+    <a href="#cta" class="cta-nav">Kostenlos testen</a>
+  </div>
+</div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+<div class="hero-left">
+  <div class="badge"><span class="badge-dot"></span> LIVE — Jetzt testen</div>
+  <h1>Der KI-Assistent für Ihre <span class="highlight">Steuerkanzlei</span></h1>
+  <p>15 Stunden pro Woche sparen. Automatische Rechnungserfassung, Bankabstimmung und Steuervorbereitung — direkt per WhatsApp. Keine neue Software nötig.</p>
+  <div class="hero-btns">
+    <a href="#cta" class="btn-primary">🚀 Kostenlos testen</a>
+    <a href="#szenarien" class="btn-secondary">🎬 Szenarien ansehen</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><h3>15+</h3><p>Std. gespart / Woche</p></div>
+    <div class="hero-stat"><h3>98%</h3><p>Erkennungsrate</p></div>
+    <div class="hero-stat"><h3>24/7</h3><p>Verfügbar</p></div>
+  </div>
+</div>
+<div class="hero-right">
+  <div class="phone-mockup">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-header">
+        <span class="phone-back">‹</span>
+        <div class="phone-avatar">S</div>
+        <div>
+          <div class="phone-name">SteuerGPT</div>
+          <div class="phone-status">Online</div>
+        </div>
+        <span class="phone-more">⋮</span>
+      </div>
+      <div class="whatsapp-body" id="waBody"></div>
+      <div class="whatsapp-input">
+        <span class="emoji-btn">😊</span>
+        <input type="text" placeholder="Nachricht eingeben..." readonly>
+        <span class="mic-btn">🎤</span>
+        <button class="send-btn">➤</button>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ SCENARIO TABS ═══ -->
+<div class="scenarios" id="szenarien">
+  <button class="scenario-tab active" data-scenario="0">
+    <span class="tab-icon">📄</span>
+    <span class="scenario-indicator indicator-green"></span>
+    Rechnungserfassung
+  </button>
+  <button class="scenario-tab" data-scenario="1">
+    <span class="tab-icon">🏦</span>
+    <span class="scenario-indicator indicator-blue"></span>
+    Bankabstimmung
+  </button>
+  <button class="scenario-tab" data-scenario="2">
+    <span class="tab-icon">📋</span>
+    <span class="scenario-indicator indicator-amber"></span>
+    Steuervorbereitung
+  </button>
+</div>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="features" id="features">
+<div class="section-tag reveal">Features</div>
+<h2 class="section-title reveal">Was SteuerGPT für Sie tut</h2>
+<p class="section-subtitle reveal">Automatisierung der wichtigsten Kanzlei-Aufgaben — kein Setup, kein Aufwand</p>
+<div class="feature-grid">
+  <div class="feature-card reveal reveal-delay-1">
+    <div class="feature-icon icon-rechnung">📄</div>
+    <h3>Rechnungserfassung</h3>
+    <p>Eingangsrechnungen per Foto oder PDF — SteuerGPT erkennt, kategorisiert und verbucht automatisch.</p>
+  </div>
+  <div class="feature-card reveal reveal-delay-2">
+    <div class="feature-icon icon-bank">🏦</div>
+    <h3>Kontenabstimmung</h3>
+    <p>Automatischer Abgleich von Kontoauszügen. Unstimmigkeiten werden sofort gemeldet.</p>
+  </div>
+  <div class="feature-card reveal reveal-delay-3">
+    <div class="feature-icon icon-steuer">📋</div>
+    <h3>Steuervorbereitung</h3>
+    <p>USt-VA, EÜR und Jahresabschluss werden vorbereitet — Sie prüfen und geben frei.</p>
+  </div>
+  <div class="feature-card reveal reveal-delay-1">
+    <div class="feature-icon icon-whatsapp">💬</div>
+    <h3>WhatsApp-Bedienung</h3>
+    <p>Keine neue Software. Ihr Team arbeitet weiter wie gewohnt — über WhatsApp.</p>
+  </div>
+  <div class="feature-card reveal reveal-delay-2">
+    <div class="feature-icon icon-mandant">👥</div>
+    <h3>Mandanten-Management</h3>
+    <p>Automatische Erinnerungen und professionelle Anschreiben ans Finanzamt.</p>
+  </div>
+  <div class="feature-card reveal reveal-delay-3">
+    <div class="feature-icon icon-dsgvo">🔒</div>
+    <h3>DSGVO-konform</h3>
+    <p>Datenverarbeitung auf deutschen Servern. Ende-zu-Ende-Verschlüsselung.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing" id="pricing">
+<div class="section-tag reveal">Preise</div>
+<h2 class="section-title reveal">Einfach und transparent</h2>
+<p class="section-subtitle reveal">Keine versteckten Kosten — jederzeit kündbar</p>
+<div class="pricing-grid">
+  <div class="price-card reveal">
+    <h3 style="font-size:20px;margin-bottom:4px;">Flex</h3>
+    <div class="price-amount">€0 <span>/ Monat</span></div>
+    <div class="price-period">Nur bezahlen, was Sie nutzen</div>
+    <div class="price-sub">Pro Transaktion abgerechnet</div>
+    <ul class="price-features">
+      <li>Keine Grundgebühr</li>
+      <li>Voll funktionsfähig</li>
+      <li>7 Tage kostenlos</li>
+      <li>Jederzeit kündbar</li>
+    </ul>
+    <a href="#cta" class="btn-secondary" style="display:inline-flex;">Starten</a>
+  </div>
+  <div class="price-card featured reveal reveal-delay-1">
+    <div class="price-badge">Empfohlen</div>
+    <h3 style="font-size:20px;margin-bottom:4px;">Flatrate</h3>
+    <div class="price-amount">€100 <span>/ Monat</span></div>
+    <div class="price-period">Erstes Jahr</div>
+    <div class="price-sub">danach €200/Monat · einmalige Einrichtung €200</div>
+    <ul class="price-features">
+      <li>Unbegrenzte Nutzung</li>
+      <li>Prioritäts-Support</li>
+      <li>Individuelle Einrichtung</li>
+      <li>7 Tage kostenlos testen</li>
+    </ul>
+    <a href="#cta" class="btn-primary" style="display:inline-flex;">Flatrate buchen</a>
+  </div>
+</div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section" id="cta">
+  <h2 class="reveal">Bereit für die Zukunft Ihrer Kanzlei?</h2>
+  <p class="reveal reveal-delay-1">Testen Sie SteuerGPT 7 Tage kostenlos — unverbindlich und ohne Risiko.</p>
+  <a href="mailto:ascorpm14@gmail.com?subject=SteuerGPT%20Demo" class="btn-primary reveal reveal-delay-2" style="font-size:18px;padding:18px 40px;">Jetzt kostenlos testen →</a>
+</section>
+
+<footer>
+  <p>SteuerGPT — Ein Produkt von As Corp · Kontakt: ascorpm14@gmail.com</p>
+</footer>
+
+<!-- ═══════ JAVASCRIPT ═══════ -->
+<script>
+// ═══════════════════════════════════
+// 3 WHATSAPP SZENARIEN
+// ═══════════════════════════════════
+const scenarios = [
+  // 0: Rechnungserfassung
+  {
+    name: 'Rechnungserfassung',
+    messages: [
+      { type: 'in', text: 'Guten Morgen! 3 neue Rechnungen eingetroffen 📄', delay: 300 },
+      { type: 'in', text: '<span class="msg-label label-blue">Rechnung #2024-1289</span><br>Müller GmbH · 3.240,00 €<br><span style="font-size:11px;color:#999;">Kategorie: Lieferanten · Fällig: 15.07.</span>', delay: 1200 },
+      { type: 'in', text: '<span class="msg-label label-blue">Rechnung #2024-1290</span><br>Schmidt KG · 1.890,00 €<br><span style="font-size:11px;color:#999;">Kategorie: Beratung · Fällig: 20.07.</span>', delay: 800 },
+      { type: 'in', text: '<span class="msg-label label-blue">Rechnung #2024-1291</span><br>Weber & Co. · 4.560,00 €<br><span style="font-size:11px;color:#999;">Kategorie: IT-Dienstleistungen · Fällig: 10.07.</span>', delay: 800 },
+      { type: 'typing', delay: 600 },
+      { type: 'out', text: 'Alle 3 Rechnungen kategorisiert und verbucht ✅<br><span class="msg-label label-green">Gesamt: 9.690,00 €</span>', delay: 1500 },
+      { type: 'in', text: '📊 Offene Posten aktualisiert. 12 Rechnungen noch offen (insg. 34.210 €).<br>⚠️ 2 Rechnungen überfällig → <span style="color:#2563eb;cursor:pointer;">Details anzeigen</span>', delay: 1200 },
+      { type: 'out', text: 'Super, danke! 🙌', delay: 600 },
+    ]
+  },
+  // 1: Bankabstimmung
+  {
+    name: 'Bankabstimmung',
+    messages: [
+      { type: 'in', text: '🏦 Täglicher Bankabgleich abgeschlossen', delay: 300 },
+      { type: 'in', text: '<span class="msg-label label-green">18 Buchungen abgeglichen</span><br>Konto: DE12 5001 0517 1234 5678 · Stand: 2.340,56 €', delay: 1000 },
+      { type: 'in', text: '✅ 16 Buchungen automatisch matchiert<br>💰 Summe: 45.230,00 €', delay: 800 },
+      { type: 'in', text: '<span class="msg-label label-red">⚠️ 2 Unstimmigkeiten gefunden</span>', delay: 600 },
+      { type: 'in', text: '<span class="msg-label label-amber">Unstimmigkeit #1</span><br>Kontoauszug: -1.200,00 € · Gebucht: -1.240,00 €<br>💰 Differenz: 40,00 € — Mögliche Gebühr?', delay: 1000 },
+      { type: 'in', text: '<span class="msg-label label-amber">Unstimmigkeit #2</span><br>Kontoauszug: +3.500,00 € · Keine Buchung gefunden<br>💰 Unbekannte Gutschrift — von Mandant erfragen?', delay: 1000 },
+      { type: 'typing', delay: 800 },
+      { type: 'out', text: 'Differenz #1 prüfen: ja, das ist die Kontogebühr. #2: wer war das nochmal? 🤔', delay: 1200 },
+      { type: 'in', text: '🔍 Analyse: Gutschrift von "Bauer GmbH" — ist das ein Mandant?', delay: 800 },
+      { type: 'out', text: 'Ach ja, der neue Mandant aus letzter Woche! Danke 👍', delay: 600 },
+      { type: 'in', text: 'Erledigt! Beide Positionen geklärt ✅<br>📊 Kontoabstimmung abgeschlossen: 18/18 Posten klar.', delay: 1000 },
+    ]
+  },
+  // 2: Steuervorbereitung
+  {
+    name: 'Steuervorbereitung',
+    messages: [
+      { type: 'in', text: '📋 USt-VA Vorbereitung für Juni gestartet', delay: 300 },
+      { type: 'in', text: '📊 <span class="msg-bold">Status: 87% vollständig</span><br>Nächste Frist: 10. Juli', delay: 800 },
+      { type: 'in', text: '✅ Umsätze erfasst: 128.450,00 €<br>✅ Vorsteuer erfasst: 24.390,00 €<br>⏳ Fehlende Belege: 3', delay: 1000 },
+      { type: 'in', text: '<span class="msg-label label-amber">Fehlende Belege</span><br>1. Rechnung #2024-1250 — Firma Klein (1.200 €)<br>2. Rechnung #2024-1255 — Büroartikel (340 €)<br>3. Rechnung #2024-1260 — Fortbildung (890 €)', delay: 1000 },
+      { type: 'typing', delay: 600 },
+      { type: 'out', text: 'Hast du die fehlenden Belege schon bei Mandant XYZ angefragt?', delay: 1000 },
+      { type: 'in', text: '📬 Automatische Erinnerung an Mandant XYZ wird gesendet...<br>✉️ "Sehr geehrte Damen und Herren, für die Vorbereitung der USt-VA benötigen wir noch folgende Belege..."', delay: 1200 },
+      { type: 'in', text: '✅ Erinnerung versendet!<br><span style="font-size:11px;color:#999;">Status: Warte auf Antwort · Frist: 3. Juli</span>', delay: 600 },
+      { type: 'out', text: 'Perfekt, kümmer dich drum! 🙏', delay: 400 },
+      { type: 'in', text: '📅 <span class="msg-bold">Termin-Erinnerung:</span><br>• USt-VA Juni: Frist 10. Juli<br>• EÜR Vorbereitung: Start 15. Juli<br>• Jahresabschluss: 8 von 12 Monaten bereit', delay: 1200 },
+      { type: 'out', text: 'Stark, das läuft ja rund 💪', delay: 400 },
+    ]
+  }
+];
+
+let currentScenario = 0;
+let msgTimeouts = [];
+
+function getTime() {
+  const d = new Date();
+  return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+}
+
+function getCheck() {
+  const checks = ['🕐','✓','✓✓','✓✓✓','✓✓✓✓'];
+  return checks[Math.floor(Math.random() * checks.length)];
+}
+
+function renderScenario(index) {
+  const body = document.getElementById('waBody');
+  body.innerHTML = '';
+  msgTimeouts.forEach(t => clearTimeout(t));
+  msgTimeouts = [];
+
+  const msgs = scenarios[index].messages;
+  let cumulativeDelay = 500;
+
+  msgs.forEach((msg, i) => {
+    cumulativeDelay += msg.delay;
+    const t = setTimeout(() => {
+      if (msg.type === 'typing') {
+        const div = document.createElement('div');
+        div.className = 'whatsapp-typing';
+        div.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+        div.id = 'typing-indicator';
+        body.appendChild(div);
+      } else {
+        const existingTyping = document.getElementById('typing-indicator');
+        if (existingTyping) existingTyping.remove();
+
+        const div = document.createElement('div');
+        div.className = 'whatsapp-msg ' + (msg.type === 'in' ? 'msg-in' : 'msg-out');
+        div.innerHTML = msg.text + '<div class="msg-time">' + getTime() + ' <span class="msg-check">' + getCheck() + '</span></div>';
+        div.style.animationDelay = '0s';
+        body.appendChild(div);
+      }
+      body.scrollTop = body.scrollHeight;
+    }, cumulativeDelay);
+    msgTimeouts.push(t);
+  });
+}
+
+// Tab switching
+document.querySelectorAll('.scenario-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.scenario-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    const idx = parseInt(this.dataset.scenario);
+    currentScenario = idx;
+    renderScenario(idx);
+  });
+});
+
+// Initial render
+renderScenario(0);
+
+// ═══════════════════════════════════
+// SCROLL REVEAL
+// ═══════════════════════════════════
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ═══════════════════════════════════
+// NAVBAR SCROLL EFFECT
+// ═══════════════════════════════════
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ═══════════════════════════════════
+// AUTO-ROTATE SCENARIOS EVERY 30s
+// ═══════════════════════════════════
+let autoRotate = setInterval(() => {
+  const tabs = document.querySelectorAll('.scenario-tab');
+  let next = (currentScenario + 1) % tabs.length;
+  tabs[next].click();
+}, 30000);
+
+// Reset auto-rotate on manual click
+document.querySelectorAll('.scenario-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    clearInterval(autoRotate);
+    autoRotate = setInterval(() => {
+      const tabs2 = document.querySelectorAll('.scenario-tab');
+      let next2 = (currentScenario + 1) % tabs2.length;
+      tabs2[next2].click();
+    }, 30000);
+  });
+});
+</script>
+
+</body>
+</html>
