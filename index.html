@@ -79,6 +79,104 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
   transition: var(--transition);
 }
 .nav-links a:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+
+/* Hamburger menu button (hidden on desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px; height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+  position: relative;
+}
+.hamburger-line {
+  display: block;
+  width: 24px; height: 2.5px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: absolute;
+}
+.hamburger-line:nth-child(1) { transform: translateY(-7px); }
+.hamburger-line:nth-child(2) { transform: translateY(0); }
+.hamburger-line:nth-child(3) { transform: translateY(7px); }
+
+/* Hamburger open state → animated X */
+.hamburger.open .hamburger-line:nth-child(1) {
+  transform: translateY(0) rotate(45deg);
+}
+.hamburger.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.open .hamburger-line:nth-child(3) {
+  transform: translateY(0) rotate(-45deg);
+}
+
+/* Mobile menu overlay */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-menu a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(16px);
+}
+.mobile-menu.open a {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+}
+.mobile-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+.mobile-menu.open a:nth-child(2) { transition-delay: 0.10s; }
+.mobile-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+.mobile-menu.open a:nth-child(4) { transition-delay: 0.20s; }
+.mobile-menu.open a:nth-child(5) { transition-delay: 0.25s; }
+.mobile-menu.open a:nth-child(6) { transition-delay: 0.30s; }
+.mobile-menu a:hover {
+  background: rgba(37,99,235,0.08);
+  color: var(--primary);
+}
+.mobile-menu .cta-nav-mobile {
+  margin-top: 16px;
+  background: var(--gradient) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 20px rgba(37,99,235,0.3);
+}
+.mobile-menu .cta-nav-mobile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37,99,235,0.4) !important;
+}
+
 .cta-nav {
   background: var(--gradient) !important;
   color: white !important;
@@ -1044,6 +1142,9 @@ footer {
   .pricing-grid { grid-template-columns: 1fr; }
   .hero-stats { gap: 24px; flex-wrap: wrap; }
   .nav-links a:not(.cta-nav) { display: none; }
+  .nav-links .cta-nav { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
   .section-title { font-size: 30px; }
   .whatsapp-body { height: 400px; }
   .scenarios { gap: 8px; }
@@ -1078,8 +1179,24 @@ footer {
     <a href="#pricing">Preise</a>
     <a href="#cta" class="cta-nav">Kostenlos testen</a>
   </div>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menü öffnen">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
 </div>
 </nav>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#szenarien" class="mobile-link">Szenarien</a>
+  <a href="#features" class="mobile-link">Features</a>
+  <a href="#how-it-works" class="mobile-link">So funktioniert's</a>
+  <a href="#testimonials" class="mobile-link">Erfahrungen</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
+  <a href="#pricing" class="mobile-link">Preise</a>
+  <a href="#cta" class="cta-nav-mobile mobile-link">Kostenlos testen</a>
+</div>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="hero">
@@ -1699,6 +1816,55 @@ document.querySelectorAll('.faq-item').forEach(item => {
       btn.setAttribute('aria-expanded', 'true');
     }
   });
+});
+
+// ═══════════════════════════════════
+// HAMBURGER MOBILE MENU
+// ═══════════════════════════════════
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+let menuOpen = false;
+
+function toggleMenu(open) {
+  menuOpen = open;
+  hamburgerBtn.classList.toggle('open', open);
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+  hamburgerBtn.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+
+  // Re-animate staggered links when opening
+  if (open) {
+    mobileLinks.forEach((link, i) => {
+      link.style.transition = 'none';
+      link.style.opacity = '0';
+      link.style.transform = 'translateY(16px)';
+      // Force reflow
+      void link.offsetWidth;
+      link.style.transition = `all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease`;
+      link.style.transitionDelay = `${0.05 + i * 0.05}s`;
+      link.style.opacity = '1';
+      link.style.transform = 'translateY(0)';
+    });
+  }
+}
+
+hamburgerBtn.addEventListener('click', () => {
+  toggleMenu(!menuOpen);
+});
+
+// Close menu on link click
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    toggleMenu(false);
+  });
+});
+
+// Close menu on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && menuOpen) {
+    toggleMenu(false);
+  }
 });
 </script>
 

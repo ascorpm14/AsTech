@@ -1,5 +1,12 @@
 # SteuerGPT — Changelog des améliorations
 
+## Run #6 — 25/06/2026
+- **Amélioration :** Menu hamburger mobile animé — correction du bug de navigation mobile (tous les liens étaient cachés sans accès) avec un menu overlay plein écran premium : icône hamburger → X animé (3 lignes avec rotation spring), overlay backdrop-filter blur(24px), liens dévoilés en staggered (délai progressif 0.05s→0.30s), verrouillage du scroll body, fermeture par clic sur lien, touche Escape, accessibilité ARIA
+- **Inspiration :** Vercel, Linear, Claude.ai — les leaders AI SAAS utilisent tous des menus hamburger overlay avec backdrop blur et animations staggered pour la navigation mobile premium
+- **Section modifiée :** Navbar — ajout bouton `.hamburger` avec 3 `.hamburger-line` animés ; nouveau `.mobile-menu` overlay fullscreen en fin de `<nav>` ; responsive CSS masque tous les `.nav-links` (y compris CTA) sur mobile et affiche le hamburger ; JS `toggleMenu()` avec body scroll lock et sortie Escape
+- **Bug corrigé :** La navigation mobile était cassée — `display: none` sur les liens sans alternative. Désormais les visiteurs mobiles ont un menu complet et animé
+- **Statut :** ✅ Succès
+
 ## Run #5 — 25/06/2026
 - **Amélioration :** Compteurs animés (Count-Up) sur les statistiques Hero + effet "Shimmer" subtil — les chiffres "15+", "98%", "24/7" s'animent de 0 → valeur cible au chargement de la page avec un easing cubic, et un balayage lumineux (shimmer) parcourt périodiquement les statistiques pour un rendu premium "AI-native"
 - **Inspiration :** Claude.ai / Vercel / Linear — compteurs animés avec micro-interactions (effet de balayage lumineux) sur les KPIs des landing pages AI SAAS haut de gamme
