@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SteuerGPT für Steuerkanzleien — KI-Assistent</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8f9fc;color:#1a1a2e;line-height:1.6}
+nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.9);backdrop-filter:blur(12px);border-bottom:1px solid #eaeef2;z-index:100;padding:16px 0}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:22px;background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{text-decoration:none;color:#4a5568;font-weight:500;font-size:14px}
+.cta-btn{background:#2563eb;color:#fff!important;padding:10px 24px;border-radius:100px;font-weight:600!important}
+.hero{padding:140px 24px 80px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero h1{font-size:48px;font-weight:800;line-height:1.15;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:18px;color:#64748b;margin-bottom:32px}
+.btn-primary{display:inline-block;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:16px 32px;border-radius:100px;text-decoration:none;font-weight:600;transition:.3s}
+.features{padding:80px 24px;background:#fff}
+.features-inner{max-width:1100px;margin:0 auto}
+.features h2{text-align:center;font-size:32px;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{padding:28px;border-radius:16px;background:#f8f9fc;border:1px solid #eaeef2}
+.card h3{margin-bottom:8px;font-size:17px}
+.card p{color:#64748b;font-size:14px}
+.cta{padding:80px 24px;text-align:center;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff}
+.cta h2{font-size:36px;margin-bottom:20px}
+.cta .btn-primary{background:#fff;color:#2563eb}
+.badge{display:inline-block;background:rgba(37,99,235,0.1);color:#2563eb;padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:16px}
+.pricing{padding:80px 24px;background:#f8f9fc}
+.pricing-inner{max-width:800px;margin:0 auto;text-align:center}
+.price-box{display:inline-block;padding:40px;border-radius:20px;background:#fff;border:2px solid #2563eb;text-align:center;max-width:400px}
+.price-box .amount{font-size:48px;font-weight:800;margin:16px 0}
+.price-box ul{list-style:none;text-align:left;margin:24px 0}
+.price-box li{padding:8px 0;font-size:14px}
+.price-box li::before{content:"✓ ";color:#2563eb;font-weight:700}
+@media(max-width:768px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner"><div class="logo">SteuerGPT</div><div class="nav-links"><a href="../">Allgemein</a><a href="../logistik/">Logistik</a><a href="../gesundheitswesen/">Gesundheit</a><a href="#cta" class="cta-btn">Kostenlos testen</a></div></div></nav>
+
+<section class="hero">
+<div><span class="badge">📊 Für Steuerberatungskanzleien</span>
+<h1>Der KI-Assistent für Ihre <span>Steuerkanzlei</span></h1>
+<p>Automatische Rechnungserfassung, Bankabstimmung und Steuervorbereitung. Speziell entwickelt für Steuerberater und Wirtschaftsprüfer in Deutschland.</p>
+<a href="#cta" class="btn-primary">Jetzt 7 Tage kostenlos testen →</a></div>
+<div style="background:#e8f4f8;border-radius:24px;padding:24px;text-align:center;font-size:48px">📄🏦📋</div>
+</section>
+
+<section class="features"><div class="features-inner">
+<h2>Was SteuerGPT für Ihre Kanzlei tut</h2>
+<div class="grid">
+<div class="card"><div style="font-size:32px;margin-bottom:12px">📄</div><h3>Rechnungserfassung</h3><p>Eingangsrechnungen per Foto oder PDF — automatisch kategorisiert und verbucht.</p></div>
+<div class="card"><div style="font-size:32px;margin-bottom:12px">🏦</div><h3>Kontenabstimmung</h3><p>Täglicher automatischer Abgleich aller Bankkonten. Unstimmigkeiten sofort melden.</p></div>
+<div class="card"><div style="font-size:32px;margin-bottom:12px">📋</div><h3>USt-VA Vorbereitung</h3><p>Umsatzsteuervoranmeldung automatisch vorbereiten. Nur noch prüfen und abschicken.</p></div>
+<div class="card"><div style="font-size:32px;margin-bottom:12px">💬</div><h3>WhatsApp-Kommunikation</h3><p>Alle Funktionen per vertrautem WhatsApp-Chat. Keine neue Software nötig.</p></div>
+<div class="card"><div style="font-size:32px;margin-bottom:12px">📅</div><h3>Fristen-Erinnerung</h3><p>Automatische Erinnerung an Steuertermine und fehlende Belege von Mandanten.</p></div>
+<div class="card"><div style="font-size:32px;margin-bottom:12px">🔒</div><h3>DSGVO-konform</h3><p>Deutsche Server. Ende-zu-Ende-Verschlüsselung. Mandantendaten sicher.</p></div>
+</div></div></section>
+
+<section class="pricing"><div class="pricing-inner">
+<h2>Einfache Preise</h2>
+<div class="price-box">
+<div class="amount">€100 <span style="font-size:18px;color:#64748b">/ Monat</span></div>
+<p style="color:#64748b">Erstes Jahr · danach €200/Monat</p>
+<ul><li>Unbegrenzte Nutzung</li><li>Prioritäts-Support</li><li>Einrichtung €200 (einmalig)</li><li>7 Tage kostenlos testen</li></ul>
+<a href="#cta" class="btn-primary">Jetzt starten</a>
+</div></div></section>
+
+<section class="cta" id="cta">
+<h2>Bereit für die digitale Kanzlei?</h2>
+<p style="font-size:18px;margin-bottom:32px;">Testen Sie SteuerGPT 7 Tage kostenlos — unverbindlich.</p>
+<a href="mailto:ascorpm14@gmail.com?subject=SteuerGPT%20Steuerberatung%20Demo" class="btn-primary">Jetzt kostenlos testen →</a>
+</section>
+</body></html>
