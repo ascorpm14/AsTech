@@ -1836,6 +1836,122 @@ footer {
     font-size: 12px;
   }
 }
+
+/* ═══════════════════════════════════════
+   FOOTER — Professioneller Legal Footer mit Impressum
+   ═══════════════════════════════════════ */
+footer {
+  padding: 0;
+  text-align: left;
+  color: var(--text-secondary);
+  font-size: 14px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px 24px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+.footer-logo {
+  font-weight: 800;
+  font-size: 22px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+.footer-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 320px;
+}
+.footer-heading {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+.footer-links a:hover {
+  color: var(--primary);
+}
+.footer-contact li {
+  font-size: 14px;
+  line-height: 1.5;
+}
+/* Legal sections (Impressum, Datenschutz, AGB) */
+.footer-legal {
+  border-top: 1px solid #e2e8f0;
+  padding: 32px 0;
+}
+.footer-legal h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.footer-legal p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+.footer-legal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.footer-legal a {
+  color: var(--primary);
+  text-decoration: underline;
+  font-size: 13px;
+}
+.footer-legal-note {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+.footer-bottom {
+  border-top: 1px solid #e2e8f0;
+  padding: 20px 0 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .footer-legal-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-desc { max-width: none; }
+}
 </style>
 </head>
 <body>
@@ -2285,7 +2401,73 @@ footer {
 </section>
 
 <footer>
-  <p>SteuerGPT — Ein Produkt von As Corp · Kontakt: ascorpm14@gmail.com</p>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <div class="footer-logo">SteuerGPT</div>
+        <p class="footer-desc">KI-Assistent für Steuerkanzleien. Automatisierte Rechnungserfassung, Bankabstimmung und Steuervorbereitung — direkt per WhatsApp.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Produkt</h4>
+        <ul class="footer-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">So funktioniert's</a></li>
+          <li><a href="#pricing">Preise</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Rechtliches</h4>
+        <ul class="footer-links">
+          <li><a href="#impressum">Impressum</a></li>
+          <li><a href="#datenschutz">Datenschutz</a></li>
+          <li><a href="#agb">AGB</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Kontakt</h4>
+        <ul class="footer-links footer-contact">
+          <li>📧 ascorpm14@gmail.com</li>
+          <li>💬 via WhatsApp</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal" id="impressum">
+      <h4>Impressum — Angaben gemäß §5 TMG</h4>
+      <div class="footer-legal-grid">
+        <div>
+          <p><strong>As Corp</strong><br>
+          Inhaber: [Name eintragen]<br>
+          [Straße & Hausnr.]<br>
+          [PLZ Ort]</p>
+        </div>
+        <div>
+          <p><strong>Kontakt</strong><br>
+          E-Mail: ascorpm14@gmail.com<br>
+          Telefon: [Telefonnummer]</p>
+        </div>
+        <div>
+          <p><strong>Umsatzsteuer-ID</strong><br>
+          USt-IdNr.: [USt-IdNr. eintragen]</p>
+          <p><strong>Verantwortlich i.S.d. §18 Abs. 2 MStV</strong><br>
+          [Name], [Anschrift]</p>
+        </div>
+      </div>
+      <p class="footer-legal-note">Plattform der EU-Kommission zur Online-Streitbeilegung: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a></p>
+    </div>
+    <div class="footer-legal" id="datenschutz">
+      <h4>Datenschutzerklärung — gemäß Art. 13 DSGVO</h4>
+      <p>Wir erheben und verarbeiten personenbezogene Daten nur im Rahmen der gesetzlichen Bestimmungen der Datenschutz-Grundverordnung (DSGVO) und des Bundesdatenschutzgesetzes (BDSG). Details entnehmen Sie bitte unserer vollständigen Datenschutzerklärung, die Sie jederzeit anfordern können.</p>
+      <p><strong>Verantwortlicher:</strong> As Corp, [Adresse], E-Mail: ascorpm14@gmail.com</p>
+    </div>
+    <div class="footer-legal" id="agb">
+      <h4>Allgemeine Geschäftsbedingungen (AGB)</h4>
+      <p>Es gelten unsere Allgemeinen Geschäftsbedingungen in der jeweils aktuellen Fassung. Die AGB werden bei Vertragsabschluss bereitgestellt und können jederzeit per E-Mail angefordert werden.</p>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 SteuerGPT / As Corp. Alle Rechte vorbehalten.</p>
+    </div>
+  </div>
 </footer>
 
 <!-- Sticky Floating CTA Bar -->
