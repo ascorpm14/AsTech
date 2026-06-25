@@ -495,6 +495,153 @@ section { padding: 100px 24px; }
 .feature-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
 
 /* ═══════════════════════════════════════
+   TESTIMONIALS — Social Proof Carousel
+   ═══════════════════════════════════════ */
+.testimonials {
+  background: linear-gradient(180deg, var(--bg) 0%, white 100%);
+  padding: 100px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.testimonials::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+  opacity: 0.3;
+}
+.testimonial-carousel {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 340px;
+}
+.testimonial-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+  box-shadow: var(--shadow);
+  border: 1px solid #e2e8f0;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  opacity: 0;
+  transform: translateX(60px) scale(0.96);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+.testimonial-card.active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+  position: relative;
+}
+.testimonial-card.exit-left {
+  opacity: 0;
+  transform: translateX(-60px) scale(0.96);
+}
+.testimonial-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+.testimonial-stars span {
+  font-size: 20px;
+  animation: starPop 0.4s ease backwards;
+}
+.testimonial-stars span:nth-child(2) { animation-delay: 0.05s; }
+.testimonial-stars span:nth-child(3) { animation-delay: 0.1s; }
+.testimonial-stars span:nth-child(4) { animation-delay: 0.15s; }
+.testimonial-stars span:nth-child(5) { animation-delay: 0.2s; }
+@keyframes starPop {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.testimonial-quote {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 24px;
+  font-weight: 400;
+  quotes: "„" "“" "‚" "‘";
+}
+.testimonial-quote::before {
+  content: "„";
+  font-size: 48px;
+  line-height: 0;
+  vertical-align: -20px;
+  color: var(--primary);
+  opacity: 0.2;
+  margin-right: 6px;
+  font-weight: 900;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f5f9;
+}
+.testimonial-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+  flex-shrink: 0;
+}
+.avatar-purple { background: linear-gradient(135deg, #7c3aed, #4f46e5); }
+.avatar-green { background: linear-gradient(135deg, #059669, #10b981); }
+.avatar-blue { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+.avatar-amber { background: linear-gradient(135deg, #d97706, #f59e0b); }
+.testimonial-info h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.testimonial-info p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.testimonial-dots {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 32px;
+}
+.testimonial-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0;
+}
+.testimonial-dot.active {
+  width: 32px;
+  border-radius: 5px;
+  background: var(--gradient);
+  cursor: default;
+}
+.testimonial-dot:hover:not(.active) {
+  background: var(--primary-light);
+  transform: scale(1.3);
+}
+.testimonial-counter {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* ═══════════════════════════════════════
    PRICING
    ═══════════════════════════════════════ */
 .pricing { background: var(--bg); }
@@ -642,6 +789,13 @@ footer {
   .whatsapp-body { height: 400px; }
   .scenarios { gap: 8px; }
   .scenario-tab { font-size: 12px; padding: 10px 16px; }
+  .testimonial-card { padding: 28px 20px; }
+  .testimonial-carousel { min-height: 380px; }
+  .testimonial-quote { font-size: 15px; }
+}
+@media (max-width: 480px) {
+  .testimonial-carousel { min-height: 420px; }
+  .testimonial-card { padding: 24px 18px; }
 }
 </style>
 </head>
@@ -653,6 +807,7 @@ footer {
   <div class="nav-links">
     <a href="#szenarien">Szenarien</a>
     <a href="#features">Features</a>
+    <a href="#testimonials">Erfahrungen</a>
     <a href="#pricing">Preise</a>
     <a href="#cta" class="cta-nav">Kostenlos testen</a>
   </div>
@@ -756,6 +911,82 @@ footer {
     <p>Datenverarbeitung auf deutschen Servern. Ende-zu-Ende-Verschlüsselung.</p>
   </div>
 </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testimonials" id="testimonials">
+<div class="section-tag reveal">Erfahrungsberichte</div>
+<h2 class="section-title reveal">Das sagen unsere Kunden</h2>
+<p class="section-subtitle reveal">Steuerberater aus ganz Deutschland vertrauen auf SteuerGPT</p>
+<div class="testimonial-carousel" id="testimonialCarousel">
+  <div class="testimonial-card active" data-index="0">
+    <div class="testimonial-stars">
+      <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+    </div>
+    <div class="testimonial-quote">
+      Seit wir SteuerGPT im Einsatz haben, sparen wir pro Woche rund 18 Stunden. Die automatische Rechnungserfassung per WhatsApp ist ein Game-Changer — unsere Mandanten lieben es, und wir haben endlich Zeit für die wirklich wichtigen Aufgaben.
+    </div>
+    <div class="testimonial-author">
+      <div class="testimonial-avatar avatar-purple">MK</div>
+      <div class="testimonial-info">
+        <h4>Maria Klein</h4>
+        <p>Steuerberaterin · Kanzlei Klein & Partner, München</p>
+      </div>
+    </div>
+  </div>
+  <div class="testimonial-card" data-index="1">
+    <div class="testimonial-stars">
+      <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+    </div>
+    <div class="testimonial-quote">
+      Die Bankabstimmung, die früher täglich eine Stunde gedauert hat, läuft jetzt vollautomatisch. Unstimmigkeiten werden sofort gemeldet — noch bevor der Mandant anruft. Wir sind von 20 auf 35 Mandanten gewachsen ohne zusätzliches Personal.
+    </div>
+    <div class="testimonial-author">
+      <div class="testimonial-avatar avatar-green">TS</div>
+      <div class="testimonial-info">
+        <h4>Thomas Scholz</h4>
+        <p>Geschäftsführer · Scholz Steuerkanzlei, Hamburg</p>
+      </div>
+    </div>
+  </div>
+  <div class="testimonial-card" data-index="2">
+    <div class="testimonial-stars">
+      <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+    </div>
+    <div class="testimonial-quote">
+      Was mich überzeugt hat: Keine neue Software-Einführung. Meine Mitarbeiter arbeiten einfach per WhatsApp weiter — so wie sie es von unseren Mandanten gewohnt sind. Die USt-VA-Vorbereitung läuft praktisch von allein. Absolute Empfehlung!
+    </div>
+    <div class="testimonial-author">
+      <div class="testimonial-avatar avatar-blue">SW</div>
+      <div class="testimonial-info">
+        <h4>Sabine Wagner</h4>
+        <p>Steuerberaterin · Wagner & Kollegen, Stuttgart</p>
+      </div>
+    </div>
+  </div>
+  <div class="testimonial-card" data-index="3">
+    <div class="testimonial-stars">
+      <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+    </div>
+    <div class="testimonial-quote">
+      Endlich ein KI-Tool, das wirklich das macht, was es verspricht. Die Fehlererkennung bei den Bankbewegungen ist phänomenal — letzte Woche hat SteuerGPT eine Dublette gefunden, die uns 2.400 € gekostet hätte. Das Geld ist schon nach 2 Monaten wieder drin.
+    </div>
+    <div class="testimonial-author">
+      <div class="testimonial-avatar avatar-amber">JB</div>
+      <div class="testimonial-info">
+        <h4>Dr. Jan Baumgartner</h4>
+        <p>Partner · Baumgartner & Müller Steuerberatung, Berlin</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="testimonial-dots" id="testimonialDots">
+  <button class="testimonial-dot active" data-index="0"></button>
+  <button class="testimonial-dot" data-index="1"></button>
+  <button class="testimonial-dot" data-index="2"></button>
+  <button class="testimonial-dot" data-index="3"></button>
+</div>
+<div class="testimonial-counter"><span id="testimonialCurrent">1</span> / 4</div>
 </section>
 
 <!-- ═══ PRICING ═══ -->
@@ -962,6 +1193,65 @@ document.querySelectorAll('.scenario-tab').forEach(tab => {
       tabs2[next2].click();
     }, 30000);
   });
+});
+
+// ═══════════════════════════════════
+// TESTIMONIAL CAROUSEL
+// ═══════════════════════════════════
+let testimonialIndex = 0;
+const testimonialCards = document.querySelectorAll('.testimonial-card');
+const testimonialDots = document.querySelectorAll('.testimonial-dot');
+const testimonialCurrent = document.getElementById('testimonialCurrent');
+const TOTAL_TESTIMONIALS = testimonialCards.length;
+
+function showTestimonial(index, oldIndex) {
+  if (oldIndex !== undefined && oldIndex !== null) {
+    testimonialCards[oldIndex].classList.remove('active');
+    testimonialCards[oldIndex].classList.add('exit-left');
+  } else {
+    testimonialCards.forEach((card, i) => {
+      card.classList.remove('active');
+      if (i !== index) card.classList.add('exit-left');
+    });
+  }
+
+  setTimeout(() => {
+    testimonialCards.forEach(card => {
+      card.classList.remove('exit-left');
+    });
+    testimonialCards[index].classList.add('active');
+    testimonialDots.forEach(dot => dot.classList.remove('active'));
+    testimonialDots[index].classList.add('active');
+    testimonialCurrent.textContent = index + 1;
+  }, 50);
+}
+
+function nextTestimonial() {
+  const oldIndex = testimonialIndex;
+  testimonialIndex = (testimonialIndex + 1) % TOTAL_TESTIMONIALS;
+  showTestimonial(testimonialIndex, oldIndex);
+}
+
+testimonialDots.forEach(dot => {
+  dot.addEventListener('click', function() {
+    const idx = parseInt(this.dataset.index);
+    if (idx === testimonialIndex) return;
+    const oldIndex = testimonialIndex;
+    testimonialIndex = idx;
+    showTestimonial(idx, oldIndex);
+    clearInterval(testimonialAutoRotate);
+    testimonialAutoRotate = setInterval(nextTestimonial, 6000);
+  });
+});
+
+let testimonialAutoRotate = setInterval(nextTestimonial, 5000);
+
+const carouselEl = document.getElementById('testimonialCarousel');
+carouselEl.addEventListener('mouseenter', () => {
+  clearInterval(testimonialAutoRotate);
+});
+carouselEl.addEventListener('mouseleave', () => {
+  testimonialAutoRotate = setInterval(nextTestimonial, 5000);
 });
 </script>
 
