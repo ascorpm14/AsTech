@@ -1,5 +1,13 @@
 # SteuerGPT — Changelog des améliorations
 
+## Run #25 — 25/06/2026
+- **Correction :** Flash/blink du badge « LIVE — Jetzt testen » dans la hero section au chargement. Le badge utilisait `animation: fadeInUp 0.6s ease` SANS `animation-fill-mode: both`, contrairement aux autres éléments de la hero (h1, p, hero-btns, hero-stats) qui l'avaient tous. Résultat : le badge apparaissait instantanément visible avant que l'animation ne démarre, puis l'animation fadeInUp le faisait transiter de `opacity:0` (from) vers `opacity:1` (to) — créant un micro-flash visible. Pour un cabinet comptable allemand ouvrant la page, ce clignotement sur le TOUT PREMIER élément visuel envoie un signal « pas tout à fait premium » — l'équivalent UX d'un pli sur une carte de visite. La correction : ajout de `both` sur l'animation du badge, ce qui le maintient à `opacity:0; transform:translateY(20px)` avant son entrée, aligné parfaitement avec les autres éléments de la hero. L'entrée de la section hero est maintenant parfaitement fluide — aucun flash, chaque élément apparaît dans l'ordre staggered sans artefact visuel.
+- **Inspiration :** Apple.com, Vercel, Linear — les sites premium ne tolèrent AUCUN flash au chargement. Chaque élément d'entrée doit être invisible avant son animation, pas visible puis soudainement masqué. C'est le signe distinctif d'un rendu soigné.
+- **Section modifiée :** CSS — `.badge` animation-fill-mode ajouté (`both`)
+- **Statut :** ✅ Succès
+
+---
+
 ## Run #24 — 25/06/2026
 - **Correction :** Transparence des prix du plan Flex — le tarif affichait « €0 / Monat » avec « Pro Transaktion abgerechnet » sans AUCUN prix par transaction. Pour un cabinet comptable allemand (Steuerberater), l'absence de prix par transaction est un red flag B2B : impossible d'évaluer le coût réel. Le nouveau libellé « Ab €1,50 pro Transaktion » donne le prix unitaire immédiatement. La feature list inclut désormais « Ø €45/Monat bei 30 Transaktionen » — un ordre de grandeur mensuel qui permet au professionnel de comparer instantanément avec le Flatrate à €100/mois. Le contraste entre Flex (usage-based, ~€45/mois) et Flatrate (forfait, €100/mois) est maintenant clair et permet une décision éclairée. Le « Jederzeit kündbar » a été retiré car redondant avec les deux offres qui l'incluent déjà via « Jederzeit kündbar » et la période d'essai de 7 jours.
 - **Inspiration :** Datev.de, Lexoffice.de, sevdesk.de — tous les concurrents B2B allemands affichent des prix UNITAIRE clairs (par Beleg, par Buchung, par Nutzer). Les sites SAAS allemands qui cachent leurs prix unitaires sont immédiatement perçus comme opaques par les professionnels allemands qui exigent de la transparence (typische deutsche Erwartungshaltung bei B2B-Preisen).
