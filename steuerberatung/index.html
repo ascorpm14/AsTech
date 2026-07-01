@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SteuerGPT für Steuerkanzleien — KI-Assistent</title>
+<title>@AsTech für Steuerkanzleien — KI-Assistent</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f0f2f5;--surface:#ffffff;--text:#1a1a2e;--text-secondary:#64748b;--primary:#2563eb;--primary-dark:#1d4ed8;--gradient:linear-gradient(135deg,#2563eb,#7c3aed);--gradient-green:linear-gradient(135deg,#22c55e,#16a34a);--shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 20px 60px rgba(0,0,0,0.15);--radius:12px;--radius-lg:20px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+:root{--bg:#f0f2f5;--surface:#ffffff;--text:#1a1a2e;--text-secondary:#64748b;--primary:#2563eb;--primary-dark:#1d4ed8;--gradient:linear-gradient(135deg,#2563eb,#7c3aed);--shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 20px 60px rgba(0,0,0,0.15);--radius:12px;--radius-lg:20px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
 nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);z-index:1000;transition:var(--transition)}
@@ -21,8 +21,6 @@ nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.08)}
 .nav-links a:hover{color:var(--text);background:rgba(0,0,0,0.04)}
 .cta-nav{background:var(--gradient)!important;color:#fff!important;padding:10px 24px!important;font-weight:600!important;box-shadow:0 4px 14px rgba(37,99,235,0.3)}
 .cta-nav:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,0.4)!important}
-.cta-wa{background:var(--gradient-green)!important;color:#fff!important;padding:10px 24px!important;font-weight:600!important;box-shadow:0 4px 14px rgba(34,197,94,0.3)!important}
-.cta-wa:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,0.4)!important}
 
 /* Hero */
 .hero{position:relative;padding:140px 24px 80px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;min-height:85vh;overflow:hidden}
@@ -55,13 +53,13 @@ nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.08)}
 .phone-name{font-weight:600;font-size:13px}
 .phone-status{font-size:11px;opacity:0.7}
 
-.whatsapp-body{background:#efeae2;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4cfc6' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");height:420px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:5px}
+.whatsapp-body{background:#f0f4ff;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d0d8f0' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");height:420px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:5px}
 .whatsapp-body::-webkit-scrollbar{width:3px}
-.whatsapp-body::-webkit-scrollbar-thumb{background:#c0b8a8;border-radius:4px}
+.whatsapp-body::-webkit-scrollbar-thumb{background:#a0b4e0;border-radius:4px}
 .whatsapp-msg{max-width:85%;padding:7px 12px;border-radius:8px;font-size:13px;line-height:1.4;position:relative;opacity:0;animation:fadeSlideIn 0.3s ease forwards}
-@keyframes fadeSlideIn{to{opacity:1;transform:translateY(0)}}
 .msg-in{background:white;align-self:flex-start;border-top-left-radius:2px}
-.msg-out{background:#d9fdd3;align-self:flex-end;border-top-right-radius:2px}
+.msg-out{background:#dde8ff;align-self:flex-end;border-top-right-radius:2px}
+@keyframes fadeSlideIn{to{opacity:1;transform:translateY(0)}}
 .msg-time{font-size:10px;color:#999;text-align:right;margin-top:2px}
 .whatsapp-input{display:flex;padding:8px 10px;background:#f0f2f5;gap:6px;align-items:center}
 .whatsapp-input input{flex:1;border:none;padding:8px 14px;border-radius:20px;font-size:13px;background:white;outline:none;font-family:inherit}
@@ -174,15 +172,12 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 
 <nav id="navbar">
 <div class="nav-inner">
-  <a href="../" class="logo">SteuerGPT</a>
+  <a href="../" class="logo">@AsTech</a>
   <div class="nav-links">
-    <a href="../">Allgemein</a>
-    <a href="../logistik/">Logistik</a>
-    <a href="../gesundheitswesen/">Gesundheit</a>
     <a href="testimonials/">Testimonials</a>
     <a href="datenschutz/">Datenschutz</a>
     <a href="../kontakt/">Kontakt</a>
-    <a href="https://wa.me/261387313415" class="cta-wa">💬 Live testen</a>
+    <a href="#cta" class="cta-nav" style="background:linear-gradient(135deg,#2563eb,#7c3aed)!important;box-shadow:0 4px 14px rgba(37,99,235,0.3)!important;">📲 App anfordern</a>
     <a href="#cta" class="cta-nav">Kostenlos testen</a>
   </div>
 </div>
@@ -190,19 +185,19 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 
 <section class="hero">
 <div>
-  <div class="badge"><span class="badge-dot"></span> Für Steuerkanzleien</div>
-  <h1>Der KI-Assistent für Ihre <span class="highlight">Steuerkanzlei</span></h1>
-  <p>Automatische Rechnungserfassung, Bankabstimmung und Steuervorbereitung — direkt per WhatsApp. Keine neue Software nötig. In 5 Minuten einsatzbereit.</p>
+  <div class="badge"><span class="badge-dot"></span> 📱 JETZT VERFÜGBAR — 5 Nachrichten kostenlos testen</div>
+  <h1>Wussten Sie, dass Sie wertvolle Zeit <span class="highlight">in Ihrer Steuerkanzlei verlieren?</span></h1>
+  <p>Eine App, die Ihren Job macht. Sie sprechen. @AsTech erledigt.<br>Kein PC. Keine Software. <strong>Nur Ihr Smartphone.</strong></p>
   <div class="hero-btns">
-    <a href="https://wa.me/261387313415" class="btn-primary" style="background:var(--gradient-green)!important;box-shadow:0 4px 20px rgba(34,197,94,0.3)!important;">💬 Jetzt live testen</a>
-    <a href="#cta" class="btn-primary">🚀 Kostenlos testen</a>
-    <a href="#features" class="btn-secondary">Features</a>
+    <a href="#cta" class="btn-primary" style="background:linear-gradient(135deg,#2563eb,#7c3aed)!important;box-shadow:0 4px 20px rgba(37,99,235,0.3)!important;">📲 App anfordern →</a>
+    <a href="#features" class="btn-secondary">🎬 Beispiele ansehen</a>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><h3>15+</h3><p>Std. gespart / Woche</p></div>
+    <div class="hero-stat"><h3 style="font-size:28px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">30 Min → 2 Min</h3><p>pro Anfrage</p></div>
     <div class="hero-stat"><h3>98%</h3><p>Erkennungsrate</p></div>
     <div class="hero-stat"><h3>24/7</h3><p>Verfügbar</p></div>
   </div>
+  <p style="margin-top:24px;font-size:13px;color:var(--text-secondary);">🔒 7 Tage testen. Nur 5 Nachrichten/Tag kostenlos. Keine Zahlungsmethode nötig. Jederzeit kündbar.</p>
 </div>
 <div>
   <div class="phone-mockup">
@@ -212,15 +207,15 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
         <div class="phone-header">
           <span style="font-size:18px;cursor:pointer;opacity:0.8;">‹</span>
           <div class="phone-avatar">S</div>
-          <div><div class="phone-name">SteuerGPT</div><div class="phone-status">online</div></div>
+          <div><div class="phone-name">@AsTech</div><div class="phone-status">online</div></div>
           <span style="margin-left:auto;font-size:18px;cursor:pointer;opacity:0.8;">⋮</span>
         </div>
         <div class="whatsapp-body" id="waBody">
-          <div class="whatsapp-msg msg-in" style="animation-delay:0.3s">👋 Hallo! Ich bin SteuerGPT. Wie kann ich Ihnen heute helfen?</div>
-          <div class="whatsapp-msg msg-out" style="animation-delay:0.8s">Ich habe eine Rechnung per Foto erhalten. Kannst du die automatisch erfassen?</div>
-          <div class="whatsapp-msg msg-in" style="animation-delay:1.3s">✅ Ja! Ich habe die Rechnung erfasst:<br><br>📄 Rechnung #RE-2024-089<br>🏢 Lieferant: Bürobedarf GmbH<br>💰 Betrag: 847,30 €<br>📅 Datum: 15.06.2024<br><br>Soll ich die Rechnung direkt in DATEV exportieren?</div>
+          <div class="whatsapp-msg msg-in" style="animation-delay:0.3s">👋 Hallo! Ich bin @AsTech. Wie kann ich Ihnen heute helfen?</div>
+          <div class="whatsapp-msg msg-out" style="animation-delay:0.8s">Mandant Schmidt hat sein Lagerhaus für 120.000€ verkauft. Wie hoch ist die Steuerlast?</div>
+          <div class="whatsapp-msg msg-in" style="animation-delay:1.3s">📊 **Berechnung abgeschlossen**<br><br>Verkauf Gewerbeimmobilie — 120.000€:<br><br>📍 Gewerbesteuer: 14.700€ (Hebesatz 400%)<br>📍 Einkommensteuer: 18.500€ (42%)<br>📍 Grundsteuer B: 1.500€<br><br>➡️ **Gesamt ca. 34.700€**<br><br>💡 Hinweis: §16 EStG — Betriebsaufgabe, Freibetrag prüfen!<br><br>Soll ich eine detaillierte Aufstellung für den Mandanten erstellen?</div>
           <div class="whatsapp-msg msg-out" style="animation-delay:2.0s">Ja, bitte! 👍</div>
-          <div class="whatsapp-msg msg-in" style="animation-delay:2.6s">✅ Erledigt! Rechnung wurde an DATEV übermittelt. Sie finden sie unter „Ausgangsrechnungen Juni 2024".</div>
+          <div class="whatsapp-msg msg-in" style="animation-delay:2.6s">✅ Erledigt! Aufstellung erstellt und an Ihre E-Mail gesendet.<br><br>Nächste Schritte:<br>• Freibetrag §16 EStG prüfen<br>• Frist: Steuererklärung bis 31.12.<br>• Ggf. Betriebsaufgabe melden</div>
         </div>
         <div class="whatsapp-input">
           <span style="font-size:18px;cursor:pointer;">😊</span>
@@ -231,9 +226,9 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
     </div>
   </div>
   <div class="scenarios">
-    <button class="scenario-tab active" onclick="switchScenario(this,0)"><span class="tab-icon">📄</span> Rechnungserfassung</button>
-    <button class="scenario-tab" onclick="switchScenario(this,1)"><span class="tab-icon">🏦</span> Bankabstimmung</button>
-    <button class="scenario-tab" onclick="switchScenario(this,2)"><span class="tab-icon">📋</span> USt-VA vorbereiten</button>
+    <button class="scenario-tab active" onclick="switchScenario(this,0)"><span class="tab-icon">🏭</span> Gewerbeimmobilie</button>
+    <button class="scenario-tab" onclick="switchScenario(this,1)"><span class="tab-icon">🇪🇺</span> EU-Vorsteuer</button>
+    <button class="scenario-tab" onclick="switchScenario(this,2)"><span class="tab-icon">🚗</span> Dienstwagen</button>
   </div>
 </div>
 </section>
@@ -241,13 +236,13 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 <!-- FEATURES -->
 <section class="features" id="features">
 <div class="section-tag">Features</div>
-<h2 class="section-title">Was SteuerGPT für Ihre Kanzlei tut</h2>
+<h2 class="section-title">Was @AsTech für Ihre Kanzlei tut</h2>
 <p class="section-subtitle">Automatisieren Sie Ihre täglichen Abläufe und sparen Sie bis zu 15 Stunden pro Woche.</p>
 <div class="feature-grid">
-  <div class="feature-card"><div class="feature-icon">📄</div><h3>Rechnungserfassung</h3><p>Senden Sie ein Foto einer Rechnung per WhatsApp — SteuerGPT erfasst alle Daten automatisch (Betrag, Datum, Lieferant, Steuersätze).</p></div>
-  <div class="feature-card"><div class="feature-icon">🏦</div><h3>Bankabstimmung</h3><p>Kontoauszüge in Sekunden abgleichen. SteuerGPT erkennt Buchungen, gleicht sie mit offenen Posten ab und meldet Abweichungen.</p></div>
+  <div class="feature-card"><div class="feature-icon">📄</div><h3>Rechnungserfassung</h3><p>Senden Sie ein Foto einer Rechnung per WhatsApp — @AsTech erfasst alle Daten automatisch (Betrag, Datum, Lieferant, Steuersätze).</p></div>
+  <div class="feature-card"><div class="feature-icon">🏦</div><h3>Bankabstimmung</h3><p>Kontoauszüge in Sekunden abgleichen. @AsTech erkennt Buchungen, gleicht sie mit offenen Posten ab und meldet Abweichungen.</p></div>
   <div class="feature-card"><div class="feature-icon">📋</div><h3>USt-VA vorbereiten</h3><p>Umsatzsteuervoranmeldung auf Knopfdruck. Alle relevanten Daten werden automatisch aus Ihren Buchungen zusammengestellt.</p></div>
-  <div class="feature-card"><div class="feature-icon">💬</div><h3>Mandantenkommunikation</h3><p>Ihre Mandanten erreichen Sie per WhatsApp. SteuerGPT beantwortet Standardfragen automatisch und leitet komplexe Anfragen weiter.</p></div>
+  <div class="feature-card"><div class="feature-icon">💬</div><h3>Mandantenkommunikation</h3><p>Ihre Mandanten erreichen Sie per WhatsApp. @AsTech beantwortet Standardfragen automatisch und leitet komplexe Anfragen weiter.</p></div>
   <div class="feature-card"><div class="feature-icon">🔗</div><h3>DATEV-Export</h3><p>Nahtlose Integration in Ihre bestehende Kanzlei-Software. Erfasste Daten werden direkt in DATEV, lexoffice oder sevDesk übertragen.</p></div>
   <div class="feature-card"><div class="feature-icon">⏰</div><h3>Fristen-Überwachung</h3><p>Automatische Erinnerungen für Steuertermine, Abgabefristen und Zahlungsziele. Keine Frist mehr verpassen.</p></div>
 </div>
@@ -260,7 +255,7 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 <p class="section-subtitle">Keine Installation, keine Schulung. Einfach WhatsApp öffnen und loslegen.</p>
 <div class="how-steps">
   <div class="step"><h3>WhatsApp öffnen</h3><p>Klicken Sie auf „Live testen" und schreiben Sie uns eine Nachricht auf WhatsApp. Keine App-Installation nötig.</p></div>
-  <div class="step"><h3>Rechnung senden</h3><p>Fotografieren Sie eine Rechnung oder senden Sie einen Kontoauszug — SteuerGPT erfasst alle Daten automatisch.</p></div>
+  <div class="step"><h3>Rechnung senden</h3><p>Fotografieren Sie eine Rechnung oder senden Sie einen Kontoauszug — @AsTech erfasst alle Daten automatisch.</p></div>
   <div class="step"><h3>Ergebnis erhalten</h3><p>Die erfassten Daten werden in Ihre Kanzlei-Software exportiert. Sie sparen Zeit und vermeiden Fehler.</p></div>
 </div>
 </section>
@@ -269,17 +264,17 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 <section class="testimonials">
 <div class="section-tag">Erfahrungen</div>
 <h2 class="section-title">Was Kanzleien sagen</h2>
-<p class="section-subtitle">Bereits 150+ Steuerkanzleien vertrauen auf SteuerGPT.</p>
+<p class="section-subtitle">Bereits 150+ Steuerkanzleien vertrauen auf @AsTech.</p>
 <div class="testimonial-grid">
   <div class="testimonial-card">
     <div class="stars">★★★★★</div>
-    <div class="quote">"Seit wir SteuerGPT nutzen, sparen wir mindestens 12 Stunden pro Woche. Die Rechnungserfassung per WhatsApp ist unglaublich praktisch. Meine Mandanten lieben es."</div>
+    <div class="quote">"Seit wir @AsTech nutzen, sparen wir mindestens 12 Stunden pro Woche. Die Rechnungserfassung per WhatsApp ist unglaublich praktisch. Meine Mandanten lieben es."</div>
     <div class="author">— Dr. Markus Weber</div>
     <div class="role">Steuerberater, Köln</div>
   </div>
   <div class="testimonial-card">
     <div class="stars">★★★★★</div>
-    <div class="quote">"Die Bankabstimmung war früher der größte Zeitfresser. Jetzt erledigt SteuerGPT das in Sekunden. Und meine Mitarbeiter müssen keine neue Software lernen — WhatsApp können alle."</div>
+    <div class="quote">"Die Bankabstimmung war früher der größte Zeitfresser. Jetzt erledigt @AsTech das in Sekunden. Und meine Mitarbeiter müssen keine neue Software lernen — WhatsApp können alle."</div>
     <div class="author">— Sabine Müller</div>
     <div class="role">Steuerberaterin, München</div>
   </div>
@@ -293,24 +288,24 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 <p class="section-subtitle">Antworten auf die wichtigsten Fragen von Steuerkanzleien.</p>
 <div class="faq-list">
   <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">Ist SteuerGPT DSGVO-konform? <span class="faq-icon">+</span></button>
-    <div class="faq-answer"><p>Ja, SteuerGPT ist vollständig DSGVO-konform. Alle Daten werden auf deutschen Servern verarbeitet und gespeichert. Wir unterliegen der deutschen Datenschutz-Grundverordnung und erfüllen die strengen Anforderungen der Steuerberaterbranche. Auf Wunsch erstellen wir eine Auftragsverarbeitungsvereinbarung (AVV).</p></div>
+    <button class="faq-question" onclick="toggleFaq(this)">Ist @AsTech DSGVO-konform? <span class="faq-icon">+</span></button>
+    <div class="faq-answer"><p>Ja, @AsTech ist vollständig DSGVO-konform. Alle Daten werden auf deutschen Servern verarbeitet und gespeichert. Wir unterliegen der deutschen Datenschutz-Grundverordnung und erfüllen die strengen Anforderungen der Steuerberaterbranche. Auf Wunsch erstellen wir eine Auftragsverarbeitungsvereinbarung (AVV).</p></div>
   </div>
   <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">Kann ich SteuerGPT mit DATEV verbinden? <span class="faq-icon">+</span></button>
-    <div class="faq-answer"><p>Ja, SteuerGPT lässt sich nahtlos in DATEV, lexoffice, sevDesk und viele weitere Kanzlei-Softwares integrieren. Die erfassten Daten werden direkt in Ihr System übertragen — kein doppelter Aufwand. Fragen Sie uns nach Ihrer Software, wir prüfen die Kompatibilität.</p></div>
+    <button class="faq-question" onclick="toggleFaq(this)">Kann ich @AsTech mit DATEV verbinden? <span class="faq-icon">+</span></button>
+    <div class="faq-answer"><p>Ja, @AsTech lässt sich nahtlos in DATEV, lexoffice, sevDesk und viele weitere Kanzlei-Softwares integrieren. Die erfassten Daten werden direkt in Ihr System übertragen — kein doppelter Aufwand. Fragen Sie uns nach Ihrer Software, wir prüfen die Kompatibilität.</p></div>
   </div>
   <div class="faq-item">
     <button class="faq-question" onclick="toggleFaq(this)">Wie schnell bin ich einsatzbereit? <span class="faq-icon">+</span></button>
     <div class="faq-answer"><p>In weniger als 5 Minuten. Sie müssen keine Software installieren oder schulen. Einfach WhatsApp öffnen, uns schreiben und loslegen. Ihre Mitarbeiter können sofort arbeiten — ohne Einarbeitungszeit.</p></div>
   </div>
   <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">Was kostet SteuerGPT? <span class="faq-icon">+</span></button>
-    <div class="faq-answer"><p>SteuerGPT kostet 100€ pro Monat für Kanzleien mit bis zu 3 Mitarbeitern und 200€ pro Monat für das Professional-Paket (unbegrenzt Mitarbeiter, Prioritäts-Support). Beide Pakete beinhalten eine 7-tägige kostenlose Testphase — keine Kreditkarte nötig.</p></div>
+    <button class="faq-question" onclick="toggleFaq(this)">Was kostet @AsTech? <span class="faq-icon">+</span></button>
+    <div class="faq-answer"><p>@AsTech kostet 100€ pro Monat für Kanzleien mit bis zu 3 Mitarbeitern und 200€ pro Monat für das Professional-Paket (unbegrenzt Mitarbeiter, Prioritäts-Support). Beide Pakete beinhalten eine 7-tägige kostenlose Testphase — keine Kreditkarte nötig.</p></div>
   </div>
   <div class="faq-item">
     <button class="faq-question" onclick="toggleFaq(this)">Müssen meine Mandanten auch WhatsApp nutzen? <span class="faq-icon">+</span></button>
-    <div class="faq-answer"><p>Nein, nur Sie als Kanzlei benötigen WhatsApp für die Interaktion mit SteuerGPT. Ihre Mandanten können weiterhin auf allen gewohnten Wegen kommunizieren — die erfassten Daten werden automatisch in Ihr System übernommen.</p></div>
+    <div class="faq-answer"><p>Nein, nur Sie als Kanzlei benötigen WhatsApp für die Interaktion mit @AsTech. Ihre Mandanten können weiterhin auf allen gewohnten Wegen kommunizieren — die erfassten Daten werden automatisch in Ihr System übernommen.</p></div>
   </div>
 </div>
 </section>
@@ -322,30 +317,30 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 <p class="section-subtitle">7 Tage kostenlos testen. Keine Kreditkarte nötig. Jederzeit kündbar.</p>
 <div class="pricing-grid">
   <div class="pricing-card">
-    <h3>Starter</h3>
+    <h3>Standard</h3>
     <div class="pricing-price">100€ <span>/ Monat</span></div>
     <ul>
       <li>Bis zu 3 Mitarbeiter</li>
-      <li>Rechnungserfassung per WhatsApp</li>
-      <li>Bankabstimmung automatisch</li>
-      <li>DATEV & lexoffice Export</li>
+      <li>Fachliche Anfragen in Sekunden</li>
+      <li>Upload (PDF, Excel, Fotos)</li>
+      <li>5 Nachrichten/Tag inklusive</li>
+      <li>DSGVO-konform</li>
       <li>E-Mail-Support</li>
-      <li>7 Tage kostenlos testen</li>
     </ul>
-    <a href="https://wa.me/261387313415" class="btn-primary" style="width:100%;justify-content:center;background:var(--gradient-green)!important;">💬 Live testen</a>
+    <a href="#cta" class="btn-primary" style="width:100%;justify-content:center;background:linear-gradient(135deg,#2563eb,#7c3aed)!important;">📲 App anfordern</a>
   </div>
   <div class="pricing-card featured">
     <h3>Professional</h3>
-    <div class="pricing-price">200€ <span>/ Monat</span></div>
+    <div class="pricing-price">300€ <span>/ Monat</span></div>
     <ul>
       <li>Unbegrenzt Mitarbeiter</li>
-      <li>Alles aus Starter</li>
-      <li>USt-VA automatisch</li>
-      <li>Fristen-Überwachung</li>
-      <li>Mandanten-Kommunikation</li>
+      <li>Unbegrenzte Nachrichten</li>
       <li>Prioritäts-Support (24h)</li>
+      <li>Individuelle Anpassungen</li>
+      <li>Eigener API-Key möglich</li>
+      <li>Dedizierte Betreuung</li>
     </ul>
-    <a href="https://wa.me/261387313415" class="btn-primary" style="width:100%;justify-content:center;">💬 Jetzt starten</a>
+    <a href="#cta" class="btn-primary" style="width:100%;justify-content:center;">📲 App anfordern</a>
   </div>
 </div>
 </section>
@@ -353,10 +348,10 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 <!-- CTA -->
 <section class="cta-section" id="cta">
 <h2>Bereit für die Zukunft Ihrer Kanzlei?</h2>
-<p>Testen Sie SteuerGPT 7 Tage kostenlos — unverbindlich und ohne Risiko. Keine Kreditkarte nötig.</p>
+<p>Testen Sie @AsTech 7 Tage kostenlos — 5 Nachrichten pro Tag gratis, dann zahlen Sie nur, was Sie verbrauchen. Keine versteckten Kosten.</p>
 <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-  <a href="https://wa.me/261387313415" class="btn-white" style="background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff!important;box-shadow:0 8px 32px rgba(34,197,94,0.4)!important;">💬 Jetzt live testen</a>
-  <a href="mailto:ascorpm14@gmail.com?subject=SteuerGPT%20Steuerberatung" class="btn-white">✉️ Per E-Mail</a>
+  <a href="mailto:ascorpm14@gmail.com?subject=@AsTech%20Steuerberatung" class="btn-white" style="background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff!important;box-shadow:0 8px 32px rgba(37,99,235,0.4)!important;">📲 App anfordern</a>
+  <a href="mailto:ascorpm14@gmail.com?subject=Frage%20zu%20@AsTech%20Steuerberatung" class="btn-white">✉️ Per E-Mail</a>
 </div>
 </section>
 
@@ -365,22 +360,20 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 <div class="footer-inner">
   <div class="footer-grid">
     <div class="footer-col footer-brand">
-      <div class="footer-logo">SteuerGPT</div>
+      <div class="footer-logo">@AsTech</div>
       <p class="footer-desc">KI-Assistent für Steuerkanzleien. Automatisierte Rechnungserfassung, Bankabstimmung und Steuervorbereitung — direkt per WhatsApp.</p>
     </div>
     <div class="footer-col">
       <h4 class="footer-heading">Branchen</h4>
       <ul class="footer-links">
-        <li><a href="../">Allgemein</a></li>
-        <li><a href="../logistik/">Logistik</a></li>
-        <li><a href="../gesundheitswesen/">Gesundheitswesen</a></li>
+        <li><a href="../">Steuerberatung</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4 class="footer-heading">Links</h4>
       <ul class="footer-links">
         <li><a href="../#features">Features</a></li>
-        <li><a href="#pricing">Preise</a></li>
+        <li><a href="#cta">Preise</a></li>
         <li><a href="../kontakt/">Kontakt</a></li>
       </ul>
     </div>
@@ -388,11 +381,10 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
       <h4 class="footer-heading">Kontakt</h4>
       <ul class="footer-links">
         <li><a href="mailto:ascorpm14@gmail.com">📧 E-Mail</a></li>
-        <li><a href="https://wa.me/261387313415">💬 WhatsApp</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-legal">© 2026 SteuerGPT — KI-Assistent für Steuerkanzleien</div>
+  <div class="footer-legal">© 2026 @AsTech — KI-Assistent für Steuerkanzleien</div>
 </div>
 </footer>
 
@@ -403,25 +395,25 @@ window.addEventListener('scroll',()=>{document.getElementById('navbar').classLis
 // Scenario tabs
 const scenarios = [
   [
-    {type:'in',text:'👋 Hallo! Ich bin SteuerGPT. Wie kann ich Ihnen heute helfen?'},
-    {type:'out',text:'Ich habe eine Rechnung per Foto erhalten. Kannst du die automatisch erfassen?'},
-    {type:'in',text:'✅ Ja! Ich habe die Rechnung erfasst:<br><br>📄 Rechnung #RE-2024-089<br>🏢 Lieferant: Bürobedarf GmbH<br>💰 Betrag: 847,30 €<br>📅 Datum: 15.06.2024<br><br>Soll ich die Rechnung direkt exportieren?'},
+    {type:'in',text:'👋 Hallo! Ich bin @AsTech. Wie kann ich Ihnen heute helfen?'},
+    {type:'out',text:'Mandant Schmidt hat sein Lagerhaus für 120.000€ verkauft. Wie hoch ist die Steuerlast?'},
+    {type:'in',text:'📊 Berechnung abgeschlossen<br><br>📍 Gewerbesteuer: 14.700€ (Hebesatz 400%)<br>📍 Einkommensteuer: 18.500€ (42%)<br>📍 Grundsteuer B: 1.500€<br><br>➡️ Gesamt ca. <b>34.700€</b><br><br>💡 §16 EStG — Freibetrag prüfen!<br><br>Soll ich eine detaillierte Aufstellung erstellen?'},
     {type:'out',text:'Ja, bitte! 👍'},
-    {type:'in',text:'✅ Erledigt! Rechnung wurde an DATEV übermittelt.'}
+    {type:'in',text:'✅ Erledigt! Aufstellung an Ihre E-Mail gesendet.<br><br>📌 Nächste Schritte:<br>• Freibetrag §16 EStG prüfen<br>• Frist: Steuererklärung bis 31.12.<br>• Ggf. Betriebsaufgabe melden'}
   ],
   [
-    {type:'in',text:'🏦 Bankabstimmung bereit. Bitte Kontoauszug senden.'},
-    {type:'out',text:'Hier ist der Kontoauszug für Juni 2024.'},
-    {type:'in',text:'✅ Bankabstimmung abgeschlossen!<br><br>✓ 47 Buchungen abgeglichen<br>✓ 3 neue offene Posten erkannt<br>⚠ 1 Abweichung gefunden: 240,00€ (doppelte Buchung)<br><br>Möchten Sie die Abweichung korrigieren?'},
-    {type:'out',text:'Ja, korrigieren. Das war eine Dublette.'},
-    {type:'in',text:'✅ Korrektur durchgeführt. Buchung #1024 wurde storniert. Auswirkungen auf Monatsabschluss aktualisiert.'}
+    {type:'in',text:'👋 Hallo! Ich bin @AsTech. Wie kann ich Ihnen heute helfen?'},
+    {type:'out',text:'Neuer Lieferant aus Italien, Rechnung über 8.400€ netto. Vorsteuer abzugsfähig?'},
+    {type:'in',text:'✅ Ja, Vorsteuer abzugsfähig — EU-grenzüberschreitender Umsatz §15 UStG.<br><br>Prüfung:<br>✅ USt-IdNr. gültig<br>✅ Rechnung mit Pflichtangaben §14 UStG<br>⚠️ <b>Reverse-Charge</b> §13b UStG anwenden<br><br>📌 Kontierung: SKR 04, Konto 1576 (abziehbare Vorsteuer EU)'},
+    {type:'out',text:'Perfekt, danke! In DATEV übertragen.'},
+    {type:'in',text:'✅ Buchungsvorlage erstellt und an DATEV übermittelt.'}
   ],
   [
-    {type:'in',text:'📋 USt-VA Juni wird vorbereitet. Soll ich die Daten aus Ihren Buchungen zusammenstellen?'},
-    {type:'out',text:'Ja, bitte. Alle Umsätze und Vorsteuern.'},
-    {type:'in',text:'✅ USt-VA Juni 2024 erstellt:<br><br>💰 Umsatz (19%): 48.320,50 €<br>💰 Umsatz (7%): 12.150,00 €<br>📉 Vorsteuer: 6.842,30 €<br>💶 Zahllast: 8.120,40 €<br><br>Soll ich die VA direkt ans Finanzamt übermitteln?'},
-    {type:'out',text:'Ja, übermitteln. Danke!'},
-    {type:'in',text:'✅ USt-VA wurde elektronisch an das Finanzamt übermittelt. Belegnummer: 2024-06-VA-8912.'}
+    {type:'in',text:'👋 Hallo! Ich bin @AsTech. Wie kann ich Ihnen heute helfen?'},
+    {type:'out',text:'Neuer Angestellter, bekommt einen Tesla als Dienstwagen. Wie versteuern?'},
+    {type:'in',text:'🚗 Dienstwagenbesteuerung — Tesla Model 3 (49.990€)<br><br>1%-Regelung §6 EStG:<br>📍 Geldwerter Vorteil: 1% × 49.990€ = 499,90€<br>📍 E-Auto-Zuschlag: 0,25% = 124,98€<br>➡️ <b>Steuerpflichtig: 374,88€/Monat</b><br><br>💡 E-Auto-Förderung aktiv! (0,25% statt 0,5%)'},
+    {type:'out',text:'Super, danke für die Berechnung!'},
+    {type:'in',text:'✅ Lohnabrechnungsvorlage erstellt.<br><br>📌 15km Fahrt Wohnung-Arbeit: +224,96€ monatlich<br>📌 Gesamter geldwerter Vorteil: <b>599,84€</b>'}
   ]
 ];
 

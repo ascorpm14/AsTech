@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SteuerGPT für Logistik — KI-Assistent</title>
+<title>@AsTech für Logistik — KI-Assistent</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f0f2f5;--surface:#ffffff;--text:#1a1a2e;--text-secondary:#64748b;--primary:#059669;--primary-dark:#047857;--gradient:linear-gradient(135deg,#059669,#2563eb);--gradient-green:linear-gradient(135deg,#22c55e,#16a34a);--shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 20px 60px rgba(0,0,0,0.15);--radius:12px;--radius-lg:20px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+:root{--bg:#f0f2f5;--surface:#ffffff;--text:#1a1a2e;--text-secondary:#64748b;--primary:#2563eb;--primary-dark:#1d4ed8;--gradient:linear-gradient(135deg,#2563eb,#7c3aed);--shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 20px 60px rgba(0,0,0,0.15);--radius:12px;--radius-lg:20px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
 nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);z-index:1000;transition:var(--transition)}
@@ -19,54 +19,61 @@ nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.08)}
 .nav-links{display:flex;gap:8px;align-items:center}
 .nav-links a{text-decoration:none;color:var(--text-secondary);font-weight:500;font-size:14px;padding:8px 16px;border-radius:100px;transition:var(--transition)}
 .nav-links a:hover{color:var(--text);background:rgba(0,0,0,0.04)}
-.cta-nav{background:var(--gradient)!important;color:#fff!important;padding:10px 24px!important;font-weight:600!important;box-shadow:0 4px 14px rgba(5,150,105,0.3)}
-.cta-nav:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(5,150,105,0.4)!important}
-.cta-wa{background:var(--gradient-green)!important;color:#fff!important;padding:10px 24px!important;font-weight:600!important;box-shadow:0 4px 14px rgba(34,197,94,0.3)!important}
-.cta-wa:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,0.4)!important}
+.cta-nav{background:var(--gradient)!important;color:#fff!important;padding:10px 24px!important;font-weight:600!important;box-shadow:0 4px 14px rgba(37,99,235,0.3)}
+.cta-nav:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,0.4)!important}
+
+/* Hero */
 .hero{position:relative;padding:140px 24px 80px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;min-height:85vh;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:-80% -80%;background:radial-gradient(ellipse 60% 45% at 20% 50%,rgba(5,150,105,0.10) 0%,transparent 60%),radial-gradient(ellipse 50% 35% at 80% 30%,rgba(37,99,235,0.08) 0%,transparent 55%);animation:heroAtmosphere 25s ease-in-out infinite;pointer-events:none;z-index:0}
+.hero::before{content:'';position:absolute;inset:-80% -80%;background:radial-gradient(ellipse 60% 45% at 20% 50%,rgba(37,99,235,0.10) 0%,transparent 60%),radial-gradient(ellipse 50% 35% at 80% 30%,rgba(124,58,237,0.08) 0%,transparent 55%);animation:heroAtmosphere 25s ease-in-out infinite;pointer-events:none;z-index:0}
 @keyframes heroAtmosphere{0%,100%{transform:translate(0,0)rotate(0deg)scale(1)}20%{transform:translate(60px,-40px)rotate(3deg)scale(1.1)}40%{transform:translate(-30px,50px)rotate(-2deg)scale(1.05)}60%{transform:translate(40px,20px)rotate(4deg)scale(1.08)}80%{transform:translate(-50px,-30px)rotate(-3deg)scale(1.03)}}
 .hero>*{position:relative;z-index:1}
-.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(5,150,105,0.1);color:var(--primary);padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:20px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.1);color:var(--primary);padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:20px}
 .badge-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
 .hero h1{font-size:48px;font-weight:900;line-height:1.1;letter-spacing:-2px;margin-bottom:16px}
 .hero h1 .highlight{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero p{font-size:17px;color:var(--text-secondary);max-width:480px;margin-bottom:28px;line-height:1.7}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--gradient);color:#fff;padding:14px 28px;border-radius:100px;text-decoration:none;font-weight:600;font-size:15px;transition:var(--transition);box-shadow:0 4px 20px rgba(5,150,105,0.3);border:none;cursor:pointer}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(5,150,105,0.4)}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--gradient);color:#fff;padding:14px 28px;border-radius:100px;text-decoration:none;font-weight:600;font-size:15px;transition:var(--transition);box-shadow:0 4px 20px rgba(37,99,235,0.3);border:none;cursor:pointer}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(37,99,235,0.4)}
 .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--text);padding:14px 28px;border-radius:100px;text-decoration:none;font-weight:600;font-size:15px;border:2px solid #e2e8f0;transition:var(--transition)}
 .btn-secondary:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-3px)}
 .hero-stats{display:flex;gap:32px}
 .hero-stat h3{font-size:28px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-stat p{font-size:12px;color:var(--text-secondary)}
+
+/* Phone mockup */
 .phone-mockup{width:100%;max-width:380px;margin:0 auto}
 .phone-frame{background:#1a1a2e;border-radius:36px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,0.06),0 30px 80px rgba(0,0,0,0.25);position:relative}
 .phone-screen{margin:24px 5px 5px;border-radius:28px;overflow:hidden;background:white}
 .phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#1a1a2e;border-radius:0 0 14px 14px;z-index:10}
 .phone-notch::after{content:'';position:absolute;top:7px;left:50%;transform:translateX(-50%);width:36px;height:3px;background:#ffffff20;border-radius:2px}
-.phone-header{padding:12px 14px 10px;background:linear-gradient(135deg,#059669,#2563eb);color:white;display:flex;align-items:center;gap:10px}
+.phone-header{padding:12px 14px 10px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;display:flex;align-items:center;gap:10px}
 .phone-avatar{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
 .phone-name{font-weight:600;font-size:13px}
 .phone-status{font-size:11px;opacity:0.7}
-.whatsapp-body{background:#efeae2;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4cfc6' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");height:420px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:5px}
+
+.whatsapp-body{background:#f0f4ff;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d0d8f0' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");height:420px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:5px}
 .whatsapp-body::-webkit-scrollbar{width:3px}
-.whatsapp-body::-webkit-scrollbar-thumb{background:#c0b8a8;border-radius:4px}
+.whatsapp-body::-webkit-scrollbar-thumb{background:#a0b4e0;border-radius:4px}
 .whatsapp-msg{max-width:85%;padding:7px 12px;border-radius:8px;font-size:13px;line-height:1.4;position:relative;opacity:0;animation:fadeSlideIn 0.3s ease forwards}
-@keyframes fadeSlideIn{to{opacity:1;transform:translateY(0)}}
 .msg-in{background:white;align-self:flex-start;border-top-left-radius:2px}
-.msg-out{background:#d9fdd3;align-self:flex-end;border-top-right-radius:2px}
+.msg-out{background:#dde8ff;align-self:flex-end;border-top-right-radius:2px}
+@keyframes fadeSlideIn{to{opacity:1;transform:translateY(0)}}
 .msg-time{font-size:10px;color:#999;text-align:right;margin-top:2px}
 .whatsapp-input{display:flex;padding:8px 10px;background:#f0f2f5;gap:6px;align-items:center}
-.whatsapp-input input{flex:1;border:none;padding:8px 14px;border-radius:20px;font-size:13px;background:white;outline:none}
-.whatsapp-input input:focus{box-shadow:0 0 0 2px rgba(5,150,105,0.25)}
+.whatsapp-input input{flex:1;border:none;padding:8px 14px;border-radius:20px;font-size:13px;background:white;outline:none;font-family:inherit}
+.whatsapp-input input:focus{box-shadow:0 0 0 2px rgba(37,99,235,0.25)}
 .send-btn{width:36px;height:36px;background:var(--primary);border:none;border-radius:50%;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);flex-shrink:0;font-size:16px}
+
+/* Scenarios */
 .scenarios{padding:16px 0 0;display:flex;flex-direction:column;gap:6px;max-width:380px;margin:0 auto}
 .scenario-tab{display:flex;align-items:center;gap:8px;padding:12px 20px;border-radius:100px;border:2px solid #e2e8f0;background:white;cursor:pointer;font-size:13px;font-weight:600;transition:var(--transition);font-family:inherit;color:var(--text-secondary);width:100%;text-align:left}
 .scenario-tab:hover{border-color:var(--primary);color:var(--text)}
-.scenario-tab.active{background:var(--gradient);color:white;border-color:transparent;box-shadow:0 4px 14px rgba(5,150,105,0.3)}
+.scenario-tab.active{background:var(--gradient);color:white;border-color:transparent;box-shadow:0 4px 14px rgba(37,99,235,0.3)}
 .tab-icon{font-size:18px}
+
+/* Sections */
 section{padding:80px 24px}
 .section-tag{text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--primary);margin-bottom:10px}
 .section-title{text-align:center;font-size:36px;font-weight:800;letter-spacing:-1px;margin-bottom:12px}
@@ -75,16 +82,20 @@ section{padding:80px 24px}
 .feature-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .feature-card{padding:28px 24px;border-radius:var(--radius-lg);background:var(--bg);border:1px solid transparent;transition:var(--transition);position:relative;overflow:hidden}
 .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);transform:scaleX(0);transform-origin:left;transition:transform 0.6s cubic-bezier(0.34,1.56,0.64,1)}
-.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(5,150,105,0.08)}
+.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(37,99,235,0.08)}
 .feature-card:hover::before{transform:scaleX(1)}
-.feature-icon{width:44px;height:44px;border-radius:10px;background:rgba(5,150,105,0.1);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+.feature-icon{width:44px;height:44px;border-radius:10px;background:rgba(37,99,235,0.1);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
 .feature-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
 .feature-card p{font-size:13px;color:var(--text-secondary);line-height:1.6}
+
+/* How it works */
 .how-steps{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;counter-reset:step}
-.step{counter-increment:step;text-align:center;padding:32px 20px}
+.step{counter-increment:step;text-align:center;padding:32px 20px;position:relative}
 .step::before{content:counter(step);width:40px;height:40px;border-radius:50%;background:var(--gradient);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;margin:0 auto 16px}
 .step h3{font-size:17px;font-weight:700;margin-bottom:6px}
 .step p{font-size:13px;color:var(--text-secondary)}
+
+/* Testimonials */
 .testimonials{background:white}
 .testimonial-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .testimonial-card{background:var(--bg);border-radius:var(--radius-lg);padding:28px;border:1px solid rgba(0,0,0,0.03)}
@@ -92,6 +103,8 @@ section{padding:80px 24px}
 .testimonial-card .quote{font-size:14px;color:var(--text);line-height:1.6;margin-bottom:12px;font-style:italic}
 .testimonial-card .author{font-size:13px;font-weight:600}
 .testimonial-card .role{font-size:12px;color:var(--text-secondary)}
+
+/* FAQ */
 .faq-list{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
 .faq-item{border:1px solid #e2e8f0;border-radius:var(--radius);overflow:hidden;background:white}
 .faq-question{width:100%;padding:16px 20px;background:none;border:none;font-size:15px;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--text);transition:var(--transition)}
@@ -101,14 +114,19 @@ section{padding:80px 24px}
 .faq-answer{padding:0 20px;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease}
 .faq-item.open .faq-answer{max-height:300px;padding:0 20px 16px}
 .faq-answer p{font-size:14px;color:var(--text-secondary);line-height:1.7}
+
+/* CTA */
 .cta-section{text-align:center;background:var(--gradient);color:white;padding:80px 24px}
 .cta-section h2{font-size:36px;font-weight:800;margin-bottom:12px}
 .cta-section p{font-size:16px;opacity:0.9;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-section .btn-primary{background:white;color:var(--primary);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
 .cta-section .btn-white{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--primary);padding:16px 32px;border-radius:100px;text-decoration:none;font-weight:600;font-size:16px;transition:var(--transition);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
 .cta-section .btn-white:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+
+/* Pricing */
 .pricing-grid{max-width:800px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .pricing-card{background:white;border-radius:var(--radius-lg);padding:32px;border:2px solid #e2e8f0;transition:var(--transition);position:relative}
-.pricing-card.featured{border-color:var(--primary);box-shadow:0 4px 24px rgba(5,150,105,0.1)}
+.pricing-card.featured{border-color:var(--primary);box-shadow:0 4px 24px rgba(37,99,235,0.1)}
 .pricing-card.featured::before{content:'Empfohlen';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gradient);color:white;padding:4px 16px;border-radius:100px;font-size:12px;font-weight:700}
 .pricing-card h3{font-size:20px;font-weight:700;margin-bottom:8px}
 .pricing-price{font-size:36px;font-weight:900;margin-bottom:16px}
@@ -117,6 +135,8 @@ section{padding:80px 24px}
 .pricing-card ul li{padding:8px 0;font-size:14px;color:var(--text-secondary);border-bottom:1px solid #f0f2f5;display:flex;align-items:center;gap:8px}
 .pricing-card ul li:last-child{border-bottom:none}
 .pricing-card ul li::before{content:'✓';color:#22c55e;font-weight:700}
+
+/* Footer */
 footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px}
 .footer-inner{max-width:1100px;margin:0 auto}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:24px}
@@ -128,6 +148,8 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 .footer-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;transition:var(--transition)}
 .footer-links a:hover{color:white}
 .footer-legal{border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;font-size:12px;color:rgba(255,255,255,0.4);text-align:center}
+
+/* Responsive */
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;min-height:auto;padding-top:120px}
   .phone-mockup{order:-1;max-width:320px}
@@ -139,7 +161,7 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:640px){
-  .nav-links a:not(.cta-nav):not(.cta-wa){display:none}
+  .nav-links a:not(.cta-nav){display:none}
   .feature-grid{grid-template-columns:1fr}
   .hero h1{font-size:32px}
   .footer-grid{grid-template-columns:1fr}
@@ -147,17 +169,15 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 </style>
 </head>
 <body>
+
 <nav id="navbar">
 <div class="nav-inner">
-  <a href="../" class="logo">SteuerGPT</a>
+  <a href="../" class="logo">@AsTech</a>
   <div class="nav-links">
-    <a href="../">Allgemein</a>
-    <a href="../steuerberatung/">Steuerberatung</a>
-    <a href="../gesundheitswesen/">Gesundheit</a>
     <a href="testimonials/">Testimonials</a>
     <a href="datenschutz/">Datenschutz</a>
     <a href="../kontakt/">Kontakt</a>
-    <a href="https://wa.me/261387313415" class="cta-wa">💬 Live testen</a>
+    <a href="#cta" class="cta-nav" style="background:linear-gradient(135deg,#2563eb,#7c3aed)!important;box-shadow:0 4px 14px rgba(37,99,235,0.3)!important;">📲 App anfordern</a>
     <a href="#cta" class="cta-nav">Kostenlos testen</a>
   </div>
 </div>
@@ -165,19 +185,19 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
 
 <section class="hero">
 <div>
-  <div class="badge"><span class="badge-dot"></span> Für Speditionen & Logistik</div>
-  <h1>Der KI-Assistent für Ihre <span class="highlight">Logistik</span></h1>
-  <p>Automatische Routenplanung, Sendungsverfolgung und Transportdokumente — direkt per WhatsApp. Keine neue Software nötig.</p>
+  <div class="badge"><span class="badge-dot"></span> 📱 JETZT VERFÜGBAR — 5 Nachrichten kostenlos testen</div>
+  <h1>Wussten Sie, dass Sie wertvolle Zeit <span class="highlight">in Ihrer Spedition verlieren?</span></h1>
+  <p>Eine App, die Ihren Job macht. Sie sprechen. @AsTech erledigt.<br>Kein PC. Keine Software. <strong>Nur Ihr Smartphone.</strong></p>
   <div class="hero-btns">
-    <a href="https://wa.me/261387313415" class="btn-primary" style="background:var(--gradient-green)!important;box-shadow:0 4px 20px rgba(34,197,94,0.3)!important;">💬 Jetzt live testen</a>
-    <a href="#cta" class="btn-primary">🚀 Kostenlos testen</a>
-    <a href="#features" class="btn-secondary">Features</a>
+    <a href="#cta" class="btn-primary" style="background:linear-gradient(135deg,#2563eb,#7c3aed)!important;box-shadow:0 4px 20px rgba(37,99,235,0.3)!important;">📲 App anfordern →</a>
+    <a href="#features" class="btn-secondary">🎬 Beispiele ansehen</a>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><h3>20%</h3><p>weniger Leerfahrten</p></div>
-    <div class="hero-stat"><h3>99%</h3><p>pünktliche Lieferung</p></div>
+    <div class="hero-stat"><h3 style="font-size:28px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">30 Min → 2 Min</h3><p>pro Anfrage</p></div>
+    <div class="hero-stat"><h3>98%</h3><p>Erkennungsrate</p></div>
     <div class="hero-stat"><h3>24/7</h3><p>Verfügbar</p></div>
   </div>
+  <p style="margin-top:24px;font-size:13px;color:var(--text-secondary);">🔒 7 Tage testen. Nur 5 Nachrichten/Tag kostenlos. Keine Zahlungsmethode nötig. Jederzeit kündbar.</p>
 </div>
 <div>
   <div class="phone-mockup">
@@ -187,15 +207,15 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
         <div class="phone-header">
           <span style="font-size:18px;cursor:pointer;opacity:0.8;">‹</span>
           <div class="phone-avatar">S</div>
-          <div><div class="phone-name">SteuerGPT</div><div class="phone-status">online</div></div>
+          <div><div class="phone-name">@AsTech</div><div class="phone-status">online</div></div>
           <span style="margin-left:auto;font-size:18px;cursor:pointer;opacity:0.8;">⋮</span>
         </div>
         <div class="whatsapp-body" id="waBody">
-          <div class="whatsapp-msg msg-in" style="animation-delay:0.3s">🚚 Hallo! Ich bin Ihr Logistik-Assistent. Wie kann ich helfen?</div>
-          <div class="whatsapp-msg msg-out" style="animation-delay:0.8s">Ich brauche eine optimierte Route für heute. 5 Stops in München.</div>
-          <div class="whatsapp-msg msg-in" style="animation-delay:1.3s">✅ Route optimiert!<br><br>📍 5 Stops in München<br>🛣️ Optimale Reihenfolge berechnet<br>⏱️ Voraussichtlich 4h 20min<br>⛽ 18% weniger KM als Standardroute<br><br>Route an Fahrer-App senden?</div>
-          <div class="whatsapp-msg msg-out" style="animation-delay:2.0s">Ja, senden! 👍</div>
-          <div class="whatsapp-msg msg-in" style="animation-delay:2.6s">✅ Route wurde an Fahrer-App gesendet. Live-Tracking aktiviert.</div>
+          <div class="whatsapp-msg msg-in" style="animation-delay:0.3s">👋 Hallo! Ich bin @AsTech.</div>
+          <div class="whatsapp-msg msg-out" style="animation-delay:0.8s">Wo ist meine Sendung DE-4521?</div>
+          <div class="whatsapp-msg msg-in" style="animation-delay:1.3s">📦 Sendung DE-4521 | STATUS: Im Zustellfahrzeug<br><br>📍 Abholung: Hamburg 28.06.<br>📍 Sortierung: Verteilzentrum Berlin<br>📍 Auslieferung: Heute 10-12 Uhr<br>➡️ Empfänger: Müller GmbH, Berlin-Mitte<br><br>▶️ Soll ich den Kunden benachrichtigen?</div>
+          <div class="whatsapp-msg msg-out" style="animation-delay:2.0s">Ja, bitte!</div>
+          <div class="whatsapp-msg msg-in" style="animation-delay:2.6s">✅ Benachrichtigung an Kunden gesendet. Live-Standort verfügbar.</div>
         </div>
         <div class="whatsapp-input">
           <span style="font-size:18px;cursor:pointer;">😊</span>
@@ -206,18 +226,20 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
     </div>
   </div>
   <div class="scenarios">
-    <button class="scenario-tab active" onclick="switchScenario(this,0)"><span class="tab-icon">🚛</span> Routenplanung</button>
-    <button class="scenario-tab" onclick="switchScenario(this,1)"><span class="tab-icon">📦</span> Sendungsverfolgung</button>
-    <button class="scenario-tab" onclick="switchScenario(this,2)"><span class="tab-icon">📋</span> Frachtpapiere</button>
+    <button class="scenario-tab active" onclick="switchScenario(this,0)"><span class="tab-icon">📦</span> Sendungsstatus</button>
+    <button class="scenario-tab" onclick="switchScenario(this,1)"><span class="tab-icon">📊</span> Frachtkosten</button>
+    <button class="scenario-tab" onclick="switchScenario(this,2)"><span class="tab-icon">🚛</span> Flottenoptimierung</button>
   </div>
 </div>
 </section>
+
+<!-- FEATURES -->
 <section class="features" id="features">
 <div class="section-tag">Features</div>
-<h2 class="section-title">Was SteuerGPT für Ihre Logistik tut</h2>
-<p class="section-subtitle">Optimieren Sie Ihre Logistikprozesse und sparen Sie Zeit und Kosten.</p>
+<h2 class="section-title">Was @AsTech für Ihre Logistik tut</h2>
+<p class="section-subtitle">Automatisieren Sie Ihre täglichen Abläufe und sparen Sie bis zu 15 Stunden pro Woche.</p>
 <div class="feature-grid">
-  <div class="feature-card"><div class="feature-icon">🚛</div><h3>Routenoptimierung</h3><p>Intelligente Planung der täglichen Touren. SteuerGPT berechnet die optimale Reihenfolge und reduziert Leerfahrten.</p></div>
+  <div class="feature-card"><div class="feature-icon">🚛</div><h3>Routenoptimierung</h3><p>Intelligente Planung der täglichen Touren. @AsTech berechnet die optimale Reihenfolge und reduziert Leerfahrten.</p></div>
   <div class="feature-card"><div class="feature-icon">📋</div><h3>Transportdokumente</h3><p>CMR-Frachtbriefe, Lieferscheine und Zolldokumente automatisch generiert und per WhatsApp versendet.</p></div>
   <div class="feature-card"><div class="feature-icon">📦</div><h3>Sendungsverfolgung</h3><p>Live-Tracking für Ihre Kunden. Automatische Benachrichtigungen bei Verzögerungen oder Zustellungen.</p></div>
   <div class="feature-card"><div class="feature-icon">💬</div><h3>Fahrer-Kommunikation</h3><p>Fahrer kommunizieren per Chat. Keine Telefonate mehr. Automatische Statusmeldungen und Dokumentation.</p></div>
@@ -225,24 +247,28 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
   <div class="feature-card"><div class="feature-icon">💰</div><h3>Transportabrechnung</h3><p>Automatische Rechnungsstellung auf Basis gefahrener Touren. Keine manuelle Erfassung mehr.</p></div>
 </div>
 </section>
+
+<!-- HOW IT WORKS -->
 <section>
 <div class="section-tag">So funktioniert's</div>
 <h2 class="section-title">In 3 Schritten starten</h2>
 <p class="section-subtitle">Keine Installation. WhatsApp öffnen und loslegen.</p>
 <div class="how-steps">
-  <div class="step"><h3>WhatsApp öffnen</h3><p>Schreiben Sie uns auf WhatsApp. Keine neue App, keine Schulung — Ihre Mitarbeiter können sofort loslegen.</p></div>
-  <div class="step"><h3>Auftrag eingeben</h3><p>Senden Sie Ihre Transportaufträge per Chat. SteuerGPT plant Routen, erstellt Dokumente und informiert Fahrer.</p></div>
+  <div class="step"><h3>WhatsApp öffnen</h3><p>Klicken Sie auf „App anfordern" und schreiben Sie uns eine Nachricht auf WhatsApp. Keine App-Installation nötig.</p></div>
+  <div class="step"><h3>Auftrag eingeben</h3><p>Senden Sie Ihre Transportaufträge per Chat. @AsTech plant Routen, erstellt Dokumente und informiert Fahrer.</p></div>
   <div class="step"><h3>Automatisch abwickeln</h3><p>Sendungsverfolgung, Kundenbenachrichtigung und Abrechnung — alles läuft automatisch. Sie behalten den Überblick.</p></div>
 </div>
 </section>
+
+<!-- TESTIMONIALS -->
 <section class="testimonials">
 <div class="section-tag">Erfahrungen</div>
 <h2 class="section-title">Was Logistikunternehmen sagen</h2>
-<p class="section-subtitle">Bereits 50+ Speditionen vertrauen auf SteuerGPT.</p>
+<p class="section-subtitle">Bereits 50+ Speditionen vertrauen auf @AsTech.</p>
 <div class="testimonial-grid">
   <div class="testimonial-card">
     <div class="stars">★★★★★</div>
-    <div class="quote">"Seit wir SteuerGPT nutzen, hat sich unsere Disposition komplett vereinfacht. Routenplanung und Frachtpapiere per WhatsApp — genial. 20% weniger Leerfahrten."</div>
+    <div class="quote">"Seit wir @AsTech nutzen, hat sich unsere Disposition komplett vereinfacht. Routenplanung und Frachtpapiere per WhatsApp — genial. 20% weniger Leerfahrten."</div>
     <div class="author">— Klaus Richter</div>
     <div class="role">Geschäftsführer, Richter Spedition GmbH</div>
   </div>
@@ -254,14 +280,16 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
   </div>
 </div>
 </section>
+
+<!-- FAQ -->
 <section id="faq">
 <div class="section-tag">FAQ</div>
 <h2 class="section-title">Häufige Fragen</h2>
 <p class="section-subtitle">Antworten auf die wichtigsten Fragen zur Logistik-Lösung.</p>
 <div class="faq-list">
   <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">Kann SteuerGPT in unser TMS integriert werden? <span class="faq-icon">+</span></button>
-    <div class="faq-answer"><p>Ja, SteuerGPT lässt sich nahtlos in gängige Transportmanagement-Systeme integrieren. Wir unterstützen Schnittstellen zu den meisten TMS-Anbietern. Fragen Sie uns nach Ihrer Software.</p></div>
+    <button class="faq-question" onclick="toggleFaq(this)">Kann @AsTech in unser TMS integriert werden? <span class="faq-icon">+</span></button>
+    <div class="faq-answer"><p>Ja, @AsTech lässt sich nahtlos in gängige Transportmanagement-Systeme integrieren. Wir unterstützen Schnittstellen zu den meisten TMS-Anbietern. Fragen Sie uns nach Ihrer Software.</p></div>
   </div>
   <div class="faq-item">
     <button class="faq-question" onclick="toggleFaq(this)">Müssen Fahrer eine App installieren? <span class="faq-icon">+</span></button>
@@ -277,67 +305,71 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
   </div>
 </div>
 </section>
+
+<!-- PRICING -->
 <section id="pricing">
 <div class="section-tag">Preise</div>
 <h2 class="section-title">Einfach & transparent</h2>
-<p class="section-subtitle">7 Tage kostenlos testen. Keine Kreditkarte nötig.</p>
+<p class="section-subtitle">7 Tage kostenlos testen. Keine Kreditkarte nötig. Jederzeit kündbar.</p>
 <div class="pricing-grid">
   <div class="pricing-card">
-    <h3>Starter</h3>
+    <h3>Standard</h3>
     <div class="pricing-price">100€ <span>/ Monat</span></div>
     <ul>
-      <li>Bis zu 5 Fahrer</li>
-      <li>Routenoptimierung</li>
-      <li>Transportdokumente</li>
-      <li>Sendungsverfolgung</li>
+      <li>Bis zu 3 Mitarbeiter</li>
+      <li>Fachliche Anfragen in Sekunden</li>
+      <li>Upload (PDF, Excel, Fotos)</li>
+      <li>5 Nachrichten/Tag inklusive</li>
+      <li>DSGVO-konform</li>
       <li>E-Mail-Support</li>
-      <li>7 Tage kostenlos testen</li>
     </ul>
-    <a href="https://wa.me/261387313415" class="btn-primary" style="width:100%;justify-content:center;background:var(--gradient-green)!important;">💬 Live testen</a>
+    <a href="#cta" class="btn-primary" style="width:100%;justify-content:center;background:linear-gradient(135deg,#2563eb,#7c3aed)!important;">📲 App anfordern</a>
   </div>
   <div class="pricing-card featured">
     <h3>Professional</h3>
-    <div class="pricing-price">200€ <span>/ Monat</span></div>
+    <div class="pricing-price">300€ <span>/ Monat</span></div>
     <ul>
-      <li>Unbegrenzt Fahrer</li>
-      <li>Alles aus Starter</li>
-      <li>Lagerverwaltung</li>
-      <li>Transportabrechnung</li>
-      <li>TMS-Integration</li>
+      <li>Unbegrenzt Mitarbeiter</li>
+      <li>Unbegrenzte Nachrichten</li>
       <li>Prioritäts-Support (24h)</li>
+      <li>Individuelle Anpassungen</li>
+      <li>Eigener API-Key möglich</li>
+      <li>Dedizierte Betreuung</li>
     </ul>
-    <a href="https://wa.me/261387313415" class="btn-primary" style="width:100%;justify-content:center;">💬 Jetzt starten</a>
+    <a href="#cta" class="btn-primary" style="width:100%;justify-content:center;">📲 App anfordern</a>
   </div>
 </div>
 </section>
+
+<!-- CTA -->
 <section class="cta-section" id="cta">
-<h2>Optimieren Sie Ihre Logistik?</h2>
-<p>Testen Sie SteuerGPT 7 Tage kostenlos — unverbindlich und ohne Risiko.</p>
+<h2>Bereit für die Zukunft Ihrer Spedition?</h2>
+<p>Testen Sie @AsTech 7 Tage kostenlos — 5 Nachrichten pro Tag gratis, dann zahlen Sie nur, was Sie verbrauchen. Keine versteckten Kosten.</p>
 <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-  <a href="https://wa.me/261387313415" class="btn-white" style="background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff!important;box-shadow:0 8px 32px rgba(34,197,94,0.4)!important;">💬 Jetzt live testen</a>
-  <a href="mailto:ascorpm14@gmail.com?subject=SteuerGPT%20Logistik%20Demo" class="btn-white">✉️ Per E-Mail</a>
+  <a href="mailto:ascorpm14@gmail.com?subject=@AsTech%20Logistik" class="btn-white" style="background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff!important;box-shadow:0 8px 32px rgba(37,99,235,0.4)!important;">📲 App anfordern</a>
+  <a href="mailto:ascorpm14@gmail.com?subject=Frage%20zu%20@AsTech%20Logistik" class="btn-white">✉️ Per E-Mail</a>
 </div>
 </section>
+
+<!-- FOOTER -->
 <footer>
 <div class="footer-inner">
   <div class="footer-grid">
     <div class="footer-col footer-brand">
-      <div class="footer-logo">SteuerGPT</div>
+      <div class="footer-logo">@AsTech</div>
       <p class="footer-desc">KI-Assistent für Logistik & Spedition. Routenoptimierung, Sendungsverfolgung und Transportdokumente — direkt per WhatsApp.</p>
     </div>
     <div class="footer-col">
       <h4 class="footer-heading">Branchen</h4>
       <ul class="footer-links">
-        <li><a href="../">Allgemein</a></li>
-        <li><a href="../steuerberatung/">Steuerberatung</a></li>
-        <li><a href="../gesundheitswesen/">Gesundheitswesen</a></li>
+        <li><a href="../">Logistik</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4 class="footer-heading">Links</h4>
       <ul class="footer-links">
         <li><a href="../#features">Features</a></li>
-        <li><a href="#pricing">Preise</a></li>
+        <li><a href="#cta">Preise</a></li>
         <li><a href="../kontakt/">Kontakt</a></li>
       </ul>
     </div>
@@ -345,32 +377,67 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px
       <h4 class="footer-heading">Kontakt</h4>
       <ul class="footer-links">
         <li><a href="mailto:ascorpm14@gmail.com">📧 E-Mail</a></li>
-        <li><a href="https://wa.me/261387313415">💬 WhatsApp</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-legal">© 2026 SteuerGPT — KI-Assistent für Logistik & Spedition</div>
+  <div class="footer-legal">© 2026 @AsTech — KI-Assistent für Logistik & Spedition</div>
 </div>
 </footer>
+
 <script>
+// Navbar scroll
 window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40)});
-const scenarios=[
-  [{type:'in',text:'🚚 Hallo! Ich bin Ihr Logistik-Assistent. Wie kann ich helfen?'},{type:'out',text:'Ich brauche eine optimierte Route für heute. 5 Stops in München.'},{type:'in',text:'✅ Route optimiert!<br><br>📍 5 Stops in München<br>🛣️ Optimale Reihenfolge berechnet<br>⏱️ Voraussichtlich 4h 20min<br>⛽ 18% weniger KM<br><br>Route an Fahrer-App senden?'},{type:'out',text:'Ja, senden! 👍'},{type:'in',text:'✅ Route wurde an Fahrer-App gesendet.'}],
-  [{type:'in',text:'📦 Sendungsverfolgung aktiv. Bitte Sendungsnummer eingeben.'},{type:'out',text:'Sendung #SP-2024-4452'},{type:'in',text:'✅ Status: In Zustellung<br><br>📦 Sendung: #SP-2024-4452<br>📍 Aktuelle Position: München, Nähe Hauptbahnhof<br>⏱️ Voraussichtlich: 14:30 Uhr<br>👤 Empfänger: Müller GmbH<br><br>Kunde wurde automatisch benachrichtigt.'},{type:'out',text:'Perfekt, danke!'},{type:'in',text:'✅ Zustellung um 14:22 Uhr bestätigt. Digitale Unterschrift liegt vor.'}],
-  [{type:'in',text:'📋 Frachtpapiere bereit. Bitte Auftragsdaten eingeben.'},{type:'out',text:'Neuer Auftrag: München → Berlin, 15 Paletten, morgen 8 Uhr.'},{type:'in',text:'✅ Frachtpapiere erstellt!<br><br>📄 CMR-Frachtbrief: #CMR-2024-891<br>🚛 Von: München → Berlin<br>📦 15 Paletten, 2.400 kg<br>⏰ Abholung: Morgen 08:00<br><br>Dokumente an Fahrer und Kunde gesendet.'},{type:'out',text:'Super, alles erledigt.'},{type:'in',text:'✅ Dokumente wurden elektronisch übermittelt. Zolldokumente sind beigefügt.'}]
+
+// Scenario tabs
+const scenarios = [
+  [
+    {type:'in',text:'👋 Hallo! Ich bin @AsTech.'},
+    {type:'out',text:'Wo ist meine Sendung DE-4521?'},
+    {type:'in',text:'📦 Sendung DE-4521 | STATUS: Im Zustellfahrzeug<br><br>📍 Abholung: Hamburg 28.06.<br>📍 Sortierung: Verteilzentrum Berlin<br>📍 Auslieferung: Heute 10-12 Uhr<br>➡️ Empfänger: Müller GmbH, Berlin-Mitte<br><br>▶️ Soll ich den Kunden benachrichtigen?'},
+    {type:'out',text:'Ja, bitte!'},
+    {type:'in',text:'✅ Benachrichtigung an Kunden gesendet. Live-Standort verfügbar.'}
+  ],
+  [
+    {type:'in',text:'👋 Hallo! Ich bin @AsTech.'},
+    {type:'out',text:'Neue Route: München → Warschau, 12 Paletten. Was kostet das?'},
+    {type:'in',text:'📊 Kalkulation München → Warschau (850km)<br><br>📍 Grundpreis: 680,00€<br>📍 Gewicht: 240,00€<br>📍 Maut: 186,00€<br>📍 Diesel: 86,27€<br><br>➡️ Gesamt: <b>1.192,27€</b><br><br>Marge bei 1.450€: 17,8% ✅<br><br>▶️ Angebot erstellen?'},
+    {type:'out',text:'Ja, Angebot erstellen!'},
+    {type:'in',text:'✅ Angebot wurde erstellt und an den Kunden gesendet.'}
+  ],
+  [
+    {type:'in',text:'👋 Hallo! Ich bin @AsTech.'},
+    {type:'out',text:'3 LKWs nur 60% Auslastung diese Woche. Was tun?'},
+    {type:'in',text:'📊 Analyse:<br><br>📍 LKW-103: 55% — Leerfahrt Rückweg Di+Do<br>📍 LKW-107: 62% — Standzeit Mi Nachmittag<br>📍 LKW-112: 72% — OK<br><br>💡 Rückfracht bei Schmidt Spedition organisieren!<br><br>Einsparung: <b>2.400€/Woche</b>'},
+    {type:'out',text:'Super, organisiere das!'},
+    {type:'in',text:'✅ Rückfracht wurde organisiert. LKW-103 und LKW-107 sind ab morgen voll ausgelastet.'}
+  ]
 ];
+
 function switchScenario(btn,idx){
   document.querySelectorAll('.scenario-tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-  const body=document.getElementById('waBody');body.innerHTML='';
+  const body=document.getElementById('waBody');
+  body.innerHTML='';
   let delay=300;
-  scenarios[idx].forEach((msg,i)=>{delay+=600;setTimeout(()=>{const div=document.createElement('div');div.className='whatsapp-msg '+(msg.type==='in'?'msg-in':'msg-out');div.style.animationDelay='0s';div.innerHTML=msg.text+'<div class="msg-time">'+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+'</div>';body.appendChild(div);body.scrollTop=body.scrollHeight;},delay);});
+  scenarios[idx].forEach((msg,i)=>{
+    delay+=600;
+    setTimeout(()=>{
+      const div=document.createElement('div');
+      div.className='whatsapp-msg '+(msg.type==='in'?'msg-in':'msg-out');
+      div.style.animationDelay='0s';
+      div.innerHTML=msg.text+'<div class="msg-time">'+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+'</div>';
+      body.appendChild(div);
+      body.scrollTop=body.scrollHeight;
+    },delay);
+  });
 }
+
+// FAQ accordion
 function toggleFaq(btn){
   const item=btn.closest('.faq-item');
   const isOpen=item.classList.contains('open');
   document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-  if(!isOpen)item.classList.add('open');
+  if(!isOpen) item.classList.add('open');
 }
 </script>
 </body>
