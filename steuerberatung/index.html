@@ -483,7 +483,7 @@ function renderScenario(idx) {
         chatBody.scrollTop = chatBody.scrollHeight;
       }, delay);
       msgTimers.push(t);
-      delay += 1200;
+      delay += 1800;
     } else {
       const t = setTimeout(() => {
         const div = document.createElement('div');
@@ -493,9 +493,11 @@ function renderScenario(idx) {
         chatBody.scrollTop = chatBody.scrollHeight;
       }, delay);
       msgTimers.push(t);
-      delay += 800 + msg.text.length * 20;
+      delay += 1500 + Math.min(msg.text.length * 25, 3000);
     }
   });
+
+  return delay;
 }
 
 function startSeq3() {
@@ -507,7 +509,6 @@ function startSeq3() {
   phoneContainer.classList.remove('show');
   scenarioTabs.classList.remove('show');
 
-  // Reset tabs
   document.querySelectorAll('.seq3-tab').forEach(t => t.classList.remove('active'));
   document.querySelector('.seq3-tab[data-scenario="0"]').classList.add('active');
 
@@ -517,42 +518,52 @@ function startSeq3() {
   setTimeout(() => {
     scenarioTabs.classList.add('show');
   }, 1000);
-  setTimeout(() => {
-    currentScenario = 0;
-    renderScenario(0);
-    startTimer(15000, 3);
-  }, 1400);
 
-  // Tab clicks
-  scenarioTabs.querySelectorAll('.seq3-tab').forEach(tab => {
-    tab.onclick = () => {
-      const idx = parseInt(tab.dataset.scenario);
-      if (idx === currentScenario) return;
-      document.querySelectorAll('.seq3-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      currentScenario = idx;
-      renderScenario(idx);
-    };
-  });
+  let scenarioIdx = 0;
+
+  function playScenario(idx) {
+    document.querySelectorAll('.seq3-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.seq3-tab[data-scenario="'+idx+'"]').classList.add('active');
+    currentScenario = idx;
+
+    setTimeout(() => {
+      const duration = renderScenario(idx);
+
+      setTimeout(() => {
+        const nextIdx = (idx + 1) % scenarios.length;
+        if (nextIdx === 0) {
+          setTimeout(() => {
+            startTimer(2000, 3);
+          }, 500);
+          return;
+        }
+        playScenario(nextIdx);
+      }, duration + 1000);
+
+    }, 1200);
+  }
+
+  playScenario(0);
 }
 
 // ===== SEQUENCE 4 — Pricing =====
 function startSeq4() {
   updateProgress(3);
-  // Animate words
   const words = document.querySelectorAll('#pricingLine1 .seq4-word, #pricingLine2 .seq4-word');
   words.forEach((w, i) => {
     w.classList.remove('show');
-    setTimeout(() => w.classList.add('show'), 50 + i * 80);
+    setTimeout(() => w.classList.add('show'), 50 + i * 100);
   });
 
   const cards = document.querySelectorAll('.seq4-card');
   cards.forEach((c, i) => {
     c.classList.remove('show');
-    setTimeout(() => c.classList.add('show'), 800 + i * 300);
+    // Show cards one by one with 2s between each
+    setTimeout(() => c.classList.add('show'), 1500 + i * 2000);
   });
-
-  startTimer(12000, 4);
+  // Show cards then wait 6s after last card before advancing
+  const cardCount = cards.length;
+  startTimer(1500 + cardCount * 2000 + 6000, 4);
 }
 
 // ===== SEQUENCE 5 — FAQ =====
@@ -561,9 +572,15 @@ function startSeq5() {
   const posts = document.querySelectorAll('.seq5-post');
   posts.forEach((p, i) => {
     p.classList.remove('show');
-    setTimeout(() => p.classList.add('show'), 300 + i * 600);
+    // Show each FAQ post one by one — 3s between each
+    setTimeout(() => {
+      p.classList.add('show');
+      // Scroll into view if needed
+      p.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 500 + i * 3500);
   });
-  startTimer(12000, 5);
+  // Wait until all shown + 4s extra for reading
+  startTimer(500 + posts.length * 3500 + 4000, 5);
 }
 
 // ===== SEQUENCE 6 — CTA =====

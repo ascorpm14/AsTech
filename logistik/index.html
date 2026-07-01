@@ -408,15 +408,16 @@ function renderScenario(idx) {
         const div = document.createElement('div'); div.className = 'app-system-msg';
         div.innerHTML = '<span class="live-dot"></span>' + msg.text; chatBody.appendChild(div);
         chatBody.scrollTop = chatBody.scrollHeight;
-      }, delay); msgTimers.push(t); delay += 1200;
+      }, delay); msgTimers.push(t); delay += 1800;
     } else {
       const t = setTimeout(() => {
         const div = document.createElement('div'); div.className = 'app-chat-msg ' + (msg.type === 'in' ? 'msg-in' : 'msg-out');
         div.textContent = msg.text; chatBody.appendChild(div);
         chatBody.scrollTop = chatBody.scrollHeight;
-      }, delay); msgTimers.push(t); delay += 800 + msg.text.length * 20;
+      }, delay); msgTimers.push(t); delay += 1500 + Math.min(msg.text.length * 25, 3000);
     }
   });
+  return delay;
 }
 
 function startSeq3() {
@@ -429,36 +430,53 @@ function startSeq3() {
   document.querySelector('.seq3-tab[data-scenario="0"]').classList.add('active');
   setTimeout(() => phoneContainer.classList.add('show'), 200);
   setTimeout(() => scenarioTabs.classList.add('show'), 1000);
-  setTimeout(() => { currentScenario = 0; renderScenario(0); startTimer(15000, 3); }, 1400);
-  scenarioTabs.querySelectorAll('.seq3-tab').forEach(tab => {
-    tab.onclick = () => {
-      const idx = parseInt(tab.dataset.scenario);
-      if (idx === currentScenario) return;
-      document.querySelectorAll('.seq3-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active'); currentScenario = idx; renderScenario(idx);
-    };
-  });
+
+  let scenarioIdx = 0;
+  function playScenario(idx) {
+    document.querySelectorAll('.seq3-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.seq3-tab[data-scenario="'+idx+'"]').classList.add('active');
+    currentScenario = idx;
+    setTimeout(() => {
+      const duration = renderScenario(idx);
+      setTimeout(() => {
+        const nextIdx = (idx + 1) % scenarios.length;
+        if (nextIdx === 0) {
+          setTimeout(() => startTimer(2000, 3), 500);
+          return;
+        }
+        playScenario(nextIdx);
+      }, duration + 1000);
+    }, 1200);
+  }
+  playScenario(0);
 }
 
 // SEQ 4
 function startSeq4() {
   updateProgress(3);
   document.querySelectorAll('#pricingLine1 .seq4-word, #pricingLine2 .seq4-word').forEach((w, i) => {
-    w.classList.remove('show'); setTimeout(() => w.classList.add('show'), 50 + i * 80);
+    w.classList.remove('show'); setTimeout(() => w.classList.add('show'), 50 + i * 100);
   });
-  document.querySelectorAll('.seq4-card').forEach((c, i) => {
-    c.classList.remove('show'); setTimeout(() => c.classList.add('show'), 800 + i * 300);
+  const cards = document.querySelectorAll('.seq4-card');
+  cards.forEach((c, i) => {
+    c.classList.remove('show');
+    setTimeout(() => c.classList.add('show'), 1500 + i * 2000);
   });
-  startTimer(12000, 4);
+  const cardCount = cards.length;
+  startTimer(1500 + cardCount * 2000 + 6000, 4);
 }
 
 // SEQ 5
 function startSeq5() {
   updateProgress(4);
   document.querySelectorAll('.seq5-post').forEach((p, i) => {
-    p.classList.remove('show'); setTimeout(() => p.classList.add('show'), 300 + i * 600);
+    p.classList.remove('show');
+    setTimeout(() => {
+      p.classList.add('show');
+      p.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 500 + i * 3500);
   });
-  startTimer(12000, 5);
+  startTimer(500 + document.querySelectorAll('.seq5-post').length * 3500 + 4000, 5);
 }
 
 // SEQ 6
