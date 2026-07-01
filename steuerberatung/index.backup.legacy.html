@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@AsTech für Steuerkanzleien — KI-Assistent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f0f2f5;--surface:#ffffff;--text:#1a1a2e;--text-secondary:#64748b;--primary:#2563eb;--primary-dark:#1d4ed8;--gradient:linear-gradient(135deg,#2563eb,#7c3aed);--shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 20px 60px rgba(0,0,0,0.15);--radius:12px;--radius-lg:20px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);z-index:1000;transition:var(--transition)}
+nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.08)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:24px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo::before{content:'';display:inline-block;width:28px;height:28px;background:var(--gradient);border-radius:8px;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links a{text-decoration:none;color:var(--text-secondary);font-weight:500;font-size:14px;padding:8px 16px;border-radius:100px;transition:var(--transition)}
+.nav-links a:hover{color:var(--text);background:rgba(0,0,0,0.04)}
+.cta-nav{background:var(--gradient)!important;color:#fff!important;padding:10px 24px!important;font-weight:600!important;box-shadow:0 4px 14px rgba(37,99,235,0.3)}
+.cta-nav:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,0.4)!important}
+
+/* Hero */
+.hero{position:relative;padding:140px 24px 80px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;min-height:85vh;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:-80% -80%;background:radial-gradient(ellipse 60% 45% at 20% 50%,rgba(37,99,235,0.10) 0%,transparent 60%),radial-gradient(ellipse 50% 35% at 80% 30%,rgba(124,58,237,0.08) 0%,transparent 55%);animation:heroAtmosphere 25s ease-in-out infinite;pointer-events:none;z-index:0}
+@keyframes heroAtmosphere{0%,100%{transform:translate(0,0)rotate(0deg)scale(1)}20%{transform:translate(60px,-40px)rotate(3deg)scale(1.1)}40%{transform:translate(-30px,50px)rotate(-2deg)scale(1.05)}60%{transform:translate(40px,20px)rotate(4deg)scale(1.08)}80%{transform:translate(-50px,-30px)rotate(-3deg)scale(1.03)}}
+.hero>*{position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.1);color:var(--primary);padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:20px}
+.badge-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-size:48px;font-weight:900;line-height:1.1;letter-spacing:-2px;margin-bottom:16px}
+.hero h1 .highlight{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:17px;color:var(--text-secondary);max-width:480px;margin-bottom:28px;line-height:1.7}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--gradient);color:#fff;padding:14px 28px;border-radius:100px;text-decoration:none;font-weight:600;font-size:15px;transition:var(--transition);box-shadow:0 4px 20px rgba(37,99,235,0.3);border:none;cursor:pointer}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(37,99,235,0.4)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--text);padding:14px 28px;border-radius:100px;text-decoration:none;font-weight:600;font-size:15px;border:2px solid #e2e8f0;transition:var(--transition)}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-3px)}
+.hero-stats{display:flex;gap:32px}
+.hero-stat h3{font-size:28px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-stat p{font-size:12px;color:var(--text-secondary)}
+
+/* Phone mockup */
+.phone-mockup{width:100%;max-width:380px;margin:0 auto}
+.phone-frame{background:#1a1a2e;border-radius:36px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,0.06),0 30px 80px rgba(0,0,0,0.25);position:relative}
+.phone-screen{margin:24px 5px 5px;border-radius:28px;overflow:hidden;background:white}
+.phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#1a1a2e;border-radius:0 0 14px 14px;z-index:10}
+.phone-notch::after{content:'';position:absolute;top:7px;left:50%;transform:translateX(-50%);width:36px;height:3px;background:#ffffff20;border-radius:2px}
+.phone-header{padding:12px 14px 10px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;display:flex;align-items:center;gap:10px}
+.phone-avatar{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.phone-name{font-weight:600;font-size:13px}
+.phone-status{font-size:11px;opacity:0.7}
+
+.app-chat-body{background:#1a1a2e;height:420px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:5px}
+.app-chat-body::-webkit-scrollbar{width:3px}
+.app-chat-body::-webkit-scrollbar-thumb{background:#a0b4e0;border-radius:4px}
+.app-chat-msg{max-width:85%;padding:7px 12px;border-radius:8px;font-size:13px;line-height:1.4;position:relative;opacity:0;animation:fadeSlideIn 0.3s ease forwards}
+.msg-in{background:#2a2a3e;align-self:flex-start;border-top-left-radius:2px;color:white}
+.msg-out{background:#2563eb;align-self:flex-end;border-top-right-radius:2px;color:white}
+@keyframes fadeSlideIn{to{opacity:1;transform:translateY(0)}}
+.msg-time{font-size:10px;color:#999;text-align:right;margin-top:2px}
+.app-chat-input{display:flex;padding:8px 10px;background:#2a2a3e;gap:6px;align-items:center}
+.app-chat-input input{flex:1;border:none;padding:8px 14px;border-radius:20px;font-size:13px;background:#3a3a4e;outline:none;font-family:inherit;color:white}
+.app-chat-input input:focus{box-shadow:0 0 0 2px rgba(37,99,235,0.25)}
+.send-btn{width:36px;height:36px;background:var(--primary);border:none;border-radius:50%;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);flex-shrink:0;font-size:16px}
+
+/* Scenarios */
+.scenarios{padding:16px 0 0;display:flex;flex-direction:column;gap:6px;max-width:380px;margin:0 auto}
+.scenario-tab{display:flex;align-items:center;gap:8px;padding:12px 20px;border-radius:100px;border:2px solid #e2e8f0;background:white;cursor:pointer;font-size:13px;font-weight:600;transition:var(--transition);font-family:inherit;color:var(--text-secondary);width:100%;text-align:left}
+.scenario-tab:hover{border-color:var(--primary);color:var(--text)}
+.scenario-tab.active{background:var(--gradient);color:white;border-color:transparent;box-shadow:0 4px 14px rgba(37,99,235,0.3)}
+.tab-icon{font-size:18px}
+
+/* Sections */
+section{padding:80px 24px}
+.section-tag{text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--primary);margin-bottom:10px}
+.section-title{text-align:center;font-size:36px;font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+.section-subtitle{text-align:center;color:var(--text-secondary);font-size:16px;max-width:600px;margin:0 auto 48px}
+.features{background:white}
+.feature-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature-card{padding:28px 24px;border-radius:var(--radius-lg);background:var(--bg);border:1px solid transparent;transition:var(--transition);position:relative;overflow:hidden}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);transform:scaleX(0);transform-origin:left;transition:transform 0.6s cubic-bezier(0.34,1.56,0.64,1)}
+.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(37,99,235,0.08)}
+.feature-card:hover::before{transform:scaleX(1)}
+.feature-icon{width:44px;height:44px;border-radius:10px;background:rgba(37,99,235,0.1);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+.feature-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.feature-card p{font-size:13px;color:var(--text-secondary);line-height:1.6}
+
+/* How it works */
+.how-steps{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;counter-reset:step}
+.step{counter-increment:step;text-align:center;padding:32px 20px;position:relative}
+.step::before{content:counter(step);width:40px;height:40px;border-radius:50%;background:var(--gradient);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;margin:0 auto 16px}
+.step h3{font-size:17px;font-weight:700;margin-bottom:6px}
+.step p{font-size:13px;color:var(--text-secondary)}
+
+/* Testimonials */
+.testimonials{background:white}
+.testimonial-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.testimonial-card{background:var(--bg);border-radius:var(--radius-lg);padding:28px;border:1px solid rgba(0,0,0,0.03)}
+.testimonial-card .stars{color:#f59e0b;font-size:16px;margin-bottom:8px}
+.testimonial-card .quote{font-size:14px;color:var(--text);line-height:1.6;margin-bottom:12px;font-style:italic}
+.testimonial-card .author{font-size:13px;font-weight:600}
+.testimonial-card .role{font-size:12px;color:var(--text-secondary)}
+
+/* FAQ */
+.faq-list{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.faq-item{border:1px solid #e2e8f0;border-radius:var(--radius);overflow:hidden;background:white}
+.faq-question{width:100%;padding:16px 20px;background:none;border:none;font-size:15px;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--text);transition:var(--transition)}
+.faq-question:hover{background:rgba(0,0,0,0.02)}
+.faq-icon{font-size:18px;transition:transform 0.3s ease;flex-shrink:0}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-answer{padding:0 20px;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease}
+.faq-item.open .faq-answer{max-height:300px;padding:0 20px 16px}
+.faq-answer p{font-size:14px;color:var(--text-secondary);line-height:1.7}
+
+/* CTA */
+.cta-section{text-align:center;background:var(--gradient);color:white;padding:80px 24px}
+.cta-section h2{font-size:36px;font-weight:800;margin-bottom:12px}
+.cta-section p{font-size:16px;opacity:0.9;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-section .btn-primary{background:white;color:var(--primary);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
+.cta-section .btn-white{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--primary);padding:16px 32px;border-radius:100px;text-decoration:none;font-weight:600;font-size:16px;transition:var(--transition);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
+.cta-section .btn-white:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+
+/* Pricing */
+.pricing-grid{max-width:800px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.pricing-card{background:white;border-radius:var(--radius-lg);padding:32px;border:2px solid #e2e8f0;transition:var(--transition);position:relative}
+.pricing-card.featured{border-color:var(--primary);box-shadow:0 4px 24px rgba(37,99,235,0.1)}
+.pricing-card.featured::before{content:'Empfohlen';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gradient);color:white;padding:4px 16px;border-radius:100px;font-size:12px;font-weight:700}
+.pricing-card h3{font-size:20px;font-weight:700;margin-bottom:8px}
+.pricing-price{font-size:36px;font-weight:900;margin-bottom:16px}
+.pricing-price span{font-size:16px;font-weight:400;color:var(--text-secondary)}
+.pricing-card ul{list-style:none;padding:0;margin-bottom:24px}
+.pricing-card ul li{padding:8px 0;font-size:14px;color:var(--text-secondary);border-bottom:1px solid #f0f2f5;display:flex;align-items:center;gap:8px}
+.pricing-card ul li:last-child{border-bottom:none}
+.pricing-card ul li::before{content:'✓';color:#22c55e;font-weight:700}
+
+/* Footer */
+footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:24px}
+.footer-logo{font-size:22px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.footer-desc{font-size:13px;line-height:1.6;max-width:280px}
+.footer-heading{color:white;font-size:14px;font-weight:700;margin-bottom:12px}
+.footer-links{list-style:none;padding:0}
+.footer-links li{margin-bottom:8px}
+.footer-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;transition:var(--transition)}
+.footer-links a:hover{color:white}
+.footer-legal{border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;font-size:12px;color:rgba(255,255,255,0.4);text-align:center}
+
+/* Responsive */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:120px}
+  .phone-mockup{order:-1;max-width:320px}
+  .scenarios{max-width:320px}
+  .feature-grid{grid-template-columns:repeat(2,1fr)}
+  .how-steps{grid-template-columns:1fr;max-width:400px}
+  .testimonial-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr;max-width:400px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links a:not(.cta-nav):not(.cta-wa){display:none}
+  .feature-grid{grid-template-columns:1fr}
+  .hero h1{font-size:32px}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="nav-inner">
+  <a href="../" class="logo">@AsTech</a>
+  <div class="nav-links">
+    <a href="testimonials/">Testimonials</a>
+    <a href="datenschutz/">Datenschutz</a>
+    <a href="../kontakt/">Kontakt</a>
+    <a href="#cta" class="cta-nav" style="background:linear-gradient(135deg,#2563eb,#7c3aed)!important;box-shadow:0 4px 14px rgba(37,99,235,0.3)!important;">📲 App anfordern</a>
+    <a href="#cta" class="cta-nav">Kostenlos testen</a>
+  </div>
+</div>
+</nav>
+
+<section class="hero">
+<div>
+  <div class="badge"><span class="badge-dot"></span> 📱 JETZT VERFÜGBAR — 5 Nachrichten kostenlos testen</div>
+  <h1>Wussten Sie, dass Sie wertvolle Zeit <span class="highlight">in Ihrer Steuerkanzlei verlieren?</span></h1>
+  <p>Eine App, die Ihren Job macht. Sie sprechen. @AsTech erledigt.<br>Kein PC. Keine Software. <strong>Nur Ihr Smartphone.</strong></p>
+  <div class="hero-btns">
+    <a href="#cta" class="btn-primary" style="background:linear-gradient(135deg,#2563eb,#7c3aed)!important;box-shadow:0 4px 20px rgba(37,99,235,0.3)!important;">📲 App anfordern →</a>
+    <a href="#features" class="btn-secondary">🎬 Beispiele ansehen</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><h3 style="font-size:28px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">30 Min → 2 Min</h3><p>pro Anfrage</p></div>
+    <div class="hero-stat"><h3>98%</h3><p>Erkennungsrate</p></div>
+    <div class="hero-stat"><h3>24/7</h3><p>Verfügbar</p></div>
+  </div>
+  <p style="margin-top:24px;font-size:13px;color:var(--text-secondary);">🔒 7 Tage testen. Nur 5 Nachrichten/Tag kostenlos. Keine Zahlungsmethode nötig. Jederzeit kündbar.</p>
+</div>
+<div>
+  <div class="phone-mockup">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="phone-header">
+          <span style="font-size:18px;cursor:pointer;opacity:0.8;">‹</span>
+          <div class="phone-avatar">S</div>
+          <div><div class="phone-name">@AsTech</div><div class="phone-status">online</div></div>
+          <span style="margin-left:auto;font-size:18px;cursor:pointer;opacity:0.8;">⋮</span>
+        </div>
+        <div class="app-chat-body" id="waBody">
+          <div class="app-chat-msg msg-in" style="animation-delay:0.3s">👋 Hallo! Ich bin @AsTech. Wie kann ich Ihnen heute helfen?</div>
+          <div class="app-chat-msg msg-out" style="animation-delay:0.8s">Mandant Schmidt hat sein Lagerhaus für 120.000€ verkauft. Wie hoch ist die Steuerlast?</div>
+          <div class="app-chat-msg msg-in" style="animation-delay:1.3s">📊 **Berechnung abgeschlossen**<br><br>Verkauf Gewerbeimmobilie — 120.000€:<br><br>📍 Gewerbesteuer: 14.700€ (Hebesatz 400%)<br>📍 Einkommensteuer: 18.500€ (42%)<br>📍 Grundsteuer B: 1.500€<br><br>➡️ **Gesamt ca. 34.700€**<br><br>💡 Hinweis: §16 EStG — Betriebsaufgabe, Freibetrag prüfen!<br><br>Soll ich eine detaillierte Aufstellung für den Mandanten erstellen?</div>
+          <div class="app-chat-msg msg-out" style="animation-delay:2.0s">Ja, bitte! 👍</div>
+          <div class="app-chat-msg msg-in" style="animation-delay:2.6s">✅ Erledigt! Aufstellung erstellt und an Ihre E-Mail gesendet.<br><br>Nächste Schritte:<br>• Freibetrag §16 EStG prüfen<br>• Frist: Steuererklärung bis 31.12.<br>• Ggf. Betriebsaufgabe melden</div>
+        </div>
+        <div class="app-chat-input">
+          <span style="font-size:18px;cursor:pointer;">😊</span>
+          <input type="text" placeholder="Nachricht eingeben..." disabled>
+          <div class="send-btn">▶</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scenarios">
+    <button class="scenario-tab active" onclick="switchScenario(this,0)"><span class="tab-icon">🏭</span> Gewerbeimmobilie</button>
+    <button class="scenario-tab" onclick="switchScenario(this,1)"><span class="tab-icon">🇪🇺</span> EU-Vorsteuer</button>
+    <button class="scenario-tab" onclick="switchScenario(this,2)"><span class="tab-icon">🚗</span> Dienstwagen</button>
+  </div>
+</div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+<div class="section-tag">Features</div>
+<h2 class="section-title">Was @AsTech für Ihre Kanzlei tut</h2>
+<p class="section-subtitle">Automatisieren Sie Ihre täglichen Abläufe und sparen Sie bis zu 15 Stunden pro Woche.</p>
+<div class="feature-grid">
+  <div class="feature-card"><div class="feature-icon">📄</div><h3>Rechnungserfassung</h3><p>Senden Sie ein Foto einer Rechnung in der App — @AsTech erfasst alle Daten automatisch (Betrag, Datum, Lieferant, Steuersätze).</p></div>
+  <div class="feature-card"><div class="feature-icon">🏦</div><h3>Bankabstimmung</h3><p>Kontoauszüge in Sekunden abgleichen. @AsTech erkennt Buchungen, gleicht sie mit offenen Posten ab und meldet Abweichungen.</p></div>
+  <div class="feature-card"><div class="feature-icon">📋</div><h3>USt-VA vorbereiten</h3><p>Umsatzsteuervoranmeldung auf Knopfdruck. Alle relevanten Daten werden automatisch aus Ihren Buchungen zusammengestellt.</p></div>
+  <div class="feature-card"><div class="feature-icon">💬</div><h3>Mandantenkommunikation</h3><p>Ihre Mandanten erreichen Sie in der App. @AsTech beantwortet Standardfragen automatisch und leitet komplexe Anfragen weiter.</p></div>
+  <div class="feature-card"><div class="feature-icon">🔗</div><h3>DATEV-Export</h3><p>Nahtlose Integration in Ihre bestehende Kanzlei-Software. Erfasste Daten werden direkt in DATEV, lexoffice oder sevDesk übertragen.</p></div>
+  <div class="feature-card"><div class="feature-icon">⏰</div><h3>Fristen-Überwachung</h3><p>Automatische Erinnerungen für Steuertermine, Abgabefristen und Zahlungsziele. Keine Frist mehr verpassen.</p></div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+<div class="section-tag">So funktioniert's</div>
+<h2 class="section-title">In 3 Schritten starten</h2>
+<p class="section-subtitle">📱 App in 2 Minuten installiert. Kein PC nötig.</p>
+<div class="how-steps">
+  <div class="step"><h3>App installieren</h3><p>Laden Sie die @AsTech-App herunter (APK, 39MB). Installation in 2 Minuten — kein Play Store nötig.</p></div>
+  <div class="step"><h3>Rechnung senden</h3><p>Fotografieren Sie eine Rechnung oder senden Sie einen Kontoauszug — @AsTech erfasst alle Daten automatisch.</p></div>
+  <div class="step"><h3>Ergebnis erhalten</h3><p>Die erfassten Daten werden in Ihre Kanzlei-Software exportiert. Sie sparen Zeit und vermeiden Fehler.</p></div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+<div class="section-tag">Erfahrungen</div>
+<h2 class="section-title">Was Kanzleien sagen</h2>
+<p class="section-subtitle">Bereits 150+ Steuerkanzleien vertrauen auf @AsTech.</p>
+<div class="testimonial-grid">
+  <div class="testimonial-card">
+    <div class="stars">★★★★★</div>
+    <div class="quote">"Seit wir @AsTech nutzen, sparen wir mindestens 12 Stunden pro Woche. Die Rechnungserfassung in der App ist unglaublich praktisch. Meine Mandanten lieben es."</div>
+    <div class="author">— Dr. Markus Weber</div>
+    <div class="role">Steuerberater, Köln</div>
+  </div>
+  <div class="testimonial-card">
+    <div class="stars">★★★★★</div>
+    <div class="quote">"Die Bankabstimmung war früher der größte Zeitfresser. Jetzt erledigt @AsTech das in Sekunden. Und meine Mitarbeiter müssen keine neue Software lernen — die App können alle."</div>
+    <div class="author">— Sabine Müller</div>
+    <div class="role">Steuerberaterin, München</div>
+  </div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+<div class="section-tag">FAQ</div>
+<h2 class="section-title">Häufige Fragen</h2>
+<p class="section-subtitle">Antworten auf die wichtigsten Fragen von Steuerkanzleien.</p>
+<div class="faq-list">
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Ist @AsTech DSGVO-konform? <span class="faq-icon">+</span></button>
+    <div class="faq-answer"><p>Ja, @AsTech ist vollständig DSGVO-konform. Alle Daten werden auf deutschen Servern verarbeitet und gespeichert. Wir unterliegen der deutschen Datenschutz-Grundverordnung und erfüllen die strengen Anforderungen der Steuerberaterbranche. Auf Wunsch erstellen wir eine Auftragsverarbeitungsvereinbarung (AVV).</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Kann ich @AsTech mit DATEV verbinden? <span class="faq-icon">+</span></button>
+    <div class="faq-answer"><p>Ja, @AsTech lässt sich nahtlos in DATEV, lexoffice, sevDesk und viele weitere Kanzlei-Softwares integrieren. Die erfassten Daten werden direkt in Ihr System übertragen — kein doppelter Aufwand. Fragen Sie uns nach Ihrer Software, wir prüfen die Kompatibilität.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Wie schnell bin ich einsatzbereit? <span class="faq-icon">+</span></button>
+    <div class="faq-answer"><p>Installieren Sie die App in 2 Minuten, schreiben Sie Ihre erste Nachricht und los geht's. Keine Schulung nötig.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Was kostet @AsTech? <span class="faq-icon">+</span></button>
+    <div class="faq-answer"><p>@AsTech kostet 100€ pro Monat für Kanzleien mit bis zu 3 Mitarbeitern und 200€ pro Monat für das Professional-Paket (unbegrenzt Mitarbeiter, Prioritäts-Support). Beide Pakete beinhalten eine 7-tägige kostenlose Testphase — keine Kreditkarte nötig.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Müssen meine Mandanten auch die App nutzen? <span class="faq-icon">+</span></button>
+    <div class="faq-answer"><p>Nein, nur Sie als Kanzlei benötigen die App. Ihre Mandanten können weiterhin auf allen gewohnten Wegen kommunizieren.</p></div>
+  </div>
+</div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+<div class="section-tag">Preise</div>
+<h2 class="section-title">Einfach & transparent</h2>
+<p class="section-subtitle">7 Tage kostenlos testen. Keine Kreditkarte nötig. Jederzeit kündbar.</p>
+<div class="pricing-grid">
+  <div class="pricing-card">
+    <h3>Standard</h3>
+    <div class="pricing-price">100€ <span>/ Monat</span></div>
+    <ul>
+      <li>Bis zu 3 Mitarbeiter</li>
+      <li>Fachliche Anfragen in Sekunden</li>
+      <li>Upload (PDF, Excel, Fotos)</li>
+      <li>5 Nachrichten/Tag inklusive</li>
+      <li>DSGVO-konform</li>
+      <li>E-Mail-Support</li>
+    </ul>
+    <a href="#cta" class="btn-primary" style="width:100%;justify-content:center;background:linear-gradient(135deg,#2563eb,#7c3aed)!important;">📲 App anfordern</a>
+  </div>
+  <div class="pricing-card featured">
+    <h3>Professional</h3>
+    <div class="pricing-price">300€ <span>/ Monat</span></div>
+    <ul>
+      <li>Unbegrenzt Mitarbeiter</li>
+      <li>Unbegrenzte Nachrichten</li>
+      <li>Prioritäts-Support (24h)</li>
+      <li>Individuelle Anpassungen</li>
+      <li>Eigener API-Key möglich</li>
+      <li>Dedizierte Betreuung</li>
+    </ul>
+    <a href="#cta" class="btn-primary" style="width:100%;justify-content:center;">📲 App anfordern</a>
+  </div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+<h2>Bereit für die Zukunft Ihrer Kanzlei?</h2>
+<p>Testen Sie @AsTech 7 Tage kostenlos — 5 Nachrichten pro Tag gratis, dann zahlen Sie nur, was Sie verbrauchen. Keine versteckten Kosten.</p>
+<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+  <a href="mailto:ascorpm14@gmail.com?subject=@AsTech%20Steuerberatung" class="btn-white" style="background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff!important;box-shadow:0 8px 32px rgba(37,99,235,0.4)!important;">📲 App anfordern</a>
+  <a href="mailto:ascorpm14@gmail.com?subject=Frage%20zu%20@AsTech%20Steuerberatung" class="btn-white">✉️ Per E-Mail</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-inner">
+  <div class="footer-grid">
+    <div class="footer-col footer-brand">
+      <div class="footer-logo">@AsTech</div>
+      <p class="footer-desc">KI-Assistent für Steuerkanzleien. Automatisierte Rechnungserfassung, Bankabstimmung und Steuervorbereitung — direkt in der App.</p>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-heading">Branchen</h4>
+      <ul class="footer-links">
+        <li><a href="../">Steuerberatung</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-heading">Links</h4>
+      <ul class="footer-links">
+        <li><a href="../#features">Features</a></li>
+        <li><a href="#cta">Preise</a></li>
+        <li><a href="../kontakt/">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-heading">Kontakt</h4>
+      <ul class="footer-links">
+        <li><a href="mailto:ascorpm14@gmail.com">📧 E-Mail</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-legal">© 2026 @AsTech — KI-Assistent für Steuerkanzleien</div>
+</div>
+</footer>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40)});
+
+// Scenario tabs
+const scenarios = [
+  [
+    {type:'in',text:'👋 Hallo! Ich bin @AsTech. Wie kann ich Ihnen heute helfen?'},
+    {type:'out',text:'Mandant Schmidt hat sein Lagerhaus für 120.000€ verkauft. Wie hoch ist die Steuerlast?'},
+    {type:'in',text:'📊 Berechnung abgeschlossen<br><br>📍 Gewerbesteuer: 14.700€ (Hebesatz 400%)<br>📍 Einkommensteuer: 18.500€ (42%)<br>📍 Grundsteuer B: 1.500€<br><br>➡️ Gesamt ca. <b>34.700€</b><br><br>💡 §16 EStG — Freibetrag prüfen!<br><br>Soll ich eine detaillierte Aufstellung erstellen?'},
+    {type:'out',text:'Ja, bitte! 👍'},
+    {type:'in',text:'✅ Erledigt! Aufstellung an Ihre E-Mail gesendet.<br><br>📌 Nächste Schritte:<br>• Freibetrag §16 EStG prüfen<br>• Frist: Steuererklärung bis 31.12.<br>• Ggf. Betriebsaufgabe melden'}
+  ],
+  [
+    {type:'in',text:'👋 Hallo! Ich bin @AsTech. Wie kann ich Ihnen heute helfen?'},
+    {type:'out',text:'Neuer Lieferant aus Italien, Rechnung über 8.400€ netto. Vorsteuer abzugsfähig?'},
+    {type:'in',text:'✅ Ja, Vorsteuer abzugsfähig — EU-grenzüberschreitender Umsatz §15 UStG.<br><br>Prüfung:<br>✅ USt-IdNr. gültig<br>✅ Rechnung mit Pflichtangaben §14 UStG<br>⚠️ <b>Reverse-Charge</b> §13b UStG anwenden<br><br>📌 Kontierung: SKR 04, Konto 1576 (abziehbare Vorsteuer EU)'},
+    {type:'out',text:'Perfekt, danke! In DATEV übertragen.'},
+    {type:'in',text:'✅ Buchungsvorlage erstellt und an DATEV übermittelt.'}
+  ],
+  [
+    {type:'in',text:'👋 Hallo! Ich bin @AsTech. Wie kann ich Ihnen heute helfen?'},
+    {type:'out',text:'Neuer Angestellter, bekommt einen Tesla als Dienstwagen. Wie versteuern?'},
+    {type:'in',text:'🚗 Dienstwagenbesteuerung — Tesla Model 3 (49.990€)<br><br>1%-Regelung §6 EStG:<br>📍 Geldwerter Vorteil: 1% × 49.990€ = 499,90€<br>📍 E-Auto-Zuschlag: 0,25% = 124,98€<br>➡️ <b>Steuerpflichtig: 374,88€/Monat</b><br><br>💡 E-Auto-Förderung aktiv! (0,25% statt 0,5%)'},
+    {type:'out',text:'Super, danke für die Berechnung!'},
+    {type:'in',text:'✅ Lohnabrechnungsvorlage erstellt.<br><br>📌 15km Fahrt Wohnung-Arbeit: +224,96€ monatlich<br>📌 Gesamter geldwerter Vorteil: <b>599,84€</b>'}
+  ]
+];
+
+function switchScenario(btn,idx){
+  document.querySelectorAll('.scenario-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const body=document.getElementById('waBody');
+  body.innerHTML='';
+  let delay=300;
+  scenarios[idx].forEach((msg,i)=>{
+    delay+=600;
+    setTimeout(()=>{
+      const div=document.createElement('div');
+      div.className='app-chat-msg '+(msg.type==='in'?'msg-in':'msg-out');
+      div.style.animationDelay='0s';
+      div.innerHTML=msg.text+'<div class="msg-time">'+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+'</div>';
+      body.appendChild(div);
+      body.scrollTop=body.scrollHeight;
+    },delay);
+  });
+}
+
+// FAQ accordion
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

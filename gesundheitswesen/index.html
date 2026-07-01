@@ -8,443 +8,480 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f0f2f5;--surface:#ffffff;--text:#1a1a2e;--text-secondary:#64748b;--primary:#2563eb;--primary-dark:#1d4ed8;--gradient:linear-gradient(135deg,#2563eb,#7c3aed);--shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 20px 60px rgba(0,0,0,0.15);--radius:12px;--radius-lg:20px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);z-index:1000;transition:var(--transition)}
-nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.08)}
-.nav-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:24px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:flex;align-items:center;gap:8px;text-decoration:none}
-.logo::before{content:'';display:inline-block;width:28px;height:28px;background:var(--gradient);border-radius:8px;-webkit-text-fill-color:transparent}
-.nav-links{display:flex;gap:8px;align-items:center}
-.nav-links a{text-decoration:none;color:var(--text-secondary);font-weight:500;font-size:14px;padding:8px 16px;border-radius:100px;transition:var(--transition)}
-.nav-links a:hover{color:var(--text);background:rgba(0,0,0,0.04)}
-.cta-nav{background:var(--gradient)!important;color:#fff!important;padding:10px 24px!important;font-weight:600!important;box-shadow:0 4px 14px rgba(37,99,235,0.3)}
-.cta-nav:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,0.4)!important}
-
-/* Hero */
-.hero{position:relative;padding:140px 24px 80px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;min-height:85vh;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:-80% -80%;background:radial-gradient(ellipse 60% 45% at 20% 50%,rgba(37,99,235,0.10) 0%,transparent 60%),radial-gradient(ellipse 50% 35% at 80% 30%,rgba(124,58,237,0.08) 0%,transparent 55%);animation:heroAtmosphere 25s ease-in-out infinite;pointer-events:none;z-index:0}
-@keyframes heroAtmosphere{0%,100%{transform:translate(0,0)rotate(0deg)scale(1)}20%{transform:translate(60px,-40px)rotate(3deg)scale(1.1)}40%{transform:translate(-30px,50px)rotate(-2deg)scale(1.05)}60%{transform:translate(40px,20px)rotate(4deg)scale(1.08)}80%{transform:translate(-50px,-30px)rotate(-3deg)scale(1.03)}}
-.hero>*{position:relative;z-index:1}
-.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.1);color:var(--primary);padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:20px}
-.badge-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.hero h1{font-size:48px;font-weight:900;line-height:1.1;letter-spacing:-2px;margin-bottom:16px}
-.hero h1 .highlight{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero p{font-size:17px;color:var(--text-secondary);max-width:480px;margin-bottom:28px;line-height:1.7}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--gradient);color:#fff;padding:14px 28px;border-radius:100px;text-decoration:none;font-weight:600;font-size:15px;transition:var(--transition);box-shadow:0 4px 20px rgba(37,99,235,0.3);border:none;cursor:pointer}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(37,99,235,0.4)}
-.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--text);padding:14px 28px;border-radius:100px;text-decoration:none;font-weight:600;font-size:15px;border:2px solid #e2e8f0;transition:var(--transition)}
-.btn-secondary:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-3px)}
-.hero-stats{display:flex;gap:32px}
-.hero-stat h3{font-size:28px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-stat p{font-size:12px;color:var(--text-secondary)}
-
-/* Phone mockup */
-.phone-mockup{width:100%;max-width:380px;margin:0 auto}
-.phone-frame{background:#1a1a2e;border-radius:36px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,0.06),0 30px 80px rgba(0,0,0,0.25);position:relative}
+:root{--bg:#0a0e27;--surface:#ffffff;--text:#e2e8f0;--text-secondary:#94a3b8;--primary:#0891b2;--primary-dark:#0e7490;--gradient:linear-gradient(135deg,#0891b2,#06b6d4);--shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 20px 60px rgba(0,0,0,0.15);--radius:12px;--radius-lg:20px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+html,body{height:100%;overflow:hidden;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.progress-bar{position:fixed;top:0;left:0;width:100%;height:4px;background:rgba(255,255,255,0.06);z-index:9999;display:none}
+.progress-fill{height:100%;background:var(--gradient);width:0%;transition:width 0.5s ease}
+.progress-text{position:fixed;top:12px;right:20px;font-size:12px;color:var(--text-secondary);z-index:9999;display:none;font-weight:500;letter-spacing:1px}
+.skip-btn{position:fixed;bottom:30px;right:24px;z-index:9998;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-secondary);padding:8px 20px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;transition:var(--transition);display:none}
+.skip-btn:hover{background:rgba(255,255,255,0.12);color:#fff}
+.seq{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.8s ease;z-index:1}
+.seq.active{opacity:1;pointer-events:auto;z-index:10}
+.seq.exit{opacity:0;z-index:5}
+#seq1{background:radial-gradient(ellipse 80% 50% at 50% 40%,rgba(8,145,178,0.15) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 50% 60%,rgba(6,182,212,0.10) 0%,transparent 50%),#0a0e27}
+.seq1-content{max-width:800px;padding:40px 24px;text-align:center}
+.seq1-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(8,145,178,0.12);color:var(--primary);padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:32px;opacity:0;animation:fadeIn 0.6s ease 0.5s forwards}
+@keyframes fadeIn{to{opacity:1}}
+.seq1-typing{font-size:clamp(28px,5vw,56px);font-weight:900;line-height:1.2;letter-spacing:-2px;min-height:1.4em;color:#fff}
+.seq1-cursor{display:inline-block;width:3px;height:1em;background:var(--gradient);margin-left:4px;animation:blink 0.8s infinite;vertical-align:text-bottom}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+#seq2{background:radial-gradient(ellipse 60% 45% at 20% 50%,rgba(8,145,178,0.12) 0%,transparent 60%),radial-gradient(ellipse 50% 35% at 80% 30%,rgba(6,182,212,0.08) 0%,transparent 55%),#0a0e27}
+.seq2-content{max-width:700px;padding:40px 24px;text-align:center}
+.seq2-title{font-size:clamp(24px,4vw,42px);font-weight:900;line-height:1.15;letter-spacing:-1.5px;margin-bottom:20px;color:#fff;opacity:0;transform:translateY(20px);transition:all 0.8s ease}
+.seq2-title.show{opacity:1;transform:translateY(0)}
+.seq2-sub{font-size:clamp(16px,2.5vw,24px);color:var(--text-secondary);max-width:560px;margin:0 auto 32px;line-height:1.6;min-height:3em}
+.seq2-sub .letter{opacity:0;transition:opacity 0.05s ease}
+.seq2-sub .letter.show{opacity:1}
+.seq2-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gradient);color:#fff;padding:14px 32px;border-radius:100px;text-decoration:none;font-weight:600;font-size:15px;transition:var(--transition);box-shadow:0 4px 20px rgba(8,145,178,0.3);opacity:0;transform:translateY(10px)}
+.seq2-cta.show{opacity:1;transform:translateY(0);transition:all 0.6s ease 0.3s}
+.seq2-cta:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(8,145,178,0.4)}
+.seq2-trust{margin-top:20px;font-size:13px;color:#475569;opacity:0}
+.seq2-trust.show{opacity:1;transition:opacity 0.6s ease 0.8s}
+#seq3{background:#0a0e27;flex-direction:column;gap:16px}
+.seq3-phone{width:100%;max-width:400px;margin:0 auto;opacity:0;transform:scale(0.9);transition:all 0.8s ease}
+.seq3-phone.show{opacity:1;transform:scale(1)}
+.phone-frame{background:#1a1a2e;border-radius:36px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,0.06),0 30px 80px rgba(0,0,0,0.25);position:relative;max-width:380px;margin:0 auto}
 .phone-screen{margin:24px 5px 5px;border-radius:28px;overflow:hidden;background:white}
 .phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#1a1a2e;border-radius:0 0 14px 14px;z-index:10}
 .phone-notch::after{content:'';position:absolute;top:7px;left:50%;transform:translateX(-50%);width:36px;height:3px;background:#ffffff20;border-radius:2px}
-.phone-header{padding:12px 14px 10px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;display:flex;align-items:center;gap:10px}
+.phone-header{padding:12px 14px 10px;background:linear-gradient(135deg,#0891b2,#06b6d4);color:white;display:flex;align-items:center;gap:10px}
 .phone-avatar{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
 .phone-name{font-weight:600;font-size:13px}
 .phone-status{font-size:11px;opacity:0.7}
-
-.whatsapp-body{background:#f0f4ff;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d0d8f0' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");height:420px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:5px}
-.whatsapp-body::-webkit-scrollbar{width:3px}
-.whatsapp-body::-webkit-scrollbar-thumb{background:#a0b4e0;border-radius:4px}
-.whatsapp-msg{max-width:85%;padding:7px 12px;border-radius:8px;font-size:13px;line-height:1.4;position:relative;opacity:0;animation:fadeSlideIn 0.3s ease forwards}
-.msg-in{background:white;align-self:flex-start;border-top-left-radius:2px}
-.msg-out{background:#dde8ff;align-self:flex-end;border-top-right-radius:2px}
-@keyframes fadeSlideIn{to{opacity:1;transform:translateY(0)}}
-.msg-time{font-size:10px;color:#999;text-align:right;margin-top:2px}
-.whatsapp-input{display:flex;padding:8px 10px;background:#f0f2f5;gap:6px;align-items:center}
-.whatsapp-input input{flex:1;border:none;padding:8px 14px;border-radius:20px;font-size:13px;background:white;outline:none;font-family:inherit}
-.whatsapp-input input:focus{box-shadow:0 0 0 2px rgba(37,99,235,0.25)}
-.send-btn{width:36px;height:36px;background:var(--primary);border:none;border-radius:50%;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);flex-shrink:0;font-size:16px}
-
-/* Scenarios */
-.scenarios{padding:16px 0 0;display:flex;flex-direction:column;gap:6px;max-width:380px;margin:0 auto}
-.scenario-tab{display:flex;align-items:center;gap:8px;padding:12px 20px;border-radius:100px;border:2px solid #e2e8f0;background:white;cursor:pointer;font-size:13px;font-weight:600;transition:var(--transition);font-family:inherit;color:var(--text-secondary);width:100%;text-align:left}
-.scenario-tab:hover{border-color:var(--primary);color:var(--text)}
-.scenario-tab.active{background:var(--gradient);color:white;border-color:transparent;box-shadow:0 4px 14px rgba(37,99,235,0.3)}
-.tab-icon{font-size:18px}
-
-/* Sections */
-section{padding:80px 24px}
-.section-tag{text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--primary);margin-bottom:10px}
-.section-title{text-align:center;font-size:36px;font-weight:800;letter-spacing:-1px;margin-bottom:12px}
-.section-subtitle{text-align:center;color:var(--text-secondary);font-size:16px;max-width:600px;margin:0 auto 48px}
-.features{background:white}
-.feature-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.feature-card{padding:28px 24px;border-radius:var(--radius-lg);background:var(--bg);border:1px solid transparent;transition:var(--transition);position:relative;overflow:hidden}
-.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);transform:scaleX(0);transform-origin:left;transition:transform 0.6s cubic-bezier(0.34,1.56,0.64,1)}
-.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(37,99,235,0.08)}
-.feature-card:hover::before{transform:scaleX(1)}
-.feature-icon{width:44px;height:44px;border-radius:10px;background:rgba(37,99,235,0.1);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
-.feature-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
-.feature-card p{font-size:13px;color:var(--text-secondary);line-height:1.6}
-
-/* How it works */
-.how-steps{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;counter-reset:step}
-.step{counter-increment:step;text-align:center;padding:32px 20px;position:relative}
-.step::before{content:counter(step);width:40px;height:40px;border-radius:50%;background:var(--gradient);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;margin:0 auto 16px}
-.step h3{font-size:17px;font-weight:700;margin-bottom:6px}
-.step p{font-size:13px;color:var(--text-secondary)}
-
-/* Testimonials */
-.testimonials{background:white}
-.testimonial-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.testimonial-card{background:var(--bg);border-radius:var(--radius-lg);padding:28px;border:1px solid rgba(0,0,0,0.03)}
-.testimonial-card .stars{color:#f59e0b;font-size:16px;margin-bottom:8px}
-.testimonial-card .quote{font-size:14px;color:var(--text);line-height:1.6;margin-bottom:12px;font-style:italic}
-.testimonial-card .author{font-size:13px;font-weight:600}
-.testimonial-card .role{font-size:12px;color:var(--text-secondary)}
-
-/* FAQ */
-.faq-list{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
-.faq-item{border:1px solid #e2e8f0;border-radius:var(--radius);overflow:hidden;background:white}
-.faq-question{width:100%;padding:16px 20px;background:none;border:none;font-size:15px;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--text);transition:var(--transition)}
-.faq-question:hover{background:rgba(0,0,0,0.02)}
-.faq-icon{font-size:18px;transition:transform 0.3s ease;flex-shrink:0}
-.faq-item.open .faq-icon{transform:rotate(45deg)}
-.faq-answer{padding:0 20px;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease}
-.faq-item.open .faq-answer{max-height:300px;padding:0 20px 16px}
-.faq-answer p{font-size:14px;color:var(--text-secondary);line-height:1.7}
-
-/* CTA */
-.cta-section{text-align:center;background:var(--gradient);color:white;padding:80px 24px}
-.cta-section h2{font-size:36px;font-weight:800;margin-bottom:12px}
-.cta-section p{font-size:16px;opacity:0.9;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
-.cta-section .btn-primary{background:white;color:var(--primary);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
-.cta-section .btn-white{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--primary);padding:16px 32px;border-radius:100px;text-decoration:none;font-weight:600;font-size:16px;transition:var(--transition);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
-.cta-section .btn-white:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
-
-/* Pricing */
-.pricing-grid{max-width:800px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.pricing-card{background:white;border-radius:var(--radius-lg);padding:32px;border:2px solid #e2e8f0;transition:var(--transition);position:relative}
-.pricing-card.featured{border-color:var(--primary);box-shadow:0 4px 24px rgba(37,99,235,0.1)}
-.pricing-card.featured::before{content:'Empfohlen';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gradient);color:white;padding:4px 16px;border-radius:100px;font-size:12px;font-weight:700}
-.pricing-card h3{font-size:20px;font-weight:700;margin-bottom:8px}
-.pricing-price{font-size:36px;font-weight:900;margin-bottom:16px}
-.pricing-price span{font-size:16px;font-weight:400;color:var(--text-secondary)}
-.pricing-card ul{list-style:none;padding:0;margin-bottom:24px}
-.pricing-card ul li{padding:8px 0;font-size:14px;color:var(--text-secondary);border-bottom:1px solid #f0f2f5;display:flex;align-items:center;gap:8px}
-.pricing-card ul li:last-child{border-bottom:none}
-.pricing-card ul li::before{content:'✓';color:#22c55e;font-weight:700}
-
-/* Footer */
-footer{background:var(--text);color:rgba(255,255,255,0.7);padding:40px 24px 24px}
-.footer-inner{max-width:1100px;margin:0 auto}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:24px}
-.footer-logo{font-size:22px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
-.footer-desc{font-size:13px;line-height:1.6;max-width:280px}
-.footer-heading{color:white;font-size:14px;font-weight:700;margin-bottom:12px}
-.footer-links{list-style:none;padding:0}
-.footer-links li{margin-bottom:8px}
-.footer-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;transition:var(--transition)}
-.footer-links a:hover{color:white}
-.footer-legal{border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;font-size:12px;color:rgba(255,255,255,0.4);text-align:center}
-
-/* Responsive */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;min-height:auto;padding-top:120px}
-  .phone-mockup{order:-1;max-width:320px}
-  .scenarios{max-width:320px}
-  .feature-grid{grid-template-columns:repeat(2,1fr)}
-  .how-steps{grid-template-columns:1fr;max-width:400px}
-  .testimonial-grid{grid-template-columns:1fr}
-  .pricing-grid{grid-template-columns:1fr;max-width:400px}
-  .footer-grid{grid-template-columns:1fr 1fr}
+.app-chat-body{background:#1a1a2e;height:420px;overflow:hidden;padding:10px;display:flex;flex-direction:column;gap:5px;position:relative}
+.app-chat-msg{max-width:85%;padding:7px 12px;border-radius:8px;font-size:13px;line-height:1.4;position:relative;opacity:0}
+.msg-in{background:#2a2a3e;align-self:flex-start;border-top-left-radius:2px;color:white}
+.msg-out{background:#0891b2;align-self:flex-end;border-top-right-radius:2px;color:white}
+.seq3-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;opacity:0;transition:opacity 0.6s ease 1s}
+.seq3-tabs.show{opacity:1}
+.seq3-tab{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-secondary);padding:8px 16px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;transition:var(--transition)}
+.seq3-tab:hover,.seq3-tab.active{background:rgba(8,145,178,0.15);border-color:var(--primary);color:var(--primary)}
+.app-system-msg{text-align:center;font-size:11px;color:rgba(255,255,255,0.3);padding:4px 0;opacity:0;animation:sysFadeIn 0.4s ease forwards}
+@keyframes sysFadeIn{to{opacity:1}}
+.live-dot{display:inline-block;width:6px;height:6px;background:#22c55e;border-radius:50%;animation:livePulse 2s infinite;margin-right:6px;vertical-align:middle}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+#seq4{background:radial-gradient(ellipse 50% 40% at 50% 30%,rgba(8,145,178,0.08) 0%,transparent 50%),#0a0e27;flex-direction:column;gap:16px}
+.seq4-inner{max-width:900px;padding:20px 24px;width:100%}
+.seq4-line{text-align:center;margin-bottom:0;overflow:hidden}
+.seq4-word{display:inline-block;opacity:0;transform:translateY(30px);transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);margin:0 4px}
+.seq4-word.show{opacity:1;transform:translateY(0)}
+.seq4-big{font-size:clamp(24px,4vw,44px);font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.3}
+.seq4-sub{font-size:16px;color:var(--text-secondary);margin-top:8px}
+.seq4-pricing{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.seq4-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px 28px;flex:1;min-width:220px;max-width:300px;text-align:center;opacity:0;transform:translateY(20px);transition:all 0.5s ease}
+.seq4-card.show{opacity:1;transform:translateY(0)}
+.seq4-card.featured{border-color:var(--primary);background:rgba(8,145,178,0.06)}
+.seq4-card h3{font-size:16px;color:var(--text-secondary);margin-bottom:8px}
+.seq4-card .price{font-size:36px;font-weight:900;color:#fff;margin-bottom:4px}
+.seq4-card .price span{font-size:16px;font-weight:400;color:var(--text-secondary)}
+.seq4-card ul{list-style:none;margin-top:16px;text-align:left}
+.seq4-card li{font-size:14px;color:var(--text-secondary);padding:4px 0;display:flex;align-items:center;gap:8px}
+.seq4-card li::before{content:'✓';color:#22c55e;font-weight:700}
+.seq4-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gradient);color:#fff;padding:12px 28px;border-radius:100px;text-decoration:none;font-weight:600;font-size:14px;margin-top:16px;transition:var(--transition);box-shadow:0 4px 14px rgba(8,145,178,0.3)}
+.seq4-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(8,145,178,0.4)}
+#seq5{background:#0a0e27;flex-direction:column;padding:60px 24px}
+.seq5-inner{max-width:640px;width:100%;margin:0 auto}
+.seq5-title{font-size:clamp(22px,3.5vw,36px);font-weight:900;color:#fff;text-align:center;margin-bottom:32px;letter-spacing:-1px}
+.seq5-post{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px 24px;margin-bottom:12px;opacity:0;transform:translateY(20px);transition:all 0.5s ease}
+.seq5-post.show{opacity:1;transform:translateY(0)}
+.seq5-q{display:flex;gap:12px;align-items:flex-start}
+.seq5-avatar{width:36px;height:36px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;flex-shrink:0}
+.seq5-avatar.q{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.seq5-qtext{font-size:15px;color:#e2e8f0;font-weight:600;line-height:1.5}
+.seq5-qmeta{font-size:12px;color:#475569;margin-top:4px}
+.seq5-answer{background:rgba(8,145,178,0.06);border-radius:12px;padding:16px 20px;margin:12px 0 0 48px;font-size:14px;color:var(--text-secondary);line-height:1.6;border-left:3px solid var(--primary)}
+.seq5-ask{display:inline-flex;align-items:center;gap:8px;background:var(--gradient);color:#fff;padding:14px 28px;border-radius:100px;text-decoration:none;font-weight:600;font-size:15px;margin:24px auto 0;transition:var(--transition);box-shadow:0 4px 20px rgba(8,145,178,0.3);text-align:center;justify-content:center}
+.seq5-ask:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(8,145,178,0.4)}
+#seq6{background:radial-gradient(ellipse 70% 50% at 50% 50%,rgba(8,145,178,0.12) 0%,rgba(6,182,212,0.06) 40%,transparent 70%),#0a0e27;flex-direction:column;gap:20px}
+.seq6-inner{max-width:600px;padding:40px 24px;text-align:center}
+.seq6-title{font-size:clamp(28px,5vw,52px);font-weight:900;color:#fff;letter-spacing:-2px;line-height:1.1;margin-bottom:16px;opacity:0;transform:translateY(20px)}
+.seq6-title.show{opacity:1;transform:translateY(0);transition:all 0.8s ease}
+.seq6-sub{font-size:18px;color:var(--text-secondary);margin-bottom:32px;opacity:0;transition:opacity 0.6s ease 0.4s}
+.seq6-sub.show{opacity:1}
+.seq6-steps{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;opacity:0;transition:opacity 0.6s ease 0.6s}
+.seq6-steps.show{opacity:1}
+.seq6-step{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 20px}
+.seq6-num{width:32px;height:32px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;flex-shrink:0}
+.seq6-step p{font-size:14px;color:var(--text-secondary);text-align:left}
+.seq6-step strong{color:#e2e8f0}
+.seq6-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gradient);color:#fff;padding:16px 36px;border-radius:100px;text-decoration:none;font-weight:700;font-size:17px;transition:var(--transition);box-shadow:0 8px 30px rgba(8,145,178,0.4);opacity:0;transform:translateY(10px)}
+.seq6-cta.show{opacity:1;transform:translateY(0);transition:all 0.6s ease 1s}
+.seq6-cta:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(8,145,178,0.5)}
+.seq6-trust{font-size:13px;color:#475569;margin-top:16px;opacity:0;transition:opacity 0.6s ease 1.4s}
+.seq6-trust.show{opacity:1}
+@media(max-width:768px){
+  .seq3-phone{max-width:320px}
+  .app-chat-body{height:340px}
+  .phone-frame{max-width:320px}
+  .seq4-pricing{flex-direction:column;align-items:center}
+  .seq4-card{max-width:100%}
+  .seq5-post{padding:16px}
+  .seq5-answer{margin-left:0}
+  .seq6-step{padding:12px 16px}
+  .skip-btn{bottom:16px;right:16px;font-size:12px;padding:6px 14px}
 }
-@media(max-width:640px){
-  .nav-links a:not(.cta-nav){display:none}
-  .feature-grid{grid-template-columns:1fr}
-  .hero h1{font-size:32px}
-  .footer-grid{grid-template-columns:1fr}
+@media(max-width:480px){
+  .seq3-phone{max-width:280px}
+  .app-chat-body{height:300px}
+  .phone-frame{max-width:280px}
 }
 </style>
 </head>
 <body>
 
-<nav id="navbar">
-<div class="nav-inner">
-  <a href="../" class="logo">@AsTech</a>
-  <div class="nav-links">
-    <a href="testimonials/">Testimonials</a>
-    <a href="datenschutz/">Datenschutz</a>
-    <a href="../kontakt/">Kontakt</a>
-    <a href="#cta" class="cta-nav" style="background:linear-gradient(135deg,#2563eb,#7c3aed)!important;box-shadow:0 4px 14px rgba(37,99,235,0.3)!important;">📲 App anfordern</a>
-    <a href="#cta" class="cta-nav">Kostenlos testen</a>
-  </div>
-</div>
-</nav>
+<div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-text" id="progressText">1/6</div>
+<button class="skip-btn" id="skipBtn">⏭ Überspringen</button>
 
-<section class="hero">
-<div>
-  <div class="badge"><span class="badge-dot"></span> 📱 JETZT VERFÜGBAR — 5 Nachrichten kostenlos testen</div>
-  <h1>Wussten Sie, dass Sie wertvolle Zeit <span class="highlight">in Ihrer Praxis verlieren?</span></h1>
-  <p>Eine App, die Ihren Job macht. Sie sprechen. @AsTech erledigt.<br>Kein PC. Keine Software. <strong>Nur Ihr Smartphone.</strong></p>
-  <div class="hero-btns">
-    <a href="#cta" class="btn-primary" style="background:linear-gradient(135deg,#2563eb,#7c3aed)!important;box-shadow:0 4px 20px rgba(37,99,235,0.3)!important;">📲 App anfordern →</a>
-    <a href="#features" class="btn-secondary">🎬 Beispiele ansehen</a>
+<!-- SEQ 1 — TITLE -->
+<div class="seq active" id="seq1">
+  <div class="seq1-content">
+    <div class="seq1-badge">📱 JETZT VERFÜGBAR — 5 Nachrichten kostenlos testen</div>
+    <div class="seq1-typing" id="typingLine">
+      <span id="typingText"></span><span class="seq1-cursor"></span>
+    </div>
   </div>
-  <div class="hero-stats">
-    <div class="hero-stat"><h3 style="font-size:28px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">30 Min → 2 Min</h3><p>pro Anfrage</p></div>
-    <div class="hero-stat"><h3>98%</h3><p>Erkennungsrate</p></div>
-    <div class="hero-stat"><h3>24/7</h3><p>Verfügbar</p></div>
-  </div>
-  <p style="margin-top:24px;font-size:13px;color:var(--text-secondary);">🔒 7 Tage testen. Nur 5 Nachrichten/Tag kostenlos. Keine Zahlungsmethode nötig. Jederzeit kündbar.</p>
 </div>
-<div>
-  <div class="phone-mockup">
+
+<!-- SEQ 2 — HERO -->
+<div class="seq" id="seq2">
+  <div class="seq2-content">
+    <h1 class="seq2-title" id="heroTitle">Wussten Sie, dass Sie wertvolle Zeit in Ihrer Praxis verlieren?</h1>
+    <div class="seq2-sub" id="heroSub"></div>
+    <a href="#cta" class="seq2-cta" id="heroCta">📲 App anfordern →</a>
+    <p class="seq2-trust" id="heroTrust">🔒 7 Tage testen · 5 Nachrichten/Tag kostenlos · Keine Zahlungsmethode nötig</p>
+  </div>
+</div>
+
+<!-- SEQ 3 — PHONE -->
+<div class="seq" id="seq3">
+  <div class="seq3-phone" id="phoneContainer">
     <div class="phone-frame">
       <div class="phone-notch"></div>
       <div class="phone-screen">
         <div class="phone-header">
-          <span style="font-size:18px;cursor:pointer;opacity:0.8;">‹</span>
-          <div class="phone-avatar">S</div>
-          <div><div class="phone-name">@AsTech</div><div class="phone-status">online</div></div>
-          <span style="margin-left:auto;font-size:18px;cursor:pointer;opacity:0.8;">⋮</span>
+          <div class="phone-avatar">@A</div>
+          <div>
+            <div class="phone-name">@AsTech Assistent</div>
+            <div class="phone-status">online</div>
+          </div>
         </div>
-        <div class="whatsapp-body" id="waBody">
-          <div class="whatsapp-msg msg-in" style="animation-delay:0.3s">👋 Hallo! Ich bin @AsTech.
-Neuer Patient, Dr. Weber überweist. Akte zusammenfassen?</div>
-          <div class="whatsapp-msg msg-out" style="animation-delay:0.8s">📋 Patient: Klaus B. (67)
-📍 Diagnosen: Hypertonie I10, Diabetes E11, Kreuzschmerzen M54
-📍 Medikation: Ramipril 5mg, Metformin
-📍 Werte: BD 145/90 ⚠️, HbA1c 7,2%
-💡 Ramipril auf 10mg erhöhen?
-▶️ Termin in 4 Wochen?</div>
-          <div class="whatsapp-msg msg-in" style="animation-delay:1.3s">Ja, bitte.</div>
-          <div class="whatsapp-msg msg-out" style="animation-delay:2.0s">✅ Terminvorschlag erstellt. Überweisung an Hausarzt vorbereitet.</div>
-        </div>
-        <div class="whatsapp-input">
-          <span style="font-size:18px;cursor:pointer;">😊</span>
-          <input type="text" placeholder="Nachricht eingeben..." disabled>
-          <div class="send-btn">▶</div>
-        </div>
+        <div class="app-chat-body" id="chatBody"></div>
       </div>
     </div>
   </div>
-  <div class="scenarios">
-    <button class="scenario-tab active" onclick="switchScenario(this,0)"><span class="tab-icon">📋</span> Patientenakte</button>
-    <button class="scenario-tab" onclick="switchScenario(this,1)"><span class="tab-icon">💊</span> Interaktionen</button>
-    <button class="scenario-tab" onclick="switchScenario(this,2)"><span class="tab-icon">🚑</span> Notfall</button>
+  <div class="seq3-tabs" id="scenarioTabs">
+    <button class="seq3-tab active" data-scenario="0">📋 Patientenakte</button>
+    <button class="seq3-tab" data-scenario="1">💊 Interaktion</button>
+    <button class="seq3-tab" data-scenario="2">🚑 Notfall</button>
   </div>
 </div>
-</section>
 
-<!-- FEATURES -->
-<section class="features" id="features">
-<div class="section-tag">Features</div>
-<h2 class="section-title">Was @AsTech für Ihre Praxis tut</h2>
-<p class="section-subtitle">Automatisieren Sie Ihre täglichen Abläufe und sparen Sie bis zu 15 Stunden pro Woche.</p>
-<div class="feature-grid">
-  <div class="feature-card"><div class="feature-icon">📋</div><h3>Patientenakte</h3><p>Automatische Zusammenfassung und Strukturierung der Behandlungsdokumentation. Neue Überweisungen in Sekunden verarbeitet.</p></div>
-  <div class="feature-card"><div class="feature-icon">💊</div><h3>Medikamentenprüfung</h3><p>Sofortige Interaktions- und Kontraindikationsprüfung. @AsTech scannt alle Wirkstoffe und warnt vor Risiken.</p></div>
-  <div class="feature-card"><div class="feature-icon">🚑</div><h3>Notfall-Assistent</h3><p>Schnelle Handlungsanleitungen bei medizinischen Notfällen. Automatische Protokollierung und Überweisungsvorbereitung.</p></div>
-  <div class="feature-card"><div class="feature-icon">💬</div><h3>Patientenkommunikation</h3><p>Terminerinnerungen, Rezeptanfragen und Befundmitteilung per Chat. Ihre Patienten bleiben informiert.</p></div>
-  <div class="feature-card"><div class="feature-icon">📄</div><h3>Arztbriefe</h3><p>Professionelle Arztbriefe und Überweisungen automatisch generiert und digital versendet.</p></div>
-  <div class="feature-card"><div class="feature-icon">🔒</div><h3>DSGVO-konform</h3><p>Patientendaten sicher auf deutschen Servern. Strengste Datenschutzstandards inklusive AVV.</p></div>
-</div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section>
-<div class="section-tag">So funktioniert's</div>
-<h2 class="section-title">In 3 Schritten starten</h2>
-<p class="section-subtitle">Keine Installation, keine Schulung. Einfach WhatsApp öffnen und loslegen.</p>
-<div class="how-steps">
-  <div class="step"><h3>WhatsApp öffnen</h3><p>Klicken Sie auf „App anfordern" und schreiben Sie uns eine Nachricht auf WhatsApp. Keine App-Installation nötig.</p></div>
-  <div class="step"><h3>Patientendaten senden</h3><p>Senden Sie eine Überweisung, Medikamentenliste oder Notfallmeldung — @AsTech analysiert alles automatisch.</p></div>
-  <div class="step"><h3>Ergebnis erhalten</h3><p>Sie erhalten strukturierte Zusammenfassungen, Warnungen und Handlungsempfehlungen. Zeitersparnis pur.</p></div>
-</div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-<div class="section-tag">Erfahrungen</div>
-<h2 class="section-title">Was Praxen & Kliniken sagen</h2>
-<p class="section-subtitle">Bereits 80+ medizinische Einrichtungen vertrauen auf @AsTech.</p>
-<div class="testimonial-grid">
-  <div class="testimonial-card">
-    <div class="stars">★★★★★</div>
-    <div class="quote">"Die automatische Patientenakte und die Medikamentenprüfung sind unglaublich präzise. Wir haben unsere Dokumentationszeit um 60% reduziert. Absolut empfehlenswert."</div>
-    <div class="author">— Dr. Julia Wagner</div>
-    <div class="role">Fachärztin für Innere Medizin, Berlin</div>
-  </div>
-  <div class="testimonial-card">
-    <div class="stars">★★★★★</div>
-    <div class="quote">"Der Notfall-Assistent hat uns schon mehrfach in kritischen Situationen geholfen. Blitzschnelle Analyse und klare Handlungsanweisungen. Ein Gewinn für die Patientensicherheit."</div>
-    <div class="author">— Prof. Dr. Thomas Beyer</div>
-    <div class="role">Chefarzt, Klinikum München</div>
-  </div>
-</div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-<div class="section-tag">FAQ</div>
-<h2 class="section-title">Häufige Fragen</h2>
-<p class="section-subtitle">Antworten auf die wichtigsten Fragen für medizinische Einrichtungen.</p>
-<div class="faq-list">
-  <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">Ist @AsTech DSGVO-konform? <span class="faq-icon">+</span></button>
-    <div class="faq-answer"><p>Ja, @AsTech ist vollständig DSGVO-konform. Alle Patientendaten werden auf deutschen Servern verarbeitet und gespeichert. Wir erfüllen die strengen Anforderungen der medizinischen Dokumentation. Auf Wunsch erstellen wir eine Auftragsverarbeitungsvereinbarung (AVV).</p></div>
-  </div>
-  <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">Kann @AsTech mit meinem Praxisverwaltungssystem (PVS) verbunden werden? <span class="faq-icon">+</span></button>
-    <div class="faq-answer"><p>Ja, @AsTech lässt sich in gängige Praxisverwaltungssysteme integrieren. Wir unterstützen Schnittstellen zu den meisten PVS-Anbietern in Deutschland. Fragen Sie uns nach Ihrem System, wir prüfen die Kompatibilität.</p></div>
-  </div>
-  <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">Wie schnell bin ich einsatzbereit? <span class="faq-icon">+</span></button>
-    <div class="faq-answer"><p>In weniger als 5 Minuten. Sie müssen keine Software installieren oder schulen. Einfach WhatsApp öffnen, uns schreiben und loslegen. Ihre Mitarbeiter können sofort arbeiten — ohne Einarbeitungszeit.</p></div>
-  </div>
-  <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">Was kostet @AsTech? <span class="faq-icon">+</span></button>
-    <div class="faq-answer"><p>@AsTech kostet 100€ pro Monat für Praxen mit bis zu 3 Ärzten und 300€ pro Monat für das Professional-Paket (unbegrenzt Ärzte & Standorte, Prioritäts-Support). Beide Pakete beinhalten eine 7-tägige kostenlose Testphase — keine Kreditkarte nötig.</p></div>
-  </div>
-  <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">Müssen meine Patienten auch WhatsApp nutzen? <span class="faq-icon">+</span></button>
-    <div class="faq-answer"><p>Nein, nur Sie als Praxis benötigen WhatsApp für die Interaktion mit @AsTech. Ihre Patienten können weiterhin auf allen gewohnten Wegen kommunizieren — die automatischen Erinnerungen werden per WhatsApp, E-Mail oder SMS versendet, je nach Präferenz.</p></div>
-  </div>
-</div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-<div class="section-tag">Preise</div>
-<h2 class="section-title">Einfach & transparent</h2>
-<p class="section-subtitle">7 Tage kostenlos testen. Keine Kreditkarte nötig. Jederzeit kündbar.</p>
-<div class="pricing-grid">
-  <div class="pricing-card">
-    <h3>Standard</h3>
-    <div class="pricing-price">100€ <span>/ Monat</span></div>
-    <ul>
-      <li>Bis zu 3 Ärzte</li>
-      <li>Fachliche Anfragen in Sekunden</li>
-      <li>Upload (PDF, Excel, Fotos)</li>
-      <li>5 Nachrichten/Tag inklusive</li>
-      <li>DSGVO-konform</li>
-      <li>E-Mail-Support</li>
-    </ul>
-    <a href="#cta" class="btn-primary" style="width:100%;justify-content:center;background:linear-gradient(135deg,#2563eb,#7c3aed)!important;">📲 App anfordern</a>
-  </div>
-  <div class="pricing-card featured">
-    <h3>Professional</h3>
-    <div class="pricing-price">300€ <span>/ Monat</span></div>
-    <ul>
-      <li>Unbegrenzt Ärzte & Standorte</li>
-      <li>Unbegrenzte Nachrichten</li>
-      <li>Prioritäts-Support (24h)</li>
-      <li>Individuelle Anpassungen</li>
-      <li>Eigener API-Key möglich</li>
-      <li>Dedizierte Betreuung</li>
-    </ul>
-    <a href="#cta" class="btn-primary" style="width:100%;justify-content:center;">📲 App anfordern</a>
-  </div>
-</div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section" id="cta">
-<h2>Bereit für die Zukunft Ihrer Praxis?</h2>
-<p>Testen Sie @AsTech 7 Tage kostenlos — 5 Nachrichten pro Tag gratis, dann zahlen Sie nur, was Sie verbrauchen. Keine versteckten Kosten.</p>
-<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-  <a href="mailto:ascorpm14@gmail.com?subject=@AsTech%20Gesundheitswesen" class="btn-white" style="background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff!important;box-shadow:0 8px 32px rgba(37,99,235,0.4)!important;">📲 App anfordern</a>
-  <a href="mailto:ascorpm14@gmail.com?subject=Frage%20zu%20@AsTech%20Gesundheitswesen" class="btn-white">✉️ Per E-Mail</a>
-</div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-<div class="footer-inner">
-  <div class="footer-grid">
-    <div class="footer-col footer-brand">
-      <div class="footer-logo">@AsTech</div>
-      <p class="footer-desc">KI-Assistent für Kliniken & Praxen. Automatisierte Patientenverwaltung, Dokumentation und Kommunikation — direkt per WhatsApp.</p>
+<!-- SEQ 4 — PRICING -->
+<div class="seq" id="seq4">
+  <div class="seq4-inner">
+    <div class="seq4-line" id="pricingLine1">
+      <span class="seq4-word seq4-big">7</span>
+      <span class="seq4-word seq4-big">Tage</span>
+      <span class="seq4-word seq4-big">kostenlos</span>
+      <span class="seq4-word seq4-big">testen</span>
     </div>
-    <div class="footer-col">
-      <h4 class="footer-heading">Branchen</h4>
-      <ul class="footer-links">
-        <li><a href="../">Gesundheitswesen</a></li>
-      </ul>
+    <div class="seq4-line" id="pricingLine2">
+      <span class="seq4-word seq4-sub">5</span>
+      <span class="seq4-word seq4-sub">Nachrichten</span>
+      <span class="seq4-word seq4-sub">pro</span>
+      <span class="seq4-word seq4-sub">Tag</span>
+      <span class="seq4-word seq4-sub">gratis</span>
     </div>
-    <div class="footer-col">
-      <h4 class="footer-heading">Links</h4>
-      <ul class="footer-links">
-        <li><a href="../#features">Features</a></li>
-        <li><a href="#cta">Preise</a></li>
-        <li><a href="../kontakt/">Kontakt</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4 class="footer-heading">Kontakt</h4>
-      <ul class="footer-links">
-        <li><a href="mailto:ascorpm14@gmail.com">📧 E-Mail</a></li>
-      </ul>
+    <div class="seq4-pricing" id="pricingCards">
+      <div class="seq4-card" id="cardStd">
+        <h3>Standard</h3>
+        <div class="price">100<span>€/Monat</span></div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-top:4px">Bis zu 3 Mitarbeiter</p>
+        <ul>
+          <li>Unbegrenzte Nachrichten</li>
+          <li>E-Mail-Support</li>
+          <li>Aktenzusammenfassung</li>
+          <li>Medikamentenprüfung</li>
+        </ul>
+        <a href="#cta" class="seq4-cta">Jetzt testen →</a>
+      </div>
+      <div class="seq4-card featured" id="cardPro">
+        <h3>Professional</h3>
+        <div class="price">300<span>€/Monat</span></div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-top:4px">Unbegrenzt Mitarbeiter</p>
+        <ul>
+          <li>Alles aus Standard</li>
+          <li>24/7 Priority-Support</li>
+          <li>Eigene API-Key-Option</li>
+          <li>Notfall-Screening</li>
+        </ul>
+        <a href="#cta" class="seq4-cta">Jetzt testen →</a>
+      </div>
     </div>
   </div>
-  <div class="footer-legal">© 2026 @AsTech — KI-Assistent für Gesundheitswesen</div>
 </div>
-</footer>
+
+<!-- SEQ 5 — FAQ -->
+<div class="seq" id="seq5">
+  <div class="seq5-inner">
+    <h2 class="seq5-title">Häufige Fragen</h2>
+    <div class="seq5-post" id="faq1">
+      <div class="seq5-q">
+        <div class="seq5-avatar q">?</div>
+        <div>
+          <div class="seq5-qtext">Muss ich etwas installieren?</div>
+          <div class="seq5-qmeta">Praxis · Gerade gefragt</div>
+        </div>
+      </div>
+      <div class="seq5-answer">📱 Ja — aber es dauert nur 2 Minuten. Laden Sie die APK herunter, installieren Sie sie auf Ihrem Smartphone, und schon kann es losgehen. Kein Play Store nötig, kein PC, keine Schulung. Ärzte und MFA nutzen die App direkt vom Telefon aus.</div>
+    </div>
+    <div class="seq5-post" id="faq2">
+      <div class="seq5-q">
+        <div class="seq5-avatar q">?</div>
+        <div>
+          <div class="seq5-qtext">Was kostet @AsTech wirklich?</div>
+          <div class="seq5-qmeta">Praxisinhaber · Vor 2 Stunden</div>
+        </div>
+      </div>
+      <div class="seq5-answer">💶 Die ersten 7 Tage sind komplett kostenlos — 5 Nachrichten pro Tag gratis. Wenn Sie mehr brauchen, schalten Sie auf "Pay-as-you-go" um (eigener API-Key, Sie zahlen nur Ihren Verbrauch). Danach wählen Sie: 100€/Monat (Standard) oder 300€/Monat (Professional). Keine versteckten Kosten, keine Mindestlaufzeit.</div>
+    </div>
+    <div class="seq5-post" id="faq3">
+      <div class="seq5-q">
+        <div class="seq5-avatar q">?</div>
+        <div>
+          <div class="seq5-qtext">Sind meine Patientendaten sicher?</div>
+          <div class="seq5-qmeta">Arztpraxis · Gestern gefragt</div>
+        </div>
+      </div>
+      <div class="seq5-answer">🔒 Absolut. Ihre Daten bleiben auf unserem Server in Deutschland (Contabo München, ISO 27001). Kein AWS, kein Azure, keine Drittländer. Patientendaten sind besonders geschützt (Art. 9 DSGVO, §203 StGB). Jeder Mandant bekommt eine isolierte Umgebung. Wir bieten einen AVV (Auftragsverarbeitungsvertrag) an — fragen Sie uns per E-Mail.</div>
+    </div>
+    <a href="#cta" class="seq5-ask">📲 App anfordern →</a>
+  </div>
+</div>
+
+<!-- SEQ 6 — CTA -->
+<div class="seq" id="seq6">
+  <div class="seq6-inner">
+    <h2 class="seq6-title" id="ctaTitle">7 Tage kostenlos testen</h2>
+    <p class="seq6-sub" id="ctaSub">Keine Zahlungsmethode nötig. Jederzeit kündbar.</p>
+    <div class="seq6-steps" id="installSteps">
+      <div class="seq6-step">
+        <div class="seq6-num">1</div>
+        <p><strong>APK anfordern</strong> — Senden Sie uns eine kurze E-Mail oder nutzen Sie das Kontaktformular. Wir erstellen Ihre personalisierte App.</p>
+      </div>
+      <div class="seq6-step">
+        <div class="seq6-num">2</div>
+        <p><strong>App installieren</strong> — Öffnen Sie den Download-Link auf Ihrem Smartphone, tippen Sie auf die APK und installieren Sie sie. Kein Play Store nötig.</p>
+      </div>
+      <div class="seq6-step">
+        <div class="seq6-num">3</div>
+        <p><strong>Loslegen</strong> — Öffnen Sie die App, schreiben Sie Ihre erste Nachricht. @AsTech erledigt den Rest. 5 Nachrichten pro Tag gratis.</p>
+      </div>
+    </div>
+    <a href="mailto:ascorpm14@gmail.com?subject=APK%20anfordern%20-%20Gesundheitswesen" class="seq6-cta" id="finalCta">📲 Jetzt App anfordern →</a>
+    <p class="seq6-trust" id="finalTrust">🔒 7 Tage testen · 5 Nachrichten/Tag kostenlos · Keine Zahlungsmethode nötig</p>
+  </div>
+</div>
 
 <script>
-// Navbar scroll
-window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40)});
+(function(){
+'use strict';
+const seqs = [1,2,3,4,5,6].map(i => document.getElementById('seq'+i));
+let currentSeq = 0;
+let isAnimating = false;
+const progressFill = document.getElementById('progressFill');
+const progressText = document.getElementById('progressText');
+const progressBar = document.getElementById('progressBar');
+const skipBtn = document.getElementById('skipBtn');
 
-// Scenario tabs
+function showProgress() { progressBar.style.display = 'block'; progressText.style.display = 'block'; }
+function updateProgress(seq) {
+  const pct = ((seq + 1) / 6) * 100;
+  progressFill.style.width = pct + '%';
+  progressText.textContent = (seq + 1) + '/6';
+}
+function goToSeq(idx) {
+  if (isAnimating || idx === currentSeq || idx < 0 || idx > 5) return;
+  isAnimating = true;
+  seqs[currentSeq].classList.remove('active');
+  seqs[currentSeq].classList.add('exit');
+  setTimeout(() => {
+    seqs[currentSeq].classList.remove('exit');
+    currentSeq = idx;
+    seqs[currentSeq].classList.add('active');
+    updateProgress(currentSeq);
+    isAnimating = false;
+    startCurrentSeq();
+  }, 500);
+}
+skipBtn.addEventListener('click', () => { if (currentSeq < 5) goToSeq(currentSeq + 1); });
+
+let seqTimer = null;
+function startTimer(delay, next) {
+  clearTimeout(seqTimer);
+  if (next < 6) seqTimer = setTimeout(() => goToSeq(next), delay);
+}
+
+// SEQ 1
+function startSeq1() {
+  showProgress(); updateProgress(0); skipBtn.style.display = 'block';
+  const text = "Wussten Sie, dass Sie wertvolle Zeit in Ihrer Praxis verlieren?";
+  const el = document.getElementById('typingText'); el.textContent = '';
+  let i = 0;
+  function type() {
+    if (i < text.length) { el.textContent += text.charAt(i); i++; setTimeout(type, 80); }
+    else { startTimer(1200, 1); }
+  }
+  type();
+}
+
+// SEQ 2
+function startSeq2() {
+  updateProgress(1);
+  const title = document.getElementById('heroTitle');
+  const sub = document.getElementById('heroSub');
+  const cta = document.getElementById('heroCta');
+  const trust = document.getElementById('heroTrust');
+  title.classList.remove('show'); sub.innerHTML = ''; cta.classList.remove('show'); trust.classList.remove('show');
+  setTimeout(() => title.classList.add('show'), 100);
+  setTimeout(() => {
+    const subText = "Eine App, die Ihren Job macht. Sie sprechen. @AsTech erledigt. Kein PC. Keine Software. Nur Ihr Smartphone.";
+    sub.innerHTML = ''; let i = 0;
+    function typeLetter() {
+      if (i < subText.length) {
+        const span = document.createElement('span'); span.className = 'letter'; span.textContent = subText.charAt(i);
+        sub.appendChild(span); requestAnimationFrame(() => span.classList.add('show')); i++;
+        setTimeout(typeLetter, 25);
+      } else { cta.classList.add('show'); trust.classList.add('show'); startTimer(2500, 2); }
+    }
+    typeLetter();
+  }, 800);
+}
+
+// SEQ 3 — Phone
 const scenarios = [
-  [
-    {type:'in',text:'👋 Hallo! Ich bin @AsTech.\nNeuer Patient, Dr. Weber überweist. Akte zusammenfassen?'},
-    {type:'out',text:'📋 Patient: Klaus B. (67)\n📍 Diagnosen: Hypertonie I10, Diabetes E11, Kreuzschmerzen M54\n📍 Medikation: Ramipril 5mg, Metformin\n📍 Werte: BD 145/90 ⚠️, HbA1c 7,2%\n💡 Ramipril auf 10mg erhöhen?\n▶️ Termin in 4 Wochen?'},
-    {type:'in',text:'Ja, bitte.'},
-    {type:'out',text:'✅ Terminvorschlag erstellt. Überweisung an Hausarzt vorbereitet.'}
-  ],
-  [
-    {type:'in',text:'👋 Hallo! Ich bin @AsTech.\nPatientin bekommt Xarelto. Nimmt schon 5 Medikamente. Verträgt sich das?'},
-    {type:'out',text:'🔍 Interaktionsprüfung — Xarelto\n✅ Metformin: keine Interaktion\n✅ Pantoprazol: keine Interaktion\n⚠️ Ramipril: erhöhtes Blutungsrisiko\n❌ Simvastatin: HOCHRISIKO!\n❌ Ibuprofen: Blutungsrisiko erhöht!\n💡 Simvastatin pausieren, Ibuprofen durch Paracetamol ersetzen\n▶️ Brief an Hausarzt?'},
-    {type:'in',text:'Ja, bitte erstellen.'},
-    {type:'out',text:'✅ Arztbrief erstellt und an Ihre E-Mail gesendet.'}
-  ],
-  [
-    {type:'in',text:'👋 Hallo! Ich bin @AsTech.\nPatient ruft an: Brustschmerzen seit 30 Min, Übelkeit. Was tun?'},
-    {type:'out',text:'🚑 NOTFALL — Potenzieller Herzinfarkt!\n📍 NOTARZT 112 RUFEN!\n📍 Patient: hinsetzen, nichts essen\n📍 ASS 100mg kauen lassen\n📍 Tür öffnen für Rettungsdienst\n⚠️ Nicht hinfahren lassen!\n▶️ Notfallprotokoll erstellen?'},
-    {type:'in',text:'Ja, dokumentieren.'},
-    {type:'out',text:'✅ Notfallprotokoll erstellt. Nachbearbeitung: Überweisung Kardiologie.'}
-  ]
+  {
+    name: 'Patientenakte',
+    msgs: [
+      {type:'out', text:'Neuer Patient, Dr. Weber überweist. Kannst du die Akte zusammenfassen?'},
+      {type:'sys', text:'@AsTech analysiert Patientenakte...'},
+      {type:'in', text:'Patient: Klaus B. (67) — Überweisung Dr. Weber'},
+      {type:'in', text:'Diagnosen:\nI10.90 — Hypertonie (seit 2018)\nE11.91 — Diabetes Typ 2 (seit 2020)\nM54.5 — Chronische Kreuzschmerzen'},
+      {type:'in', text:'Medikation: Ramipril 5mg, Metformin 850mg\nLetzte Werte: BD 145/90 ⚠️, HbA1c 7,2%\n▶️ Termin in 4 Wochen vorschlagen?'},
+    ]
+  },
+  {
+    name: 'Interaktion',
+    msgs: [
+      {type:'out', text:'Patientin bekommt neu Xarelto. Nimmt schon 5 Medikamente. Verträgt sich das?'},
+      {type:'sys', text:'@AsTech prüft Interaktionen...'},
+      {type:'in', text:'Interaktionsprüfung — Xarelto + Bestandsmedikation:'},
+      {type:'in', text:'Ramipril: ⚠️ Erhöhtes Blutungsrisiko (mittel)\nMetformin: ✅ Keine Interaktion\nSimvastatin: ❌ Stark erhöhte Konzentration! Hoch!\nIbuprofen: ❌ Blutungsrisiko deutlich erhöht!'},
+      {type:'in', text:'Empfehlung:\n1. Simvastatin → pausieren, auf Rosuvastatin\n2. Ibuprofen → Paracetamol/Metamizol\n▶️ Brief an Hausarzt vorbereiten?'},
+    ]
+  },
+  {
+    name: 'Notfall',
+    msgs: [
+      {type:'out', text:'Patient ruft an: Brustschmerzen seit 30 Minuten, Übelkeit. Was tun?'},
+      {type:'sys', text:'⚠️ @AsTech führt Notfall-Screening durch...'},
+      {type:'in', text:'⚠️ Potenzieller Herzinfarkt! Symptome:\n❕ Brustschmerzen (30 Min, andauernd)\n❕ Übelkeit'},
+      {type:'in', text:'Sofortmassnahmen:\n1. 🚑 Notarzt 112 — V.a. ACS\n2. Patient hinsetzen, nichts essen\n3. ASS 100mg kauen (falls verfügbar)\n4. Tür öffnen für Rettungsdienst'},
+      {type:'in', text:'Dokumentation:\n▶️ Notfallprotokoll-Eintrag erstellen\n▶️ Überweisung Kardiologie veranlassen'},
+    ]
+  }
 ];
 
-function switchScenario(btn,idx){
-  document.querySelectorAll('.scenario-tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  const body=document.getElementById('waBody');
-  body.innerHTML='';
-  let delay=300;
-  scenarios[idx].forEach((msg,i)=>{
-    delay+=600;
-    setTimeout(()=>{
-      const div=document.createElement('div');
-      div.className='whatsapp-msg '+(msg.type==='in'?'msg-in':'msg-out');
-      div.style.animationDelay='0s';
-      div.innerHTML=msg.text.replace(/\n/g,'<br>')+'<div class="msg-time">'+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+'</div>';
-      body.appendChild(div);
-      body.scrollTop=body.scrollHeight;
-    },delay);
+let chatBody, scenarioTabs, phoneContainer;
+let currentScenario = 0;
+let msgTimers = [];
+
+function renderScenario(idx) {
+  msgTimers.forEach(t => clearTimeout(t)); msgTimers = [];
+  if (!chatBody) return; chatBody.innerHTML = '';
+  const msgs = scenarios[idx].msgs;
+  let delay = 0;
+  msgs.forEach((msg, mi) => {
+    if (msg.type === 'sys') {
+      const t = setTimeout(() => {
+        const div = document.createElement('div'); div.className = 'app-system-msg';
+        div.innerHTML = '<span class="live-dot"></span>' + msg.text; chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, delay); msgTimers.push(t); delay += 1200;
+    } else {
+      const t = setTimeout(() => {
+        const div = document.createElement('div'); div.className = 'app-chat-msg ' + (msg.type === 'in' ? 'msg-in' : 'msg-out');
+        div.textContent = msg.text; chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, delay); msgTimers.push(t); delay += 800 + msg.text.length * 20;
+    }
   });
 }
 
-// FAQ accordion
-function toggleFaq(btn){
-  const item=btn.closest('.faq-item');
-  const isOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-  if(!isOpen) item.classList.add('open');
+function startSeq3() {
+  updateProgress(2);
+  phoneContainer = document.getElementById('phoneContainer');
+  chatBody = document.getElementById('chatBody');
+  scenarioTabs = document.getElementById('scenarioTabs');
+  phoneContainer.classList.remove('show'); scenarioTabs.classList.remove('show');
+  document.querySelectorAll('.seq3-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.seq3-tab[data-scenario="0"]').classList.add('active');
+  setTimeout(() => phoneContainer.classList.add('show'), 200);
+  setTimeout(() => scenarioTabs.classList.add('show'), 1000);
+  setTimeout(() => { currentScenario = 0; renderScenario(0); startTimer(15000, 3); }, 1400);
+  scenarioTabs.querySelectorAll('.seq3-tab').forEach(tab => {
+    tab.onclick = () => {
+      const idx = parseInt(tab.dataset.scenario);
+      if (idx === currentScenario) return;
+      document.querySelectorAll('.seq3-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active'); currentScenario = idx; renderScenario(idx);
+    };
+  });
 }
+
+// SEQ 4
+function startSeq4() {
+  updateProgress(3);
+  document.querySelectorAll('#pricingLine1 .seq4-word, #pricingLine2 .seq4-word').forEach((w, i) => {
+    w.classList.remove('show'); setTimeout(() => w.classList.add('show'), 50 + i * 80);
+  });
+  document.querySelectorAll('.seq4-card').forEach((c, i) => {
+    c.classList.remove('show'); setTimeout(() => c.classList.add('show'), 800 + i * 300);
+  });
+  startTimer(12000, 4);
+}
+
+// SEQ 5
+function startSeq5() {
+  updateProgress(4);
+  document.querySelectorAll('.seq5-post').forEach((p, i) => {
+    p.classList.remove('show'); setTimeout(() => p.classList.add('show'), 300 + i * 600);
+  });
+  startTimer(12000, 5);
+}
+
+// SEQ 6
+function startSeq6() {
+  updateProgress(5);
+  const els = ['ctaTitle','ctaSub','installSteps','finalCta','finalTrust'].map(id => document.getElementById(id));
+  els.forEach(el => el.classList.remove('show'));
+  setTimeout(() => els[0].classList.add('show'), 200);
+  setTimeout(() => els[1].classList.add('show'), 600);
+  setTimeout(() => els[2].classList.add('show'), 1000);
+  setTimeout(() => els[3].classList.add('show'), 1800);
+  setTimeout(() => els[4].classList.add('show'), 2200);
+  startTimer(20000, 0);
+}
+
+function startCurrentSeq() {
+  switch(currentSeq) {
+    case 0: startSeq1(); break; case 1: startSeq2(); break; case 2: startSeq3(); break;
+    case 3: startSeq4(); break; case 4: startSeq5(); break; case 5: startSeq6(); break;
+  }
+}
+startCurrentSeq();
+})();
 </script>
 </body>
 </html>
