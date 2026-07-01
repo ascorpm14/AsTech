@@ -125,7 +125,7 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',-apple-system,BlinkMac
 .seq4-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,0.4)}
 
 /* ===== SEQUENCE 5 — FAQ ===== */
-#seq5{background:#0a0e27;flex-direction:column;padding:60px 24px}
+#seq5{background:#0a0e27;flex-direction:column;padding:60px 24px;overflow-y:auto}
 .seq5-inner{max-width:640px;width:100%;margin:0 auto}
 .seq5-title{font-size:clamp(22px,3.5vw,36px);font-weight:900;color:#fff;text-align:center;margin-bottom:32px;letter-spacing:-1px}
 .seq5-post{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px 24px;margin-bottom:12px;opacity:0;transform:translateY(20px);transition:all 0.5s ease}
@@ -621,10 +621,10 @@ function showStats() {
       p.textContent = s;
       container.appendChild(p);
       requestAnimationFrame(() => p.classList.add('show'));
-    }, 200 + i * 3800);
+    }, 200 + i * 6000);
   });
   // Advance to seq2 after all stats + reading time
-  setTimeout(() => startTimer(2000, 1), 200 + stats.length * 3800);
+  setTimeout(() => startTimer(2000, 1), 200 + stats.length * 6000);
 }
 
 // ===== SEQUENCE 2 — Vision ===== — Hero =====
@@ -819,8 +819,8 @@ function startSeq5() {
     setTimeout(() => {
       p.classList.add('show');
       // Scroll into view if needed
-      p.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 500 + i * 3500);
+      
+    }, 800 + i * 5000);
   });
   // Wait until all shown + 4s extra for reading
   startTimer(500 + posts.length * 3500 + 4000, 5);
