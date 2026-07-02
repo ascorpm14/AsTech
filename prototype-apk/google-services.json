@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "782889478248",
+    "project_id": "p1jonah",
+    "storage_bucket": "p1jonah.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782889478248:android:fd756b8f156f95018d33dd",
+        "android_client_info": {
+          "package_name": "com.astech.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPJmGttd0dx3ngpL57zCAaH3Pvtm0j5zk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
