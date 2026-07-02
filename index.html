@@ -4,30 +4,220 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>@AsTech — KI-Assistent für deutsche Unternehmen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/niche-cards.css">
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Inter',-apple-system,sans-serif;background:#0a0e27;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:24px}
-  .container{max-width:500px}
-  h1{font-size:28px;font-weight:800;background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px}
-  p{color:#94a3b8;margin-bottom:32px;line-height:1.6}
-  .links{display:flex;flex-direction:column;gap:12px}
-  a{display:block;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:600;font-size:15px;transition:all 0.3s}
-  a.primary{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff}
-  a.secondary{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.1)}
-  a:hover{transform:translateY(-2px);opacity:0.9}
-  .footer{margin-top:48px;font-size:12px;color:#475569}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0e27;--surface:#ffffff;--text:#e2e8f0;--text-secondary:#94a3b8;--primary:#2563eb;--primary-dark:#1d4ed8;--gradient:linear-gradient(135deg,#2563eb,#7c3aed);--shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 20px 60px rgba(0,0,0,0.15);--radius:12px;--radius-lg:20px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:#0a0e27;color:#e2e8f0;line-height:1.6;overflow-x:hidden}
+.hub-nav{position:fixed;top:0;width:100%;background:rgba(10,14,39,0.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);z-index:100;padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
+.hub-nav .logo{font-weight:800;font-size:20px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.hub-nav a{color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;padding:8px 16px;border-radius:100px;transition:var(--transition)}
+.hub-nav a:hover{color:#fff;background:rgba(255,255,255,0.06)}
+.hub-nav .cta{background:var(--gradient);color:#fff!important;padding:8px 20px}
+.hub-hero{text-align:center;padding:140px 24px 60px;max-width:800px;margin:0 auto;background:radial-gradient(ellipse 60% 45% at 50% 40%,rgba(37,99,235,0.12) 0%,rgba(124,58,237,0.06) 40%,transparent 70%),#0a0e27;min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hub-hero h1{font-size:clamp(32px,5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-2px;margin-bottom:16px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hub-hero p{font-size:clamp(16px,2vw,20px);color:var(--text-secondary);max-width:600px;margin:0 auto 32px;line-height:1.6}
+.hub-niches{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.hub-niche-link{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:100px;font-weight:600;font-size:15px;text-decoration:none;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);min-width:200px;justify-content:center}
+.hub-niche-link.primary{background:var(--gradient);color:#fff;box-shadow:0 4px 20px rgba(37,99,235,0.3)}
+.hub-niche-link.secondary{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-secondary)}
+.hub-niche-link:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(37,99,235,0.4)}
+.hub-niche-link.secondary:hover{background:rgba(255,255,255,0.08);border-color:var(--primary);color:#fff}
+.hub-features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:32px auto 0;text-align:left}
+.hub-feat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px;transition:var(--transition)}
+.hub-feat:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.12);transform:translateY(-4px)}
+.hub-feat-icon{width:40px;height:40px;border-radius:10px;background:rgba(37,99,235,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:12px}
+.hub-feat h3{font-size:15px;font-weight:700;margin-bottom:6px;color:#fff}
+.hub-feat p{font-size:13px;color:var(--text-secondary);line-height:1.5}
+.hub-footer{border-top:1px solid rgba(255,255,255,0.06);padding:32px 24px;text-align:center;font-size:14px;color:#475569}
+.hub-footer a{color:var(--text-secondary);text-decoration:none;margin:0 16px}
+.hub-footer a:hover{color:#fff}
+@media(max-width:768px){
+  .hub-hero{padding:100px 16px 40px;min-height:auto}
+  .hub-hero h1{font-size:28px}
+  .hub-features{grid-template-columns:1fr;gap:14px}
+  .hub-niches{flex-direction:column;align-items:stretch}
+  .hub-niche-link{width:100%}
+  .hub-nav a:not(.cta):not(.logo){display:none}
+}
+.niche-form-fields.hidden,.niche-card-link-form{display:none}
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>@AsTech</h1>
-  <p>Ihr Smartphone wird zum Büro. Wählen Sie Ihre Branche:</p>
-  <div class="links">
-    <a href="steuerberatung/" class="primary">🏛️ Steuerberatung</a>
-    <a href="logistik/" class="secondary">🚚 Logistik & Spedition</a>
-    <a href="gesundheitswesen/" class="secondary">🏥 Gesundheitswesen</a>
+
+<nav class="hub-nav">
+  <a href="#" class="logo">@AsTech</a>
+  <div>
+    <a href="#features">Branchen</a>
+    <a href="#actions">Aktionen</a>
+    <a href="#activation">Jetzt starten</a>
+    <a href="steuerberatung/" class="cta">🏛️ Steuerberatung</a>
   </div>
-  <div class="footer">© 2026 @AsTech</div>
+</nav>
+
+<section class="hub-hero">
+  <h1>@AsTech</h1>
+  <p>Ihr Smartphone wird zum Büro. KI-Assistent für Steuerberater, Logistiker und Gesundheitsdienstleister – direkt auf Ihrem Telefon.</p>
+  <div class="hub-niches">
+    <a href="steuerberatung/" class="hub-niche-link primary">🏛️ Steuerberatung</a>
+    <a href="logistik/" class="hub-niche-link secondary">🚚 Logistik & Spedition</a>
+    <a href="gesundheitswesen/" class="hub-niche-link secondary">🏥 Gesundheitswesen</a>
+  </div>
+</section>
+
+<!-- ===== SECTION 1 — Action Cards (hub-wide) ===== -->
+<section class="niche-section" id="actions">
+  <h2 class="niche-section-title">Was @AsTech für Ihr Unternehmen tun kann</h2>
+  <p class="niche-section-sub">Spezialisierte Aktionen, die Ihnen den Arbeitsalltag erleichtern – passend zu Ihrer Branche.</p>
+  <div class="niche-cards-grid">
+    <div class="niche-card" data-example="Beispiel E-Mail-Entwurf:\n\nBetreff: Angebotsanfrage\n\nSehr geehrte Damen und Herren,\n\nhiermit möchte ich ein Angebot für Ihre Dienstleistungen anfordern.\n\nMit freundlichen Grüßen\nIhr @AsTech-Nutzer">
+      <div class="niche-card-icon">📧</div>
+      <div class="niche-card-title">E-Mail-Entwurf</div>
+      <div class="niche-card-desc">Professionelle E-Mails in Sekunden verfassen – mit korrekter Anrede und passendem Ton.</div>
+      <button class="niche-card-link">Beispiel ansehen</button>
+    </div>
+    <div class="niche-card" data-example="Beispiel Dokument:\n\n@AsTech generiert Schreiben, Berichte und Zusammenfassungen auf Deutsch – formell, präzise und rechtssicher.\n\nIhr Text wird automatisch an Ihre Branche und Ihren Kunden angepasst.">
+      <div class="niche-card-icon">📄</div>
+      <div class="niche-card-title">Dokumente generieren</div>
+      <div class="niche-card-desc">Schreiben, Berichte und Zusammenfassungen mit KI-Unterstützung erstellen.</div>
+      <button class="niche-card-link">Beispiel ansehen</button>
+    </div>
+    <div class="niche-card" data-example="Beispiel Fristen:\n\n@AsTech erinnert Sie an bevorstehende Fristen und Termine.\n\nBeispiel: 'Erinnere mich an die Umsatzsteuervoranmeldung am 10. des Monats.'\n\n@AsTech: 'Notiert. Ich erinnere Sie 3 Tage vorher.'">
+      <div class="niche-card-icon">📅</div>
+      <div class="niche-card-title">Termine & Fristen</div>
+      <div class="niche-card-desc">Keine Frist mehr verpassen – Erinnerungen und Kalender direkt in der App.</div>
+      <button class="niche-card-link">Beispiel ansehen</button>
+    </div>
+    <div class="niche-card" data-example="Beispiel Zusammenfassung:\n\nUrsprünglicher Text (82 Seiten): Jahresabschluss 2025 der Müller GmbH\n\n@AsTech Zusammenfassung:\nDie Müller GmbH erzielte 2025 einen Umsatz von 2,4 Mio. € (+8% vs. Vorjahr). Der Jahresüberschuss beträgt 187.000 €. Die Eigenkapitalquote stieg auf 34%.">
+      <div class="niche-card-icon">📊</div>
+      <div class="niche-card-title">Daten zusammenfassen</div>
+      <div class="niche-card-desc">Komplexe Berichte und Zahlen in klare Zusammenfassungen verwandeln.</div>
+      <button class="niche-card-link">Beispiel ansehen</button>
+    </div>
+    <div class="niche-card" data-example="Beispiel Recherche:\n\nFrage: 'Wie hoch ist der durchschnittliche Gewerbesteuerhebesatz in München?'\n\n@AsTech: Der durchschnittliche Gewerbesteuerhebesatz in München beträgt 490% (Stand 2025). Die Spanne reicht von 240% bis 490%.">
+      <div class="niche-card-icon">🔍</div>
+      <div class="niche-card-title">Fachfragen prüfen</div>
+      <div class="niche-card-desc">Komplexe Fachfragen analysieren und fundierte Antworten erhalten.</div>
+      <button class="niche-card-link">Beispiel ansehen</button>
+    </div>
+    <div class="niche-card" data-example="Beispiel Checkliste:\n\nIhre @AsTech-Checkliste für heute:\n✅ E-Mails beantworten (3 offen)\n✅ Angebot Müller GmbH prüfen\n✅ Team-Meeting 14:00\n✅ Frist Umsatzsteuer 10.04.\n\nSoll ich eine davon für Sie vorbereiten?">
+      <div class="niche-card-icon">✅</div>
+      <div class="niche-card-title">Checklisten & Routinen</div>
+      <div class="niche-card-desc">Tägliche Aufgaben automatisieren und strukturiert abarbeiten.</div>
+      <button class="niche-card-link">Beispiel ansehen</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:32px">
+    <a href="steuerberatung/" class="niche-mockup-badge">Alle 6 Aktionen für Steuerberatung ansehen →</a>
+  </div>
+</section>
+
+<!-- ===== SECTION 2 — Phone Mockup ===== -->
+<section class="niche-mockup-section">
+  <div class="niche-mockup-wrap">
+    <h2 class="niche-mockup-title">So einfach geht's</h2>
+    <div class="niche-mockup-phone">
+      <div class="niche-mockup-screen">
+        <div class="niche-mockup-topbar">
+          <span class="time" id="mockupTime">13:42</span>
+          <span class="icons">◉ ◉ ▮ ▮█ ▮██</span>
+        </div>
+        <div class="niche-mockup-header">
+          <div class="niche-mockup-header-av">@A</div>
+          <div class="niche-mockup-header-text">Was möchten Sie tun?</div>
+        </div>
+        <div class="niche-mockup-actions">
+          <div class="niche-mockup-carousel">
+            <div class="niche-mockup-action-item"><div class="niche-mockup-action-icon">📧</div><div class="niche-mockup-action-label">E-Mail-Entwurf</div></div>
+            <div class="niche-mockup-action-item"><div class="niche-mockup-action-icon">📄</div><div class="niche-mockup-action-label">Dokument generieren</div></div>
+            <div class="niche-mockup-action-item"><div class="niche-mockup-action-icon">📅</div><div class="niche-mockup-action-label">Termin & Frist</div></div>
+            <div class="niche-mockup-action-item"><div class="niche-mockup-action-icon">📊</div><div class="niche-mockup-action-label">Daten zusammenfassen</div></div>
+            <div class="niche-mockup-action-item"><div class="niche-mockup-action-icon">🔍</div><div class="niche-mockup-action-label">Fachfrage prüfen</div></div>
+            <div class="niche-mockup-action-item"><div class="niche-mockup-action-icon">✅</div><div class="niche-mockup-action-label">Checkliste & Routine</div></div>
+            <!-- Duplicate for seamless loop -->
+            <div class="niche-mockup-action-item"><div class="niche-mockup-action-icon">📧</div><div class="niche-mockup-action-label">E-Mail-Entwurf</div></div>
+            <div class="niche-mockup-action-item"><div class="niche-mockup-action-icon">📄</div><div class="niche-mockup-action-label">Dokument generieren</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#activation" class="niche-mockup-badge">Jetzt kostenlos testen →</a>
+  </div>
+</section>
+
+<!-- ===== SECTION 4 — Activation Form ===== -->
+<section class="niche-activation-section" id="activation">
+  <div class="niche-activation-inner">
+    <h2 class="niche-section-title">Jetzt @AsTech erhalten</h2>
+    <p class="niche-section-sub">In 2 Minuten starten – keine Zahlungsmethode nötig.</p>
+
+    <form class="niche-form" id="nicheActivationForm">
+      <div class="niche-form-fields">
+        <div class="niche-form-group">
+          <label class="niche-form-label" for="formName">Vollständiger Name</label>
+          <input class="niche-form-input" id="formName" type="text" placeholder="Max Mustermann" required>
+        </div>
+        <div class="niche-form-group">
+          <label class="niche-form-label" for="formEmail">E-Mail-Adresse</label>
+          <input class="niche-form-input" id="formEmail" type="email" placeholder="max@kanzlei.de" required>
+        </div>
+        <div class="niche-form-group">
+          <label class="niche-form-label" for="formCompany">Unternehmen</label>
+          <input class="niche-form-input" id="formCompany" type="text" placeholder="Kanzlei, Spedition, Praxis..." required>
+        </div>
+        <div class="niche-form-group">
+          <label class="niche-form-label" for="formNiche">Ihre Branche</label>
+          <select class="niche-form-input" id="formNiche">
+            <option value="Steuerberatung">🏛️ Steuerberatung</option>
+            <option value="Logistik">🚚 Logistik & Spedition</option>
+            <option value="Gesundheitswesen">🏥 Gesundheitswesen</option>
+            <option value="Allgemein">📋 Allgemein</option>
+          </select>
+        </div>
+        <div class="niche-form-group">
+          <label class="niche-form-label" for="formApiKey">DeepSeek API-Key (optional)</label>
+          <input class="niche-form-input" id="formApiKey" type="text" placeholder="Ihr persönlicher Key für unbegrenzte Nutzung">
+        </div>
+        <div id="formError" class="niche-form-error"></div>
+        <button class="niche-form-submit" type="submit">
+          <span class="submit-text">Jetzt kostenlos erhalten</span>
+        </button>
+      </div>
+
+      <div id="formSuccess" class="niche-form-success">
+        <div style="font-size:48px;margin-bottom:16px">✅</div>
+        <h3 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">Ihr Aktivierungscode</h3>
+        <div id="activationCodeDisplay" class="niche-form-code">@AS-XXXXXX</div>
+        <p class="niche-form-success-text">Wir haben Ihnen eine E-Mail mit dem Download-Link und Ihrem persönlichen Aktivierungscode gesendet.</p>
+        <p class="niche-form-success-text" style="margin-top:12px;font-size:13px">📱 Installieren Sie die APK auf Ihrem Smartphone und geben Sie den Code ein.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== SECTION 3 — Modal ===== -->
+<div class="niche-modal-overlay" id="nicheModal">
+  <div class="niche-modal">
+    <button class="niche-modal-close">✕</button>
+    <div class="niche-modal-icon" id="modalActionIcon">📧</div>
+    <div class="niche-modal-title" id="modalActionTitle">Beispiel</div>
+    <div class="niche-modal-subtitle">Beispiel aus der Praxis</div>
+    <div class="niche-modal-example" id="modalActionExample">Beispieltext...</div>
+  </div>
 </div>
+
+<footer class="hub-footer">
+  <div>© 2026 @AsTech</div>
+  <div style="margin-top:8px">
+    <a href="steuerberatung/">Steuerberatung</a>
+    <a href="logistik/">Logistik</a>
+    <a href="gesundheitswesen/">Gesundheitswesen</a>
+  </div>
+</footer>
+
+<script src="assets/js/niche-interactions.js"></script>
 </body>
 </html>

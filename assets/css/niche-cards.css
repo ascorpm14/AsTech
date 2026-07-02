@@ -1,0 +1,598 @@
+/* ============================================================
+   @AsTech — Niche Cards, Phone Mockup, Modal, Activation Form
+   Design language matches existing cinematic dark theme
+   Uses page CSS vars: --bg, --primary, --gradient, --text, etc.
+   ============================================================ */
+
+/* ---- Shared section styles ---- */
+.niche-section {
+  padding: 80px 24px 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.niche-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.niche-section-title {
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+}
+.niche-section-sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 48px;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   SECTION 1 — Action Cards
+   ============================================================ */
+.niche-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+.niche-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 28px 24px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 0;
+  transform: translateY(24px);
+}
+.niche-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Gradient bar at top — deploys on hover */
+.niche-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.niche-card:hover::before {
+  transform: scaleX(1);
+}
+.niche-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
+}
+.niche-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+.niche-card:hover .niche-card-icon {
+  transform: scale(1.12);
+}
+.niche-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.niche-card-desc {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.niche-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+.niche-card-link:hover {
+  color: #fff;
+  gap: 10px;
+}
+.niche-card-link::after {
+  content: '→';
+  transition: transform 0.3s ease;
+}
+.niche-card-link:hover::after {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   SECTION 2 — Phone Mockup (action carousel)
+   ============================================================ */
+.niche-mockup-section {
+  background: linear-gradient(135deg, rgba(10, 14, 39, 0.95), rgba(20, 10, 50, 0.95));
+  padding: 80px 24px 70px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.niche-mockup-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse 40% 30% at 30% 50%, rgba(37, 99, 235, 0.06) 0%, transparent 60%),
+              radial-gradient(ellipse 30% 25% at 70% 30%, rgba(124, 58, 237, 0.04) 0%, transparent 55%);
+  pointer-events: none;
+}
+.niche-mockup-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+.niche-mockup-title {
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -1px;
+}
+.niche-mockup-phone {
+  position: relative;
+  width: 320px;
+  max-width: 85vw;
+  background: linear-gradient(145deg, #2a2a3e, #12122a);
+  border-radius: 40px;
+  padding: 12px;
+  box-shadow: 0 0 0 2px #3a3a4e, 0 24px 60px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.niche-mockup-phone::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 26px;
+  background: #12122a;
+  border-radius: 0 0 16px 16px;
+  z-index: 30;
+}
+.niche-mockup-phone::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  z-index: 31;
+}
+.niche-mockup-screen {
+  background: #0a0e27;
+  border-radius: 30px;
+  overflow: hidden;
+  aspect-ratio: 390 / 844;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.niche-mockup-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 18px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  background: #0a0e27;
+  flex-shrink: 0;
+}
+.niche-mockup-topbar .time {
+  font-weight: 700;
+  color: #fff;
+}
+.niche-mockup-topbar .icons {
+  display: flex;
+  gap: 3px;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.niche-mockup-header {
+  background: var(--gradient);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.niche-mockup-header-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+.niche-mockup-header-av {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 12px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.niche-mockup-actions {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  padding: 16px 12px;
+  background: linear-gradient(180deg, #0f1330 0%, #0a0e27 30%, #0a0e27 100%);
+}
+/* Vertical carousel */
+.niche-mockup-carousel {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: carouselScroll 24s linear infinite;
+}
+@keyframes carouselScroll {
+  0% { transform: translateY(0); }
+  12.5% { transform: translateY(0); }
+  16.67% { transform: translateY(-62px); }
+  29.17% { transform: translateY(-62px); }
+  33.33% { transform: translateY(-124px); }
+  45.83% { transform: translateY(-124px); }
+  50% { transform: translateY(-186px); }
+  62.5% { transform: translateY(-186px); }
+  66.67% { transform: translateY(-248px); }
+  79.17% { transform: translateY(-248px); }
+  83.33% { transform: translateY(-310px); }
+  95.83% { transform: translateY(-310px); }
+  100% { transform: translateY(-372px); }
+}
+.niche-mockup-action-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 10px 14px;
+  min-height: 54px;
+  transition: all 0.3s ease;
+}
+.niche-mockup-action-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.niche-mockup-action-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.3;
+}
+.niche-mockup-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gradient);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+  position: relative;
+  z-index: 1;
+}
+.niche-mockup-badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.4);
+}
+
+/* ============================================================
+   SECTION 3 — Modal "Beispiel ansehen"
+   ============================================================ */
+.niche-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.niche-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.niche-modal {
+  background: #1a1a30;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 36px 32px 32px;
+  max-width: 560px;
+  width: 100%;
+  position: relative;
+  transform: scale(0.85) translateY(10px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.niche-modal-overlay.active .niche-modal {
+  transform: scale(1) translateY(0);
+}
+.niche-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  color: var(--text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  line-height: 1;
+}
+.niche-modal-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+.niche-modal-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+.niche-modal-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.niche-modal-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.niche-modal-example {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 24px;
+  white-space: pre-wrap;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #cbd5e1;
+  overflow-x: auto;
+}
+
+/* ============================================================
+   SECTION 4 — Activation Form
+   ============================================================ */
+.niche-activation-section {
+  padding: 80px 24px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.niche-activation-inner {
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.niche-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 32px;
+  text-align: left;
+}
+.niche-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.niche-form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.niche-form-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #e2e8f0;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.niche-form-input:focus {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+.niche-form-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+.niche-form-input.error {
+  border-color: #ef4444;
+}
+.niche-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--gradient);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+  margin-top: 6px;
+}
+.niche-form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37, 99, 235, 0.4);
+}
+.niche-form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.niche-form-error {
+  font-size: 13px;
+  color: #ef4444;
+  margin-top: 4px;
+  display: none;
+}
+.niche-form-error.visible {
+  display: block;
+}
+.niche-form-success {
+  display: none;
+  text-align: center;
+  padding: 32px 24px;
+}
+.niche-form-success.visible {
+  display: block;
+}
+.niche-form-code {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 6px;
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.niche-form-success-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.niche-form-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 900px) {
+  .niche-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+@media (max-width: 640px) {
+  .niche-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .niche-card {
+    padding: 22px 18px 20px;
+  }
+  .niche-mockup-phone {
+    width: 280px;
+  }
+  .niche-modal {
+    padding: 28px 20px 24px;
+  }
+  .niche-modal-example {
+    padding: 16px 18px;
+    font-size: 12px;
+  }
+  .niche-form-code {
+    font-size: 24px;
+    letter-spacing: 4px;
+    padding: 16px 18px;
+  }
+  .niche-activation-section {
+    padding: 60px 16px 40px;
+  }
+}
