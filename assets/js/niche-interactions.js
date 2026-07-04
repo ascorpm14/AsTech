@@ -142,25 +142,15 @@ function initActivationForm() {
     }
 
     try {
-      // Try to call backend first
-      let response;
-      try {
-        response = await fetch('http://167.86.107.16:5678/webhook/astech-activation', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name, email, company, niche,
-            deepseek_key: apiKey || undefined
-          })
-        });
-      } catch (netErr) {
-        // Backend not available — fallback to n8n direct
-        response = await fetch('/webhook/astech-activation', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, company, niche, deepseek_key: apiKey || undefined })
-        });
-      }
+      // Call backend via Caddy HTTPS proxy
+      let response = await fetch('https://vmi3394924.contaboserver.net/api/activation/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, email, company, niche,
+          deepseek_key: apiKey || undefined
+        })
+      });
 
       const data = await response.json();
 
